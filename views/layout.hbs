@@ -1,3 +1,8 @@
+
+
+
+
+
 <html lang="en">
 
   <head>
@@ -9,6 +14,25 @@
   </head>
 
   <body>
+  <nav>
+         <ul>
+            <li id="to-left">
+               <p><a href="/"> Home </a></p>
+            </li>
+            <li id="to-right" class="is-log-in">
+               <a href="/auth/userProfile">My Account</a> <span> | </span>
+               <a href="/profile/profile">Profile</a> <span> | </span>
+               <form id="logout-form" action="/auth/logout" method="GET">
+                  <button>Logout</button> 
+               </form>                         
+            </li>
+            <li id="to-right" class="is-log-out">
+               <a href="/auth/signup">Signup</a> <span> | </span>
+               <a href="/auth/login">Login</a> <span> | </span>
+            </li>
+            
+         </ul>
+      </nav>
 
     {{{body}}}
 
@@ -16,3 +40,5 @@
   </body>
 
 </html>
+
+
