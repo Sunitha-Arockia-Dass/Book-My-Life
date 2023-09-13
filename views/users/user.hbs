@@ -1,0 +1,12 @@
+{{#if userInSession}}
+  <h2>Welcome, {{ userInSession.username }}!</h2>
+  <p>This is your profile page my friend!</p>
+  <button>
+    <a href="/auth/userProfile">Reload the page</a>
+  </button>
+  <button>
+    <a href="/profile/profileCreate">Create a profile</a>
+  </button>
+{{else}}
+  <p>User successfully created, please log in</p>
+{{/if}}

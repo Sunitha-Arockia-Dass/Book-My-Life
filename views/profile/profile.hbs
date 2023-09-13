@@ -1,0 +1,27 @@
+<h1>Hello Profile Page</h1>
+<h1>Profile</h1>
+{{#each profile}}
+<div>
+    <img class="profile-picture" src="{{profilePicture}}" alt="error">
+    <h3>
+        {{name}}
+    </h3>
+    <h2>
+        {{age}} years
+    </h2>
+    <button>
+    <a href="/profile/profileUpdate/{{id}}">Update the profile</a>
+  </button>
+    <button>
+    <a href="/profile/profileDelete/{{id}}">Delete the profile</a>
+  </button>
+
+</div>
+{{/each}}
+<button>
+    <a href="/profile/profileCreate">Create a profile</a>
+  </button>
+  
+{{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}

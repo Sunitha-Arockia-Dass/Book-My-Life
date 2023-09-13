@@ -1,0 +1,51 @@
+{{#if isNewProfile}}
+<div id="form">
+  <h2>Create a profile</h2>
+  <form action="/profile/profile" method="POST">
+
+    <label> Name
+      <input type="text" name="name" placeholder="Your name" />
+    </label>
+
+    <label> Age
+      <input type="number" name="age" placeholder="Your age" />
+    </label>
+
+    <label> Profile Picture
+      <input type="text" name="profilePicture" placeholder="Your picture's url" />
+    </label>    
+
+    <button type="submit">Create</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
+{{else}}
+{{# with profile}}
+<div id="form">
+  <h2>Update a profile</h2>
+  <form action="/profile/profileUpdate/{{id}}" method="POST">
+
+    <label> Name
+      <input type="text" name="name" value={{name}} />
+    </label>
+
+    <label> Age
+      <input type="number" name="age" value={{age}} />
+    </label>
+
+    <label> Profile Picture
+      <input type="text" name="profilePicture" value={{profilePicture}} />
+    </label>    
+
+    <button type="submit">Update</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
+{{/with}}
+{{/if}}
