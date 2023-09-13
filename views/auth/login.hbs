@@ -1,11 +1,11 @@
+<!-- LOG IN FORM -->
 <div id="login-form">
   <h2>Log In</h2>
   <form action="/auth/login" method="POST">
 
     <label> Username
-      <input type="text" name="username" placeholder="Your username" />
+      <input type="username" name="username" placeholder="Your username" />
     </label>
-
 
     <label> Password
       <input type="password" name="password" placeholder="Your password" />
@@ -13,7 +13,7 @@
 
     <button type="submit">Log In</button>
 
-
+    <!-- Error message -->
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}

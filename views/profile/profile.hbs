@@ -1,27 +1,30 @@
-<h1>Hello Profile Page</h1>
-<h1>Profile</h1>
+<!-- PROFILE.s PAGE -->
+<h1>Profile.s page:</h1>
+
+
+<!-- Display each profile -->
 {{#each profile}}
 <div>
     <img class="profile-picture" src="{{profilePicture}}" alt="error">
-    <h3>
-        {{name}}
-    </h3>
-    <h2>
-        {{age}} years
-    </h2>
+    <h3>{{name}}</h3>
+    <p>{{age}}years old</p>
     <button>
-    <a href="/profile/profileUpdate/{{id}}">Update the profile</a>
-  </button>
+      <a href="/profile/profileUpdate/{{id}}">Update the profile</a>
+    </button>
     <button>
-    <a href="/profile/profileDelete/{{id}}">Delete the profile</a>
-  </button>
-
+      <a href="/profile/profileDelete/{{id}}">Delete the profile</a>
+    </button>
 </div>
 {{/each}}
+
+
+<!-- Create a new profile -->
 <button>
     <a href="/profile/profileCreate">Create a profile</a>
-  </button>
-  
+</button>
+
+
+<!-- error message -->  
 {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
+  <p class="error">{{errorMessage}}</p>
+{{/if}}

@@ -1,12 +1,16 @@
+<!-- MY ACCOUNT PAGE -->
+
 {{#if userInSession}}
+  {{#each user}}
   <h2>Welcome, {{ userInSession.username }}!</h2>
+
   <p>This is your profile page my friend!</p>
+
   <button>
-    <a href="/auth/userProfile">Reload the page</a>
+    <a href="/auth/update/{{id}}">Edit my account</a>
   </button>
   <button>
     <a href="/profile/profileCreate">Create a profile</a>
   </button>
-{{else}}
-  <p>User successfully created, please log in</p>
+  {{/each}}
 {{/if}}

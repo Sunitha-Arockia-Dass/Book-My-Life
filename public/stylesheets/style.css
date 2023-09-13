@@ -105,3 +105,10 @@ ul {
 #logout-form button {
   width: 100px;
 }
+
+img.profile-picture {
+  height: 100px;
+  width: 100px;
+  padding: 25px 0;
+  
+}
