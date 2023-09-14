@@ -15,12 +15,26 @@ const User = require("../models/User.model")
 const isLoggedOut = require("../middleware/isLoggedOut")
 const isLoggedIn = require("../middleware/isLoggedIn")
 
+const userFindbyId=(userId)=>{
+ return User.findById(userId)
+  .then(foundUser=>{
+if(!foundUser)
+{
+console.log ('foundUser not found')
+}
+console.log(foundUser)
+return foundUser
+  })
+  .catch(error=>{
+    console.log("error while finding user by id:",error)
+  })
+}
 
 /*////////////////////////////////////////////////////////////// 
 GET SIGNUP PAGE
  */
 router.get("/signup", isLoggedOut, (req, res) => {
-  res.render("auth/signup", {isNewAccount:true})
+  res.render("auth/signup")
 })
 
 
@@ -180,17 +194,13 @@ GET UPDATE A PROFILE PAGE
  */
 router.get("/update/:id", isLoggedIn, (req, res, next) => {
   const userId = req.params.id
-  User.findById(userId)
-  .then(foundUser=>{
-if(!foundUser)
-{
-console.log ('foundUser not found')
-}
-    res.render("auth/signup",{isNewAccount:false,userId,user:foundUser})
-  })
-  .catch(error=>{
-    console.log("error while finding user by id:",error)
-  })
+    userFindbyId(userId)
+    .then(user=>{
+
+      console.log("in router console:," , user)
+      res.render("auth/userUpdate",{userId,user:user})
+    })
+    
 })
 
 
@@ -200,18 +210,78 @@ POST UPDATE A PROFILE FORM
 router.post("/update/:id", isLoggedIn, (req, res, next) => {
   const userId = req.params.id
   console.log(userId)
-  const { username, email }=req.body
-User.findByIdAndUpdate(userId,{ username, email },{new:true})
-.then(updatedUser=>{
-  console.log(updatedUser)
-  req.session.destroy((err) => {
-    if (err) {
-      res.status(500).render("auth/logout", { errorMessage: err.message })
+  const { username, email, password, newPassword }=req.body
+
+//First check the password to allow update
+// Check that username, and password are provided
+if (username === "" || email === "" || password === "") {
+  userFindbyId(userId)
+  .then(user=>{
+    console.log("in router console:," , user)
+    res.render("auth/userUpdate",{userId,user:user,errorMessage: "All fields are mandatory. Please provide your username, email and password."})
+  })
+  return
+}
+
+if (password.length < 6) {
+
+  userFindbyId(userId)
+  .then(user=>{
+    console.log("in router console:," , user)
+    res.render("auth/userUpdate",{userId,user:user,errorMessage: "Your password needs to be at least 6 characters long."})
+  })
+  return
+
+  
+}
+
+// Search the database for a user with the email submitted in the form
+User.findById(userId)
+  .then((user) => {
+    // If the user isn't found, send an error message that user provided wrong credentials
+    if (!user) {
+      res
+        .status(400)
+        .render("/update/:id", { errorMessage: "Wrong credentials." })
+      return
+    }
+
+    // If user is found based on the username, check if the in putted password matches the one saved in the database
+    bcrypt
+      .compare(password, user.password)
+      .then((isSamePassword) => {
+        if (!isSamePassword) {
+          res
+            .status(400)
+            .render("/update/:id", { errorMessage: "Wrong credentials." })
+          return
+        }
+
+        bcrypt
+        .genSalt(saltRounds)
+        .then((salt) => bcrypt.hash(newPassword, salt))
+        .then((hashedPassword) => {
+          // Create a user and save it in the database
+          return User.findByIdAndUpdate(userId,{ username, email, password:hashedPassword},{new:true})
+      .then(updatedUser=>{
+      console.log(updatedUser)
+      req.session.destroy((err) => {
+          if (err) {
+          res.status(500).render("auth/logout", { errorMessage: err.message })
       return
     }
   res.redirect('/auth/login')
 })
+
 })
+        
+      })
+      .catch((err) => next(err)) // In this case, we send error handling to the error handling middleware.
+  })
+  .catch((err) => next(err))
+
+
+  })
 })
 
 

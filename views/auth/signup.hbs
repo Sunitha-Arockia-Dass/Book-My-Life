@@ -1,5 +1,4 @@
 <!-- SIGNUP FORM -->
-{{#if isNewAccount}}
   <div id="form">
     <h2>Sign Up</h2>
     <form action="/auth/signup" method="POST">
@@ -26,36 +25,4 @@
   </div>
 
 
-<!-- Edit my account FORM -->
-{{else}}
-{{# with user}}
-  <div id="form">
-    <h2>Edit my account</h2>
-    <form action="/auth/update/{{id}}" method="POST">
 
-      <label> Username
-        <input type="text" name="username" value={{username}} />
-      </label>
-
-      <label> Email
-        <input type="email" name="email" value={{email}} />
-      </label>
-
-      <label> Current Password
-        <input type="password" name="password" placeholder="Your password" />
-      </label>
-
-      <label> New Password
-        <input type="password" name="password" placeholder="Your new password" />
-      </label>
-
-      <button type="submit">Edit informations</button>
-
-      <!-- Error message -->
-      {{#if errorMessage}}
-        <p class="error">{{errorMessage}}</p>
-      {{/if}}      
-    </form>
-  </div>
-{{/with}}
-{{/if}}

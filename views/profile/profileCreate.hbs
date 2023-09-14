@@ -1,7 +1,6 @@
-<!-- CREATE & UPDATE PAGE -->
 
 <!-- Create a new profile Form-->
-{{#if isNewProfile}}
+
 <div id="form">
   <h2>Create a profile</h2>
   <form action="/profile/profile" method="POST">
@@ -29,32 +28,3 @@
 </div>
 
 
-<!-- Update an existing profile Form-->
-{{else}}
-{{# with profile}}
-<div id="form">
-  <h2>Update a profile</h2>
-  <form action="/profile/profileUpdate/{{id}}" method="POST">
-
-    <label> Name
-      <input type="text" name="name" value={{name}} />
-    </label>
-
-    <label> Age
-      <input type="number" name="age" value={{age}} />
-    </label>
-
-    <label> Profile Picture
-      <input type="text" name="profilePicture" value={{profilePicture}} />
-    </label>    
-
-    <button type="submit">Update</button>
-
-    <!-- Error message -->
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div>
-{{/with}}
-{{/if}}

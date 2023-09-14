@@ -1,0 +1,28 @@
+<!-- Update an existing profile Form-->
+
+{{# with profile}}
+<div id="form">
+  <h2>Update a profile</h2>
+  <form action="/profile/profileUpdate/{{id}}" method="POST">
+
+    <label> Name
+      <input type="text" name="name" value={{name}} />
+    </label>
+
+    <label> Age
+      <input type="number" name="age" value={{age}} />
+    </label>
+
+    <label> Profile Picture
+      <input type="text" name="profilePicture" value={{profilePicture}} />
+    </label>    
+
+    <button type="submit">Update</button>
+
+{{/with}}
+    <!-- Error message -->
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
