@@ -1,7 +1,23 @@
 /* public/stylesheets/style.css */
 body {
-  padding: 50px;
+  min-height: 100vh; margin:0;
+  display:flex;
+  flex-direction:column; 
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+header, main, footer{
+  box-sizing: border-box;
+}
+header{
+  min-height:50px; background:lightcyan;
+}
+
+main{ flex:1; }
+
+footer {
+  min-height:50px; background:PapayaWhip;
+
 }
 
 a {
