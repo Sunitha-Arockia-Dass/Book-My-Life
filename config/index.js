@@ -17,6 +17,10 @@ const favicon = require("serve-favicon");
 // https://www.npmjs.com/package/path
 const path = require("path");
 
+// Handles the handlebars
+// https://www.npmjs.com/package/hbs
+const hbs = require("hbs")
+
 // ℹ️ Session middleware for authentication
 // https://www.npmjs.com/package/express-session
 const session = require("express-session");
@@ -27,7 +31,7 @@ const MongoStore = require("connect-mongo");
 
 // Connects the mongo uri to maintain the same naming structure
 const MONGO_URI =
-  process.env.MONGODB_URI || "mongodb+srv://Sunitha:samyu143@cluster0.wlo19f2.mongodb.net/Book-my-life";
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/Book-My-Life";
 
 // Middleware configuration
 module.exports = (app) => {
@@ -45,6 +49,9 @@ module.exports = (app) => {
   app.set("view engine", "hbs");
   // AHandles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));
+
+  // Register the location for handlebars partials here:
+  hbs.registerPartials(path.join(__dirname, "..", "views", "partials"));
 
   // Handles access to the favicon
   app.use(

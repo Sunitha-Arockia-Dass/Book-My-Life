@@ -160,7 +160,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           // Remove the password field
           delete req.session.currentUser.password
 
-          res.redirect("userProfile")
+          res.redirect("/profile/profile")
         })
         .catch((err) => next(err)) // In this case, we send error handling to the error handling middleware.
     })
@@ -210,7 +210,7 @@ POST UPDATE A PROFILE FORM
 router.post("/update/:id", isLoggedIn, (req, res, next) => {
   const userId = req.params.id
   console.log(userId)
-  const { username, email, password, newPassword }=req.body
+  let { username, email, password, newPassword }=req.body
 
 //First check the password to allow update
 // Check that username, and password are provided
@@ -233,6 +233,9 @@ if (password.length < 6) {
   return
 
   
+}
+if(newPassword===""){
+  newPassword=password
 }
 
 // Search the database for a user with the email submitted in the form
