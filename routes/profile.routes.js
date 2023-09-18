@@ -3,24 +3,14 @@ const router = express.Router();
 
 // Profile schema
 const Profile = require("../models/Profile.model");
+const {
+  storeProfileId,
+  calculateAge,profileFindbyId}=require("../middleware/functions")
 
 // middlaware
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
-const profileFindbyId = (profileId) => {
-  return Profile.findById(profileId)
-    .then((foundProfile) => {
-      if (!foundProfile) {
-        console.log("foundUser not found");
-      }
-      console.log(foundProfile);
-      return foundProfile;
-      //res.render("auth/userUpdate",{userId,user:foundUser})
-    })
-    .catch((error) => {
-      console.log("error while finding profile by id:", error);
-    });
-};
+
 
 /*////////////////////////////////////////////////////////////// 
 GET PROFILE PAGE
@@ -48,12 +38,12 @@ router.get("/profileCreate", isLoggedIn, (req, res, next) => {
 POST NEW PROFILE FORM
  */
 router.post("/profile", (req, res) => {
-  const { name, age, profilePicture } = req.body;
+  const { name,dob,gender, profilePicture } = req.body;
 
   const user = req.session.currentUser;
   const userId = user._id;
   console.log(userId);
-  if (name === "" || age === "") {
+  if (name === "" || dob === "") {
     res.status(400).render("profile/profileCreate", {
       errorMessage: "Please provide your Name and Age.",
     });
@@ -62,7 +52,7 @@ router.post("/profile", (req, res) => {
   }
   // create the profile
   if (profilePicture === "") {
-    Profile.create({ name, age, user: userId })
+    Profile.create({ name,dateOfBirth:dob,gender,user: userId })
       .then((createdProfile) => {
         res.redirect("/profile/profile");
       })
@@ -70,7 +60,7 @@ router.post("/profile", (req, res) => {
         console.log("error while creating profile:", error);
       });
   } else {
-    Profile.create({ name, age, profilePicture, user: userId })
+    Profile.create({ name,dateOfBirth:dob,gender, profilePicture , user: userId })
       .then((createdProfile) => {
         res.redirect("/profile/profile");
       })
@@ -137,6 +127,28 @@ router.get("/profileDelete/:id", isLoggedIn, (req, res, next) => {
       console.log("error while updating profiles:", error);
     });
 });
+
+
+/*////////////////////////////////////////////////////////////// 
+GET A PROFILE DETAIL
+ */
+router.get("/profileDetail/:id", isLoggedIn,storeProfileId, (req, res, next) => {
+  const profileId = req.params.id;
+  Profile.findById(profileId)
+    .then((updatedProfile) => {
+      console.log(updatedProfile)
+      const dob=updatedProfile.dateOfBirth;
+      const age= calculateAge(dob)
+      console.log(age)
+      // console.log(foundProfile)
+
+      res.render("profile/profileDetail",{profile:updatedProfile,age});
+    })
+    .catch((error) => {
+      console.log("error while finding profiles:", error);
+    });
+});
+
 
 /* module.exports */
 module.exports = router;

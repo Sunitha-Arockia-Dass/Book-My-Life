@@ -1,0 +1,20 @@
+
+
+{{#each data}}
+<h1>Hello {{profileName}} your BMI is {{BMI}} </h1>
+
+{{/each}}
+
+<canvas id="my-chart"></canvas>
+
+
+{{#if currentData}}
+
+<h4>YOUR CURRENT BMI IS {{currentData.BMI}} on </h4>
+
+{{/if}}
+
+
+<a href="/health/health">CHECK YOUR BMI</a>
+
+

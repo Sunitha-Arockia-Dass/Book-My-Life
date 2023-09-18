@@ -1,21 +1,36 @@
-
 <!-- Create a new profile Form-->
 
 <div id="form">
   <h2>Create a profile</h2>
   <form action="/profile/profile" method="POST">
 
-    <label> Name
+    <label>
+      Name
       <input type="text" name="name" placeholder="Your name" />
     </label>
 
-    <label> Age
-      <input type="number" name="age" placeholder="Your age" />
+    <label>
+      DOB
+      <input type="text" name="dob" placeholder="mm/dd/yyyy" />
     </label>
 
-    <label> Profile Picture
-      <input type="text" name="profilePicture" placeholder="Your picture's url" />
-    </label>    
+    <label>
+      Gender
+      <select name="gender" id="gender" >
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+    </label>
+
+    <label>
+      Profile Picture
+      <input
+        type="text"
+        name="profilePicture"
+        placeholder="Your picture's url"
+      />
+    </label>
 
     <button type="submit">Create</button>
 
@@ -26,5 +41,3 @@
 
   </form>
 </div>
-
-

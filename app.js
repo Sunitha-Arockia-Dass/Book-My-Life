@@ -34,6 +34,13 @@ app.use("/auth", authRoutes)
 const profileRoutes = require("./routes/profile.routes")
 app.use("/profile", profileRoutes)
 
+const healthRoutes = require("./routes/health.routes")
+app.use("/health", healthRoutes)
+
+const agendaRoutes = require("./routes/health.routes")
+app.use("/agenda", agendaRoutes)
+
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app)
 

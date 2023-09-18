@@ -6,23 +6,25 @@ const profileSchema = new Schema(
     name: {
       type: String,
       required: true,
-      unique: true,
     },
-    age: {
-      type: Number,
+    dateOfBirth: {
+      type: Date,
       required: true,
     },
-
+    gender: {
+      type: String,
+    },
     profilePicture: {
       type: String,
-      default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaUX6RE32_W5lqul-ipUqg4BM2SH1bNXQnHlzz0mvHaw&s',
+      default:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaUX6RE32_W5lqul-ipUqg4BM2SH1bNXQnHlzz0mvHaw&s",
       required: false,
     },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
-    }
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

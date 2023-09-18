@@ -5,9 +5,12 @@
 <!-- Display each profile -->
 {{#each profile}}
 <div>
+  <a href="/profile/profileDetail/{{id}}">
     <img class="profile-picture" src="{{profilePicture}}" alt="error">
     <h3>{{name}}</h3>
-    <p>{{age}} years old</p>
+    
+    
+    </a>
     <button>
       <a href="/profile/profileUpdate/{{id}}">Update the profile</a>
     </button>

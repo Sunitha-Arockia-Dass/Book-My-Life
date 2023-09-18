@@ -1,0 +1,25 @@
+<h1>Welcome to HEALTHIFY</h1>
+
+<h2>To CALCULATE YOUR BMI AND GET ADVICES PLEASE ENTER YOUR DETAILS</h2>
+<div id="form">
+    <h2>BMI CALCULATOR</h2>
+    <form action="/health/health" method="POST">
+
+      <label> HEIGHT
+        <input type="number" name="height" placeholder="height in cms" step="0.01"/>
+      </label>
+
+      <label> WEIGHT
+        <input type="number" name="weight" placeholder="weight n kilograms" step="0.01"/>
+      </label>
+
+      
+
+      <button id="calculate" type="submit">CALCULATE</button>
+
+      <!-- Error message -->
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
+    </form>
+  </div>
