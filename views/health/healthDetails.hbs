@@ -1,20 +1,31 @@
 
-
-{{#each data}}
-<h1>Hello {{profileName}} your BMI is {{BMI}} </h1>
-
-{{/each}}
-
-<canvas id="my-chart"></canvas>
-
-
 {{#if currentData}}
 
 <h4>YOUR CURRENT BMI IS {{currentData.BMI}} on </h4>
+<h4>You are {{currentWeight}}</h4>
+<h3>You need to lose {{weightToLose}} kgs to have optimal BMI</h3>
 
 {{/if}}
 
 
+
+<input type="hidden" id="bmiData" value="{{bmiData}}">
+<input type="hidden" id="createdDates" value="{{createdDates}}">
+
+    
+<div class="row">
+
+<div class="col-6">
+<canvas id="bmiChart"></canvas>
+</div>
+<div class="col-6 check">
 <a href="/health/health">CHECK YOUR BMI</a>
+</div>
+</div>
+    
+    
+
+    <script src="/js/script.js"></script>
+
 
 

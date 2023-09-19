@@ -14,6 +14,9 @@ button, form, p {
   margin: 0;
   padding: 0;
 }
+.check{
+  margin-top: 30px;
+}
 
 /* colors */
 .black {
@@ -172,6 +175,8 @@ footer {
   background:rgb(230, 239, 249);
   border: solid 1px rgba(255,255,255,1);
 }
+
+
 
 footer p{
   padding: 0 0 0 20px;

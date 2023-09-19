@@ -40,13 +40,30 @@ const storeProfileId=(req, res, next)=> {
       });
   };
   
+const isHealthyBmi=(BMI)=>{
+  let currentWeight
+  if (BMI <= 18.5) {
+    return currentWeight="Underweight";
+} else if (BMI > 18.5 && BMI < 25) {
+    return currentWeight="Normal weight";
+} else if (BMI >= 25 && BMI < 30) {
+    return currentWeight="Overweight";
+} else if (BMI >= 30) {
+    return currentWeight="Obese";
+}
+}
 
-  
+const optimalWeight=(BMI,weight)=>{
+  weightToLose=weight*((BMI-24.9)/BMI)
+  return weightToLose.toFixed(1)
+    
+}
 
 
   module.exports={
     storeProfileId,
     calculateAge,
     profileFindbyId,
-    
+    isHealthyBmi,
+    optimalWeight,
 };
