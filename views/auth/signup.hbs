@@ -1,19 +1,26 @@
+<head>
+   <!-- CSS link --> 
+   <link rel="stylesheet" href="/stylesheets/style.css" />
+ </head>
+
 <!-- SIGNUP FORM -->
+<div id="sign-up">
   <div id="form">
     <h2>Sign Up</h2>
+    <p>Already registered ? <a class="alink" href="/auth/login">login</a></p>
     <form action="/auth/signup" method="POST">
 
-      <label> Username
-        <input type="text" name="username" placeholder="Your username" />
-      </label>
+      <label>Username</label>
+      <input type="text" name="username" placeholder="" />
+      <br><br>      
 
-      <label> Email
-        <input type="email" name="email" placeholder="Your email" />
-      </label>
+      <label>Email</label>
+      <input type="email" name="email" placeholder="" />
+      <br><br>
 
-      <label> Password
-        <input type="password" name="password" placeholder="Your password" />
-      </label>
+      <label>Password</label>
+      <input type="password" name="password" placeholder="" />
+      <br><br>
 
       <button type="submit">Sign Up</button>
 
@@ -23,6 +30,6 @@
       {{/if}}
     </form>
   </div>
-
+  </div>
 
 

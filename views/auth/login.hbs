@@ -1,21 +1,42 @@
 <!-- LOG IN FORM -->
-<div id="login-form">
-  <h2>Log In</h2>
-  <form action="/auth/login" method="POST">
+<div id="welcome-page">
+  <div class="wrapper">
+    <div class="left">
 
-    <label> Username
-      <input type="username" name="username" placeholder="Your username" />
-    </label>
+    </div>
+    <div class="right">
+      <div class="embed-page">
+        <div id="login-form">
+          <h2>Log In</h2>
+          <form action="/auth/login" method="POST">
 
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
-    </label>
+            <label>
+              Username
+              <input
+                type="username"
+                name="username"
+                placeholder="Your username"
+              />
+            </label>
 
-    <button type="submit">Log In</button>
+            <label>
+              Password
+              <input
+                type="password"
+                name="password"
+                placeholder="Your password"
+              />
+            </label>
 
-    <!-- Error message -->
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+            <button type="submit">Log In</button>
+
+            <!-- Error message -->
+            {{#if errorMessage}}
+              <p class="error">{{errorMessage}}</p>
+            {{/if}}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

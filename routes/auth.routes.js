@@ -34,7 +34,7 @@ return foundUser
 GET SIGNUP PAGE
  */
 router.get("/signup", isLoggedOut, (req, res) => {
-  res.render("auth/signup")
+  res.render("auth/signup", {layout: false})
 })
 
 
@@ -46,7 +46,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
 
   // Check that username, email, and password are provided
   if (username === "" || email === "" || password === "") {
-    res.status(400).render("auth/signup", {
+    res.status(400).render("auth/signup", {layout: false,
       errorMessage:
         "All fields are mandatory. Please provide your username, email and password.",
     })
@@ -55,7 +55,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   }
 
   if (password.length < 6) {
-    res.status(400).render("auth/signup", {
+    res.status(400).render("auth/signup", {layout: false,
       errorMessage: "Your password needs to be at least 6 characters long.",
     })
 
@@ -88,9 +88,9 @@ router.post("/signup", isLoggedOut, (req, res) => {
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render("auth/signup", { errorMessage: error.message })
+        res.status(500).render("auth/signup", {layout: false, errorMessage: error.message })
       } else if (error.code === 11000) {
-        res.status(500).render("auth/signup", {
+        res.status(500).render("auth/signup", {layout: false,
           errorMessage:
             "Username and email need to be unique. Provide a valid username or email.",
         })

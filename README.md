@@ -31,9 +31,22 @@ Presentations
 ## UX/UI Choices
 
 <h2>Fonts</h2>
+  --text: 'PT Sans', sans-serif;
+  --title: 'Nunito', sans-serif;
 
 
 <h2>Color Palette</h2>
+
+The color plum is a symbol of new beginnings, enthusiasm and fresh energy. It is also a color that represents strength, determination and confidence :
+  --plumd: #CE78CE;
+  --plumm: #DDA0DD;
+  --pluml: #EED2EE;
+  --citrine: #EAD94C;
+  --plumdark: #963696;
+  --white: #ffffff;
+  --grey: #6b5f6b;
+  --black: #000000;
+
 
 
 ## Screens
@@ -42,15 +55,3 @@ Presentations
 
 ## script.js
 this file contain the windows onload, the buttons click actions, the handleKeydown functions and launch the Game class.
-
-## game.js
-this file contain the creation of the board game and the logic of the game
-
-## player.js
-this file contain the class Player
-
-## ennemies.js
-this file contain the class Ennemies
-
-
-
