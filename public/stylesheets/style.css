@@ -56,7 +56,9 @@ input,
 select {
   font-family: var(--text);
 }
-
+.check{
+  margin-top: 30px;
+}
 button,
 form,
 p {

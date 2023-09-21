@@ -1,4 +1,11 @@
 const { Schema, model } = require("mongoose");
+function dateFormatted(dateString) {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.toLocaleString('default', { month: 'short' });
+  const year = date.getFullYear();
+  return `${month} ${day}, ${year}`;
+}
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const profileSchema = new Schema(
@@ -31,6 +38,11 @@ const profileSchema = new Schema(
     timestamps: true,
   }
 );
+profileSchema.virtual("formatteddateOfBirth").get(function () {
+  return dateFormatted(this.dateOfBirth);
+});
+
+
 
 const Profile = model("Profile", profileSchema);
 

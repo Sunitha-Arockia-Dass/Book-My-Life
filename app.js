@@ -37,7 +37,7 @@ app.use("/profile", profileRoutes)
 const healthRoutes = require("./routes/health.routes")
 app.use("/health", healthRoutes)
 
-const agendaRoutes = require("./routes/health.routes")
+const agendaRoutes = require("./routes/agenda.routes")
 app.use("/agenda", agendaRoutes)
 
 
