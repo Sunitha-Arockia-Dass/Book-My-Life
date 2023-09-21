@@ -1,18 +1,18 @@
 /* fonts Nunito and PT sans */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 /* Fonts & colors palette*/
 :root {
-  --plumd: #CE78CE;
-  --plumm: #DDA0DD;
-  --pluml: #EED2EE;
-  --citrine: #EAD94C;
+  --plumd: #ce78ce;
+  --plumm: #dda0dd;
+  --pluml: #eed2ee;
+  --citrine: #ead94c;
   --plumdark: #963696;
   --white: #ffffff;
   --grey: #6b5f6b;
   --black: #000000;
-  --text: 'PT Sans', sans-serif;
-  --title: 'Nunito', sans-serif;
+  --text: "PT Sans", sans-serif;
+  --title: "Nunito", sans-serif;
 }
 
 /* initialisation */
@@ -41,9 +41,19 @@ button {
   font-family: var(--title);
 }
 
+h2 {
+  text-align: center;
+  color: var(--black);
+  font-weight: bolder;
+  font-size: 2em;
+  padding-bottom: 10px;
+  text-shadow: 2px 2px 4px var(--pluml);
+}
+
 form,
 label,
-input {
+input,
+select {
   font-family: var(--text);
 }
 .check{
@@ -56,21 +66,23 @@ p {
   padding: 0;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
 
 /* links colors */
 .alink:link {
-  color: var(--pluml);
+  color: var(--white);
   transition: 0.5s ease;
 }
 
 .alink:visited {
-  color: var(--pluml);
+  color: var(--white);
 }
 
 .alink:hover {
   color: var(--citrine);
   background-color: var(--plumdark);
-
 }
 
 .alink:active {
@@ -80,30 +92,9 @@ p {
 
 /*/////////////////////////////////
  FORM */
- #form h2 {
-  text-align: center;
-  color: var(--black);
-  font-weight: bolder;
-  font-size: 2em;
-  padding-bottom: 10px;
-  text-shadow: 2px 2px 4px var(--pluml);
-}
-
-#form p {
+p {
   text-align: center;
   padding-bottom: 30px;
-}
-
-#form a:link, #form a:visited{
-  color: var(--black);
-  text-decoration: none;
-  font-weight: 700;
-  transition: 0.5s ease;  
-}
-
-#form a:hover, #form a:active{
-  color: var(--plumm);
-  background-color: unset;
 }
 
 form label {
@@ -114,7 +105,9 @@ form label {
   width: 100%;
   padding: 0 0 10px 10px;
 }
-form input{
+
+form input,
+form select {
   display: inline-block;
   font-size: 1em;
   font-weight: 200;
@@ -124,30 +117,68 @@ form input{
   border-radius: 10px 30px 10px 30px;
 }
 
-input:focus{
+input:focus,
+select:focus {
   outline: none;
-  background-color: var(--pluml);  
+  box-shadow: 1px 2px 4px var(--pluml);
+}
+
+#form:link,
+#form:visited {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.5s ease;
+}
+
+#form:hover,
+#form:active {
+  color: var(--plumm);
+  background-color: unset;
 }
 
 form button {
   background: var(--plumdark);
-  border: 2px solid var(--plumd);
+  border: 3px solid var(--plumd);
   border-radius: 30px 10px 30px 10px;
   color: var(--white);
   cursor: pointer;
   font-size: 1.2em;
   font-weight: bold;
-  padding: 10px 0px;
+  padding: 8px 0px;
   margin: 10px 0px;
-  transition: background-color 0.75s linear;
+  transition: 0.75s linear;
   width: 100%;
 }
 
 form button:hover {
-  background: var(--plumd);
+  background-color: var(--plumm);
+  box-shadow: 1px 2px 4px var(--pluml);
 }
 
+.edit-btn:link,
+.edit-btn:visited {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  background: var(--plumdark);
+  border: 3px solid var(--plumd);
+  border-radius: 30px 10px 30px 10px;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 8px 0px;
+  margin: 10px 0px;
+  transition: 0.75s linear;
+  width: 100%;
+}
 
+.edit-btn:hover,
+.edit-btn:active {
+  background-color: var(--plumm);
+  box-shadow: 1px 2px 4px var(--pluml);
+}
 
 /*/////////////////////////////////
 HEADER */
@@ -158,7 +189,7 @@ header {
   align-items: center;
   justify-content: center;
   border-radius: 0 0 15px 15px;
-  box-shadow: 0px 2px 2px 0 var(--plumd);
+  box-shadow: 2px 2px 4px var(--plumd);
 }
 
 nav {
@@ -169,7 +200,7 @@ nav {
   margin-left: 0px;
 }
 
-nav h2 {
+nav h1 {
   color: var(--pluml);
   font-weight: bolder;
 }
@@ -180,17 +211,12 @@ span.citrine {
 
 button.navbar-toggler {
   border: 1px solid var(--plumm);
-  color: var(--citrine);
+  color: var(--plumdark);
 }
 
 button.navbar-toggler:hover {
   border: 1px solid var(--citrine);
-  color: var(--citrine);
-}
-
-button.navbar-toggler:active {
-  border: 1px solid var(--citrine);
-  color: var(--citrine);
+  color: var(--plumdark);
 }
 
 ul.dropdown-menu {
@@ -206,7 +232,6 @@ ul.dropdown-menu:hover {
   border-color: var(--plumm);
   border-radius: 30px 10px 30px 10px;
 }
-
 
 li.profile-border {
   border-bottom: 1px solid var(--plumm);
@@ -228,9 +253,8 @@ li.profile-border {
   border: 1px solid var(--plumm);
   background-color: transparent;
   border-radius: 30px 10px 30px 10px;
+  box-shadow: unset;
 }
-
-
 
 /*/////////////////////////////////
  MAIN */
@@ -254,10 +278,10 @@ main {
 .wrapper .left,
 .wrapper .right {
   min-width: 490px;
-  max-width: 750px;
+  max-width: 700px;
   width: 45%;
   height: 750px;
-  box-shadow: 0px 2px 2px 0 var(--pluml);
+  box-shadow: 1px 2px 4px var(--pluml);
 }
 
 .wrapper .left {
@@ -280,19 +304,28 @@ main {
   width: 100%;
 }
 
-/* Signup Page */
-#sign-up {
+.w-profile{
+  width: 90%;
+  height: 750px;
+  background-color: var(--white);
+  border-radius: 0px 30px 0px 30px;
+  box-shadow: 1px 2px 4px var(--pluml);
+}
+
+/* Vignette */
+#vignette {
   height: 100%;
   display: flex;
   justify-content: center;
   background-color: var(--white);
 }
 
-#sign-up div#form {
+#v-container {
   width: 80%;
   height: 80%;
 }
 
+/* Profile Page */
 
 /*/////////////////////////////////
  FOOTER */
@@ -307,8 +340,8 @@ footer {
 }
 
 footer p {
-
   text-shadow: var(--plumd) 1px 1px;
+  padding-bottom: 0;
 }
 
 footer a {
@@ -332,11 +365,10 @@ footer a:hover {
   font-size: 1.1em;
   font-weight: bold;
   text-align: center;
-  background-color: rgba(255, 0, 0, 0.8);
-  border: inset 5px rgba(255, 0, 0, 0.5);
+  background-color: rgba(255, 0, 0, 0.7);
+  border: inset 5px rgba(255, 0, 0, 0.2);
   box-shadow: 2px 2px 4px var(--plumm);
   border-radius: 10px;
-
 }
 
 /*/////////////////////////////////
@@ -373,7 +405,7 @@ footer a:hover {
 }
 
 .error-page .alink {
-  color: #EAD94C;
+  color: #ead94c;
   text-decoration: none;
   padding: 5px 10px;
   font-weight: bold;
@@ -412,7 +444,6 @@ footer a:hover {
     height: unset;
   }
 
-
   /*/////////////////////////////////
  MAIN */
   main {
@@ -421,18 +452,18 @@ footer a:hover {
   }
 
   /* Index Page */
+
   .wrapper {
     justify-content: none;
     align-items: none;
     flex-direction: column-reverse;
-    padding: 10px 0px;
   }
 
   .wrapper .left,
   .wrapper .right {
     width: 100%;
-    max-width: none;
-    min-width: none;
+    max-width: unset;
+    min-width: unset;
     border-radius: 15px;
     margin-bottom: 10px;
   }
@@ -442,10 +473,12 @@ footer a:hover {
 /* medium screen ---------------------------------------------------*/
 /* medium screen ---------------------------------------------------*/
 
-@media (min-width: 1025px) and (max-width: 1440px) {}
+@media (min-width: 1025px) and (max-width: 1440px) {
+}
 
 /*large screen ---------------------------------------------------*/
 /*large screen ---------------------------------------------------*/
 /*large screen ---------------------------------------------------*/
 
-@media (min-width: 1441px) {}
+@media (min-width: 1441px) {
+}

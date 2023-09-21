@@ -1,0 +1,33 @@
+<head>
+  <!-- CSS link -->
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<!-- SIGNUP FORM -->
+<div id="vignette">
+  <div id="v-container">
+  <h2>Sign Up</h2>
+  <p>Already registered ? <a id="form" href="/auth/login">login</a></p>
+  <form action="/auth/signup" method="POST">
+
+    <label>Username</label>
+    <input type="text" name="username" placeholder="" />
+    <br /><br />
+
+    <label>Email</label>
+    <input type="email" name="email" placeholder="" />
+    <br /><br />
+
+    <label>Password</label>
+    <input type="password" name="password" placeholder="" />
+    <br /><br />
+
+    <button type="submit">Sign Up</button>
+
+    <!-- Error message -->
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+  </div>
+</div>

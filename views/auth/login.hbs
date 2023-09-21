@@ -1,13 +1,13 @@
-<!-- LOG IN FORM -->
-<div id="welcome-page">
-  <div class="wrapper">
-    <div class="left">
-
-    </div>
-    <div class="right">
-      <div class="embed-page">
-        <div id="login-form">
+<!-- LOG IN PAGE -->
+<div class="wrapper">
+  <div class="right">
+    <div class="embed-page">
+      <!-- LOG IN FORM -->
+      <div id="vignette">
+        <div id="v-container">
           <h2>Log In</h2>
+          <p>Need an account first ?
+            <a id="form" href="/auth/signup">signup</a></p>
           <form action="/auth/login" method="POST">
 
             <label>
@@ -27,8 +27,9 @@
                 placeholder="Your password"
               />
             </label>
+            <br /><br />
 
-            <button type="submit">Log In</button>
+            <button id="login" type="submit">Log In</button>
 
             <!-- Error message -->
             {{#if errorMessage}}
