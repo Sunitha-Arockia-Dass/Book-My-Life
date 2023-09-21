@@ -94,17 +94,58 @@ document.addEventListener("DOMContentLoaded", function () {
           y: {
             beginAtZero: true,
           },
-        //   ticks: {
-        //     stepSize: 1, // Specify the step size for the ticks
-        //     max: 3, // Set the maximum value for the y-axis
-        //   },
+        
         },
-        // plugins: {
-        //     fillBetween: {
-        //       fillColor: "rgba(255, 0, 0, 0.2)", // Color to fill between Normal and Overweight
-        //     },
-        //   },
+        
       },
     });
   });
   
+const breakfastBtn=document.getElementById("breakfast")
+const lunchBtn=document.getElementById("lunch")
+const dinnerBtn=document.getElementById("dinner")
+const paleoBtn=document.getElementById("paleo")
+const vegetarianBtn=document.getElementById("vegetarian")
+const veganBtn=document.getElementById("vegan")
+const breakfastMenu=document.querySelector(".breakfast-menu")
+const lunchMenu=document.querySelector(".lunch-menu")
+const dinnerMenu=document.querySelector(".dinner-menu")
+const paleoMenu=document.querySelector(".paleo")
+const vegetarianMenu=document.querySelector(".vegetarian")
+const veganMenu=document.querySelector(".vegan")
+
+
+
+
+breakfastBtn.addEventListener("click",(event)=>{
+  breakfastMenu.style.display="block"
+
+})
+lunchBtn.addEventListener("click",(event)=>{
+  lunchMenu.style.display="block"
+
+})
+dinnerBtn.addEventListener("click",(event)=>{
+  dinnerMenu.style.display="block"
+
+})
+
+// paleoBtn.addEventListener("click",(event)=>{
+//   event.preventDefault()
+//   paleoMenu.style.display="block"
+//   vegetarianMenu.style.display="none"
+//   veganMenu.style.display="none"
+// })
+// vegetarianBtn.addEventListener("click",(event)=>{
+//   event.preventDefault()
+//   vegetarianMenu.style.display="block"
+//   veganMenu.style.display="none"
+//   paleoMenu.style.display="none"
+
+// })
+// veganBtn.addEventListener("click",(event)=>{
+//   event.preventDefault()
+//   veganMenu.style.display="block"
+//   paleoMenu.style.display="none"
+//   vegetarianMenu.style.display="none"
+// })

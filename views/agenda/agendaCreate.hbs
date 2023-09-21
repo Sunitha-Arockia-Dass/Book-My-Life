@@ -1,0 +1,31 @@
+
+    <h1>Create Appointment</h1>
+    <form action="/agenda/agendaCreate" method="POST">
+        <label>Appointment Name:</label>
+        <input type="text" id="appointmentName" name="appointmentName" required>
+
+       
+        <label>
+     Appointment Type
+      <select name="appointmentType" id="type" >
+        <option value="personal">Personal</option>
+        <option value="work">Work</option>
+        <option value="other">Other</option>
+      </select>
+    </label>
+       
+        
+
+        <label>Appointment Date:</label>
+        <input type="date" id="appointmentDate" name="appointmentDate" required>
+        <label>Appointment Time:</label>
+        <input type="time" id="appointmentTime" name="appointmentTime" required>
+
+        <label>With:</label>
+        <input type="text" id="with" name="appointmentwith">
+
+        <label>Duration (minutes):</label>
+        <input type="number" id="duration" name="duration">
+
+        <button type="submit" >Create Appointment</button>
+    </form>

@@ -11,16 +11,17 @@
 
     <label>
       DOB
-      <input type="text" name="dob" placeholder={{dateOfBirth}} />
+      <input type="text" name="dob" value={{dateOfBirth}} />
     </label>
 <label>
       Gender
-      <select name="gender" id="gender" >
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
-    </label>
+<select name="gender" id="gender">
+  <option value="" disabled selected>{{gender}}</option>
+  <option value="male">Male</option>
+  <option value="female">Female</option>
+  <option value="other">Other</option>
+</select>
+
     <label> Profile Picture
       <input type="text" name="profilePicture" value={{profilePicture}} />
     </label>    

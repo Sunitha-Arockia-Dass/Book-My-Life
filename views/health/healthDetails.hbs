@@ -1,31 +1,57 @@
-
 {{#if currentData}}
 
-<h4>YOUR CURRENT BMI IS {{currentData.BMI}} on </h4>
-<h4>You are {{currentWeight}}</h4>
-<h3>You need to lose {{weightToLose}} kgs to have optimal BMI</h3>
-
+  <h4>YOUR CURRENT BMI IS {{currentData.BMI}} on </h4>
+  <h4>You are {{currentWeight.currentWeight}}</h4>
+  
+  {{#if currentWeight.isOverWeight}}
+  <h3>You need to lose {{optimalWeightToBe}} kgs to have a healthy BMI</h3>
+{{/if}}
+  
+  {{#if currentWeight.isUnderWeight}}
+  <h3>You need to gain {{optimalWeightToBe}} kgs to have a healthy BMI</h3>
+{{/if}}
+  
+  {{#if currentWeight.isNormalWeight}}
+  <h3>You are in a healthy range of Weight.</h3>
 {{/if}}
 
 
+{{/if}}
 
-<input type="hidden" id="bmiData" value="{{bmiData}}">
-<input type="hidden" id="createdDates" value="{{createdDates}}">
+<input type="hidden" id="bmiData" value="{{bmiData}}" />
+<input type="hidden" id="createdDates" value="{{createdDates}}" />
 
-    
 <div class="row">
 
-<div class="col-6">
-<canvas id="bmiChart"></canvas>
+  <div class="col-6">
+    <canvas id="bmiChart"></canvas>
+    <button>
+      <a href="/health/health">CHECK YOUR BMI</a>
+
+    </button>
+  </div>
+  <div class="col-6 check">
+  {{#if currentWeight.isOverWeight}}
+
+    <button id="paleo">
+      <a href="/health/weighLoss-paleo">Paleo Weight Loss Diet</a></button>
+    <button id="vegetarian">
+      <a href="/health/weighLoss-vegetarian">Vegetarian Weight Loss Diet</a></button>
+    <button id="vegan"> 
+      <a href="/health/weighLoss-vegan">Vegan Weight Loss Diet</a></button>
+
+{{/if}}
+
+{{#if currentWeight.underweight}}
+
+    <button id="paleo">
+      <a href="/health/weighLoss-paleo">Paleo Weight Loss Diet</a></button>
+    <button id="vegetarian">
+      <a href="/health/weighLoss-vegetarian">Vegetarian Weight Loss Diet</a></button>
+    <button id="vegan"> 
+      <a href="/health/weighLoss-vegan">Vegan Weight Loss Diet</a></button>
+
+{{/if}}
+
+  </div>
 </div>
-<div class="col-6 check">
-<a href="/health/health">CHECK YOUR BMI</a>
-</div>
-</div>
-    
-    
-
-    <script src="/js/script.js"></script>
-
-
-

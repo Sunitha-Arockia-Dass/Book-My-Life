@@ -40,23 +40,63 @@ const storeProfileId=(req, res, next)=> {
       });
   };
   
-const isHealthyBmi=(BMI)=>{
-  let currentWeight
-  if (BMI <= 18.5) {
-    return currentWeight="Underweight";
-} else if (BMI > 18.5 && BMI < 25) {
-    return currentWeight="Normal weight";
-} else if (BMI >= 25 && BMI < 30) {
-    return currentWeight="Overweight";
-} else if (BMI >= 30) {
-    return currentWeight="Obese";
-}
+  const isHealthyBmi = (BMI) => {
+    let currentWeight;
+    let isNormalWeight = false;
+    let isOverWeight = false;
+    let isUnderWeight = false;
+  
+    if (BMI <= 18.5) {
+      currentWeight = "Underweight";
+      isUnderWeight=true;
+    } 
+    else if (BMI > 18.5 && BMI < 25) {
+      currentWeight = "Normal weight";
+      isNormalWeight = true;
+    } 
+    else if (BMI >= 25 && BMI < 30) {
+      currentWeight = "Overweight";
+      isOverWeight = true;
+    }
+     else if (BMI >= 30) {
+      currentWeight = "Obese";
+      isOverWeight = true;
+    }
+  
+    return { currentWeight, isNormalWeight,isOverWeight, isUnderWeight};
+  };
+  
+
+const optimalWeight=(currentWeight,BMI,weight)=>{
+  if(currentWeight==="Overweight" || currentWeight==="Obese" ){
+
+    weightToLose=weight*((BMI-24.9)/BMI)
+    return weightToLose.toFixed(1)
+  }
+    else if (currentWeight==="Underweight"){
+      weightToGain=weight*((18.5-BMI)/18.5)
+      return weightToGain.toFixed(1)
+ 
+    }
+    else{
+      return "You are in a healthy range of Weight."
+    }
 }
 
-const optimalWeight=(BMI,weight)=>{
-  weightToLose=weight*((BMI-24.9)/BMI)
-  return weightToLose.toFixed(1)
-    
+
+function dateFormatted(dateString) {
+  // Create a new Date object from the input date string
+  const date = new Date(dateString);
+
+  // Extract the components of the date
+  const day = date.getDate();
+  const month = date.toLocaleString('default', { month: 'short' });
+  const year = date.getFullYear();
+
+  // Construct the human-readable date string
+  const formattedDate = `${month} ${day}, ${year}`;
+
+  return formattedDate;
 }
 
 
@@ -66,4 +106,5 @@ const optimalWeight=(BMI,weight)=>{
     profileFindbyId,
     isHealthyBmi,
     optimalWeight,
+    dateFormatted,
 };
