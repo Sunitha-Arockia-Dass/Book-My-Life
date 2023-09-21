@@ -34,7 +34,7 @@ return foundUser
 GET SIGNUP PAGE
  */
 router.get("/signup", isLoggedOut, (req, res) => {
-  res.render("auth/signup", {layout: false})
+  res.render("auth/signup")
 })
 
 
@@ -46,7 +46,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
 
   // Check that username, email, and password are provided
   if (username === "" || email === "" || password === "") {
-    res.status(400).render("auth/signup", {layout: false,
+    res.status(400).render("auth/signup", {
       errorMessage:
         "All fields are mandatory. Please provide your username, email and password.",
     })
@@ -55,7 +55,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   }
 
   if (password.length < 6) {
-    res.status(400).render("auth/signup", {layout: false,
+    res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 6 characters long.",
     })
 
@@ -84,13 +84,13 @@ router.post("/signup", isLoggedOut, (req, res) => {
       return User.create({ username, email, password: hashedPassword })
     })
     .then((user) => {
-      res.redirect("/auth/login")
+      res.render("auth/login")
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render("auth/signup", {layout: false, errorMessage: error.message })
+        res.status(500).render("auth/signup", {errorMessage: error.message })
       } else if (error.code === 11000) {
-        res.status(500).render("auth/signup", {layout: false,
+        res.status(500).render("auth/signup", {
           errorMessage:
             "Username and email need to be unique. Provide a valid username or email.",
         })
@@ -160,7 +160,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           // Remove the password field
           delete req.session.currentUser.password
 
-          res.redirect("/profile/profile")
+          res.render("profile/profile")
         })
         .catch((err) => next(err)) // In this case, we send error handling to the error handling middleware.
     })
@@ -273,7 +273,7 @@ User.findById(userId)
           res.status(500).render("auth/logout", { errorMessage: err.message })
       return
     }
-  res.redirect('/auth/login')
+  res.render('auth/login')
 })
 
 })
@@ -298,7 +298,7 @@ router.get("/logout", isLoggedIn, (req, res) => {
       return
     }
 
-    res.redirect("/")
+    res.render("")
   })
 })
 

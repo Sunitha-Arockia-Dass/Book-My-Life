@@ -1,36 +1,44 @@
 <!-- Update an existing profile Form-->
+<div class="wrapper">
+  <div class="right">
+    <div class="embed-page">
+      <div id="vignette">
+        <div id="v-container">
+          {{# with profile}}
+          <div id="form">
+            <h2>Update a profile</h2>
+            <form action="/profile/profileUpdate/{{id}}" method="POST">
 
-{{# with profile}}
-<div id="form">
-  <h2>Update a profile</h2>
-  <form action="/profile/profileUpdate/{{id}}" method="POST">
+              <label> Name
+                <input type="text" name="name" value="{{name}}" />
+              </label>
 
-    <label> Name
-      <input type="text" name="name" value={{name}} />
-    </label>
+              <label>
+                Birthdate
+                <input type="text" name="dob" value="{{dateOfBirth}}" />
+              </label>
+              <label>
+                Gender
+                <select name="gender" id="gender" select="{{gender}}"/>
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>                  
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <label> Profile Picture
+                <input type="text" name="profilePicture" value={{profilePicture}} />
+              </label>
+              <br><br>
+              <button type="submit">Update</button>
 
-    <label>
-      DOB
-      <input type="text" name="dob" placeholder={{dateOfBirth}} />
-    </label>
-<label>
-      Gender
-      <select name="gender" id="gender" >
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
-    </label>
-    <label> Profile Picture
-      <input type="text" name="profilePicture" value={{profilePicture}} />
-    </label>    
-
-    <button type="submit">Update</button>
-
-{{/with}}
-    <!-- Error message -->
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div>
+              {{/with}}
+              <!-- Error message -->
+              {{#if errorMessage}}
+              <p class="error">{{errorMessage}}</p>
+              {{/if}}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

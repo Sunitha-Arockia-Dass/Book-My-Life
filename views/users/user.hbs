@@ -1,13 +1,29 @@
 <!-- MY ACCOUNT PAGE -->
-
-{{#if userInSession}}
-  {{#each user}}
-  <h2>Welcome, {{username }}!</h2>
-
-  <p>This is your profile page my friend!</p>
-
-  <button>
-    <a href="/auth/update/{{id}}">Edit my account</a>
-  </button>
-  {{/each}}
-{{/if}}
+<div class="wrapper">
+  <div class="right">
+    <div class="embed-page">
+      <div id="vignette">
+        <div id="v-container">
+          <form>
+            {{#if userInSession}}
+              {{#each user}}
+                <h2>Welcome, <span class="capitalize">{{username}}</span></h2>
+                <p>To your account page my friend!</p>
+                <br /><br />
+                <p> Username : <span class="fw-bold">{{username}}</span></p>
+                <p>Email : <span class="fw-bold">{{email}}</span></p>
+                <p>
+                  Created :<br /><span class="fw-bold">{{createdAt}}</span></p>
+                <p>
+                  Updated :<br /><span class="fw-bold">{{updatedAt}}</span></p>
+                <br /><br />
+                
+                <a class="edit-btn" href="/auth/update/{{id}}">Edit my account</a>
+              {{/each}}
+            {{/if}}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
