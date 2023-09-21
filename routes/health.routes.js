@@ -64,6 +64,7 @@ router.get("/healthDetail", (req, res, next) => {
   
   Data.find({ profile: selectedProfileId })
   .then((profileDatas) => {
+    console.log(profileDatas)
     const bmiData = profileDatas.map((data) => data.BMI);
     const createdDates = profileDatas.map((data) => data.formattedCreatedAt);   
     res.render("health/healthDetails", { data: profileDatas, bmiData: JSON.stringify(bmiData), 
