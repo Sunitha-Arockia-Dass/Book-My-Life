@@ -100,15 +100,10 @@ window.onload = function () {
         //       fillColor: "rgba(255, 0, 0, 0.2)", // Color to fill between Normal and Overweight
         //     },
         //   },
+        
+        },
+        
       },
-    })
-  })
-
-/*//////////////////////////////////////////////////////////////
-  LOGOUT WHEN THE USER CLOSE THE WINDOW
-  */
-window.onunload = function () {
-      //session.destroy
-}
-
-
+    });
+  
+  
