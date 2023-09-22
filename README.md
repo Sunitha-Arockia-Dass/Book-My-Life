@@ -34,24 +34,20 @@ Presentations
   --text: 'PT Sans', sans-serif;
   --title: 'Nunito', sans-serif;
 
-
 <h2>Color Palette</h2>
 
 The color plum is a symbol of new beginnings, enthusiasm and fresh energy. It is also a color that represents strength, determination and confidence :
-  --plumd: #CE78CE;
-  --plumm: #DDA0DD;
-  --pluml: #EED2EE;
-  --citrine: #EAD94C;
-  --plumdark: #963696;
-  --white: #ffffff;
-  --grey: #6b5f6b;
-  --black: #000000;
-
-
+--plumd: #CE78CE;
+--plumm: #DDA0DD;
+--pluml: #EED2EE;
+--citrine: #EAD94C;
+--plumdark: #963696;
+--white: #ffffff;
+--grey: #6b5f6b;
+--black: #000000;
 
 ## Screens
 
-
-
 ## script.js
+
 this file contain the windows onload, the buttons click actions, the handleKeydown functions and launch the Game class.

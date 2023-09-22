@@ -1,12 +1,46 @@
 {{#with profile}}
-HELLO {{name}}
-{{/with}}
-<p>{{age}} Years old</p>
+        <h2>Hello, <span class="capitalize">{{name}}</span></h2>
+        {{/with}}
+        <p>Already {{age}} Years old! it's time to take care of you.</p>
+        <br />
+<div class="wrapper">
+  
+  <div class="right">
+  <div class="embed-page">
+    <div id="vignette">
+      <div id="v-container">
+        
+        <form action="/health/healthDetail" method="get">
+          <button type="submit">Healthify</button>
+        </form>
+        <br />
+        <form action="/agenda/agenda" method="get">
+          <button type="submit">Agenda</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-<form action="/health/healthDetail" method="get">
-<button type="submit">HEALTHIFY</button>
-</form>
-<form action="/agenda/agenda" method="get">
-<button type="submit">AGENDA</button>
-</form>
 
+<div class="right">
+  <div class="embed-page">
+    <div id="vignette">
+      <div id="v-container">
+        {{#with profile}}
+        <h2>Hello, <span class="capitalize">{{name}}</span></h2>
+        {{/with}}
+        <p>Already {{age}} Years old! it's time to take care of you.</p>
+        <br />
+        <form action="/health/healthDetail" method="get">
+          <button type="submit">Healthify</button>
+        </form>
+        <br />
+        <form action="/agenda/agenda" method="get">
+          <button type="submit">Agenda</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
