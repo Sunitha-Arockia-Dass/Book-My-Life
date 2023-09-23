@@ -23,10 +23,8 @@
 
 body {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   font-family: var(--text);
-  background: var(--pluml);
+  background: var(--white);
   background: linear-gradient(180deg, var(--pluml) 15%, white 40%);
 }
 
@@ -39,6 +37,8 @@ h6,
 a,
 button {
   font-family: var(--title);
+  margin: 0;
+  padding: 0;
 }
 
 h2 {
@@ -50,13 +50,20 @@ h2 {
   text-shadow: 2px 2px 4px var(--pluml);
 }
 
+h3 {
+  text-align: center;
+  color: var(--white);
+  padding-top: 10px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
+}
+
 form,
 label,
 input,
 select {
   font-family: var(--text);
 }
-.check{
+.check {
   margin-top: 30px;
 }
 button,
@@ -72,7 +79,7 @@ p {
 
 /* links colors */
 .alink:link {
-  color: var(--white); 
+  color: var(--white);
 }
 
 .alink:visited {
@@ -88,7 +95,7 @@ p {
 .alink:active {
   color: var(--citrine);
   background-color: var(--plumdark);
-  transform: translate(2px ,2px);
+  transform: translate(2px, 2px);
 }
 
 /*/////////////////////////////////
@@ -99,18 +106,18 @@ Logout and Account Buttons */
   align-items: center;
   justify-content: flex-start;
   width: 40px;
-  height: 32px;    
+  height: 32px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
 }
 
 /* plus sign */
 .sign {
   width: 100%;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,34 +141,30 @@ Logout and Account Buttons */
   right: 0%;
   width: 0%;
   opacity: 0;
-  color:var(--pluml);
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
-
 
 /* hover effect on button width */
 .Btn:hover {
   width: 120px;
-  fill: var(--pluml); 
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .Btn:hover .sign {
   width: 25%;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   padding-left: 5px;
 }
 /* hover effect button's text */
 .Btn:hover .text {
   opacity: 1;
   width: 70%;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   padding-right: 5px;
-  
 }
 /* button click effect*/
 .Btn:active {
-  transform: translate(2px ,2px);
+  transform: translate(2px, 2px);
 }
 
 /*/////////////////////////////////
@@ -197,15 +200,15 @@ select:focus {
   box-shadow: 1px 2px 4px var(--pluml);
 }
 
-#form:link,
-#form:visited {
+a#form:link,
+a#form:visited {
   color: var(--black);
   text-decoration: none;
   font-weight: 700;
 }
 
-#form:hover,
-#form:active {
+a#form:hover,
+a#form:active {
   color: var(--plumm);
   background-color: unset;
   transition: 0.5s ease;
@@ -230,11 +233,9 @@ form button:hover {
   box-shadow: 1px 2px 4px var(--pluml);
 }
 
-form button:active{
-  transform: translate(5px ,5px);
-  }
-
-
+form button:active {
+  transform: translate(5px, 5px);
+}
 
 /*/////////////////////////////////
 HEADER */
@@ -293,7 +294,7 @@ li.profile-border {
   border-bottom: 1px solid var(--plumm);
 }
 
-#icons-menu{
+#icons-menu {
   width: 240px;
 }
 
@@ -341,6 +342,7 @@ li.profile-border {
  MAIN */
 main {
   height: 90vh;
+  overflow: scroll;
 }
 
 /* Index Page */
@@ -361,8 +363,9 @@ main {
   min-width: 490px;
   max-width: 700px;
   width: 45%;
-  min-height: 600px;
-  max-height: 80%;  
+  min-height: 550px;
+  height: 60%;
+  max-height: 80%;
   box-shadow: 1px 2px 4px var(--pluml);
 }
 
@@ -381,20 +384,11 @@ main {
 }
 
 .right .embed-page {
-  padding: 50px 25px;
+  padding: 40px 25px 25px 25px;
   height: 100%;
   width: 100%;
 }
 
-.w-profile{
-  width: 90%;
-  height: 600px;
-  background-color: var(--white);
-  border-radius: 0px 0px 0px 30px;
-  box-shadow: 1px 2px 4px var(--pluml);
-}
-
-/* Vignette */
 #vignette {
   height: 100%;
   display: flex;
@@ -409,6 +403,116 @@ main {
 
 /* Profile Page */
 
+.w-profile {
+  width: 90%;
+  min-height: 550px;
+  height: 80%;
+  background-color: var(--white);
+  padding: 40px 25px 25px 25px;
+  border-radius: 0px 30px 0px 0px;
+  box-shadow: 1px 2px 4px var(--pluml);
+}
+
+.profile-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+}
+
+.profile-vignette {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 200px;
+  width: 40%;
+  max-width: 375px;
+  min-height: 300px;
+  height: 60%;
+  max-height: 450px;
+}
+
+#one-profile {
+  width: 80%;
+  padding: 7.5%;
+  margin-top: 7.5%;
+  border-radius: 10px 30px 10px 30px;
+  background: linear-gradient(
+    180deg,
+    var(--plumdark) 20%,
+    var(--plumd) 40%,
+    var(--plumm) 60%,
+    var(--pluml) 80%
+  );
+}
+
+#one-profile a {
+  text-decoration: none;
+}
+
+.profile-vignette img,
+.profile-vignette svg {
+  width: 90%;
+  height: 90%;
+  border-radius: 10px 30px 10px 30px;
+}
+.profile-vignette img {
+  border: 5px solid var(--white);
+}
+
+#create-svg {
+  border: 5px solid var(--white);
+}
+
+.profile-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#delete-btn button {
+  color: var(--plumm);
+  font-family: var(--title);
+  font-size: unset;
+  font-weight: unset;
+  background-color: transparent;
+  padding: 5px 10px;
+  border: 1px solid var(--plumm);
+  border-radius: 30px 10px 30px 10px;
+  transition: 0.75s ease;
+}
+
+#delete-btn button:hover {
+  color: var(--plumd);
+  border: 1px solid var(--plumd);
+  background-color: transparent;
+  border-radius: 30px 10px 30px 10px;
+  box-shadow: unset;
+}
+
+#update-btn button {
+  color: var(--white);
+  font-family: var(--title);
+  font-size: unset;
+  font-weight: unset;
+  background-color: transparent;
+  padding: 5px 10px;
+  border: 1px solid var(--plumd);
+  border-radius: 30px 10px 30px 10px;
+  transition: 0.75s ease;
+}
+
+#update-btn button:hover {
+  color: var(--pluml);
+  border: 1px solid var(--plumm);
+  background-color: transparent;
+  border-radius: 30px 10px 30px 10px;
+  box-shadow: unset;
+}
+
 /*/////////////////////////////////
  FOOTER */
 footer {
@@ -422,7 +526,7 @@ footer {
 }
 
 footer p {
-  text-shadow: var(--plumd) 1px 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   padding-bottom: 0;
 }
 
@@ -433,7 +537,7 @@ footer a {
 }
 
 footer a:hover {
-  color: var(--plumdark);
+  color: var(--plumd);
 }
 
 /*/////////////////////////////////
@@ -518,6 +622,10 @@ footer a:hover {
 /* small screen ---------------------------------------------------*/
 
 @media (min-width: 500px) and (max-width: 991px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
   /*/////////////////////////////////
  HEADER */
 
@@ -539,6 +647,8 @@ footer a:hover {
     justify-content: none;
     align-items: none;
     flex-direction: column-reverse;
+    height: 100%;
+    padding: 10px 0;
   }
 
   .wrapper .left,
@@ -546,7 +656,9 @@ footer a:hover {
     width: 100%;
     max-width: unset;
     min-width: unset;
-    border-radius: 15px;
+    border-radius: 30px;
+  }
+  .wrapper .right {
     margin-bottom: 10px;
   }
 }
