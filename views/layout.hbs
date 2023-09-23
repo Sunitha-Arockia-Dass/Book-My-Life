@@ -88,6 +88,7 @@
                 >
                   Profile.s page
                 </a>
+                {{#if isLoggedIn }}
                 <ul class="dropdown-menu">
                   {{#each profile}}
                     <li class="profile-border"><a
@@ -96,6 +97,7 @@
                       >{{name}}</a></li>
                   {{/each}}
                 </ul>
+                {{/if}}
               </li>
               <li class="nav-item">
                 <form
