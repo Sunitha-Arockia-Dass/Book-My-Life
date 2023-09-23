@@ -12,11 +12,14 @@
               <label> Name
                 <input type="text" name="name" value="{{name}}" />
               </label>
+              <br /><br />
 
               <label>
                 Birthdate
                 <input type="text" name="dob" value="{{dateOfBirth}}" />
               </label>
+              <br /><br />
+
               <label>
                 Gender
                 <select name="gender" id="gender">
@@ -26,10 +29,13 @@
                   <option value="other">Other</option>
                 </select>
               </label>
+              <br /><br />
+
               <label> Profile Picture
                 <input type="text" name="profilePicture" value={{profilePicture}} />
               </label>
               <br><br>
+              
               <button type="submit">Update</button>
 
               {{/with}}
