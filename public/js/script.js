@@ -1,32 +1,12 @@
-window.onload = function () {
+const breakfastBtn=document.getElementById("breakfast")
+const lunchBtn=document.getElementById("lunch")
+const dinnerBtn=document.getElementById("dinner")
+const breakfastMenu=document.querySelector(".breakfast-menu")
+const lunchMenu=document.querySelector(".lunch-menu")
+const dinnerMenu=document.querySelector(".dinner-menu")
 
-  /*//////////////////////////////////////////////////////////////
-  HIDE THE MENU DEPENDING ON THE LOG STATUS
-  */
 
-  /*const logOutBtn = document.getElementById("logout")
-  const loginBtn = document.getElementById("login")
-  const logInId = document.getElementById("is-log-in")
-  const logOutId = document.getElementById("is-log-out")
-
-  loginBtn.addEventListener("click", (event) => {
-    logOutId.style.display = "none"
-    logInId.style.display = "block"  
-  })
-
-  logOutBtn.addEventListener("click", (event) => {
-    logOutId.style.display = "block"
-    logInId.style.display = "none"
   
-  })*/
-    // windows onload closure
-}
-
-
-  // const form = document.getElementById("form")
-
-
-
 
   // In your client-side JavaScript (e.g., a separate .js file or inline script in your HTML)
   document.addEventListener("DOMContentLoaded", function () {
@@ -39,6 +19,7 @@ window.onload = function () {
     const overweightData = Array(bmiData.length).fill(30)
     const obeseData = Array(bmiData.length).fill(40)
     const underweightData = Array(bmiData.length).fill(18.5)
+  
     new Chart(ctx, {
       type: "line",
       data: {
@@ -90,20 +71,75 @@ window.onload = function () {
           y: {
             beginAtZero: true,
           },
-          //   ticks: {
-          //     stepSize: 1, // Specify the step size for the ticks
-          //     max: 3, // Set the maximum value for the y-axis
-          //   },
+          
         },
-        // plugins: {
-        //     fillBetween: {
-        //       fillColor: "rgba(255, 0, 0, 0.2)", // Color to fill between Normal and Overweight
-        //     },
-        //   },
+        
         
         },
         
       })
+    })
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const ctxNutrition = document.getElementById("nutritionChart").getContext("2d")
+
+      const carbohydrates = document.getElementById("carbohydrates").value
+      const protein = document.getElementById("protein").value
+      const fat = document.getElementById("fat").value
+      const fiber = document.getElementById("fiber").value
+      console.log(carbohydrates,protein,fat,fiber)
+      new Chart(ctxNutrition, {
+        type: "pie",
+        data: {
+          labels: ["Carbohydrates", "Protein", "Fat", "Fiber"],
+          datasets: [
+            {
+              data: [carbohydrates, protein, fat, fiber],
+              backgroundColor: ["#FF5733", "#FFC300", "#C70039", "#581845"],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+        },
+      });
+  
+  
     });
   
   
+
+    breakfastBtn.addEventListener("click",(event)=>{
+      breakfastMenu.style.display="block"
+    })
+    lunchBtn.addEventListener("click",(event)=>{
+      lunchMenu.style.display="block"
+    })
+    dinnerBtn.addEventListener("click",(event)=>{
+      dinnerMenu.style.display="block"
+    })
+
+    
+    
+    
+    /*//////////////////////////////////////////////////////////////
+  HIDE THE MENU DEPENDING ON THE LOG STATUS
+  */
+
+  /*const logOutBtn = document.getElementById("logout")
+  const loginBtn = document.getElementById("login")
+  const logInId = document.getElementById("is-log-in")
+  const logOutId = document.getElementById("is-log-out")
+
+  loginBtn.addEventListener("click", (event) => {
+    logOutId.style.display = "none"
+    logInId.style.display = "block"  
+  })
+
+  logOutBtn.addEventListener("click", (event) => {
+    logOutId.style.display = "block"
+    logInId.style.display = "none"
+  
+  })*/
+    // windows onload closure

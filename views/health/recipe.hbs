@@ -1,0 +1,34 @@
+Hi this is the recipe page
+<div class="row">
+
+<div class="col-6">
+{{#with myRecipe}}
+<h1>{{title}}</h1>
+
+<h2>Ingredients</h2>
+<ul>
+    {{#each ingredients}}
+<li>{{this}}</li>
+
+    {{/each}}
+</ul>
+<h2>INSTRUCTIONS</h2>
+<ul>
+    {{#each instructions}}
+<li>{{this}}</li>
+
+    {{/each}}
+</ul>
+
+<input type="hidden" id="carbohydrates" value={{nutrition.carbohydrates}} />
+<input type="hidden" id="protein" value={{nutrition.protein}} />
+<input type="hidden" id="fat" value={{nutrition.fat}} />
+<input type="hidden" id="fiber" value={{nutrition.fiber}} />
+{{/with}}
+</div>
+<div class="col-6">
+
+ <canvas id="nutritionChart"></canvas>
+</div>
+
+</div>

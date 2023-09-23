@@ -1,4 +1,5 @@
 const Profile = require("../models/Profile.model");
+const axios = require('axios')
 
 
 const storeProfileId=(req, res, next)=> {
@@ -99,6 +100,18 @@ function dateFormatted(dateString) {
   return formattedDate;
 }
 
+async function fetchRecipesData() {
+  const recipes = []
+  try {
+    const response = await axios.get('http://localhost:8000/recipes');
+    recipes.push(...response.data);
+    console.log('Recipe data fetched and populated.');
+    return recipes
+  } catch (error) {
+    console.error('Error fetching recipe data:', error);
+  }
+}
+
 
   module.exports={
     storeProfileId,
@@ -107,4 +120,5 @@ function dateFormatted(dateString) {
     isHealthyBmi,
     optimalWeight,
     dateFormatted,
+    fetchRecipesData,
 };
