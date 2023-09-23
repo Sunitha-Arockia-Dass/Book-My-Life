@@ -1,6 +1,5 @@
 const express = require("express");
 const axios = require('axios')
-const spoonacularApiKey="cd85c553603e4e08b988f42f0efdfe19"
 
 const router = express.Router();
 const Data = require("../models/data.model");
@@ -12,6 +11,7 @@ const {
   isHealthyBmi,
   optimalWeight,
   dateFormatted,
+  fetchRecipesData,
 } = require("../middleware/functions");
 /*////////////////////////////////////////////////////////////// 
 GET HEALTHIFY HOME PAGE
@@ -73,12 +73,18 @@ router.get("/healthDetail", (req, res, next) => {
   })
 
 });
-
 router.get("/weighLoss-paleo", (req, res, next) => {
- 
-res.render("health/paleoWeightLoss")
-});
+    res.render("health/paleoWeightLoss")
 
+});
+router.get("/recipe/:recipeName", (req, res, next) => {
+  const recipes=fetchRecipesData()
+  .then(recipes=>{
+    const mealName = req.params.recipeName
+    const myRecipe = recipes.find((recipe) => recipe.title === mealName);
+    res.render("health/recipe",{myRecipe})
+  })
+});
 router.get("/weighLoss-vegetarian", (req, res, next) => {
  
   res.render("/health/vegetarianWeightLoss")
