@@ -22,6 +22,7 @@
 }
 
 body {
+  overflow: hidden;
   min-height: 100vh;
   font-family: var(--text);
   background: var(--white);
@@ -63,9 +64,11 @@ input,
 select {
   font-family: var(--text);
 }
+
 .check {
   margin-top: 30px;
 }
+
 button,
 form,
 p {
@@ -76,8 +79,40 @@ p {
 .capitalize {
   text-transform: capitalize;
 }
+/*/////////////////////////////////
+Overflow and scrollbar */
+.scroll-ok {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
-/* links colors */
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 30px 10px 30px 10px;
+  box-shadow: inset 0 0 2px var(--plumm);
+  background: var(--pluml);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 30px 10px 30px 10px;
+  box-shadow: inset 2px 2px 2px var(--pluml),
+    inset -2px -2px 2px var(--plumdark);
+  background: var(--plumd);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--plumdark);
+}
+
+/*/////////////////////////////////
+links colors */
 .alink:link {
   color: var(--white);
 }
@@ -99,7 +134,7 @@ p {
 }
 
 /*/////////////////////////////////
-Logout and Account Buttons */
+Animated Buttons */
 
 .Btn {
   display: flex;
@@ -125,14 +160,6 @@ Logout and Account Buttons */
 
 .sign svg {
   height: 30px;
-}
-
-.sign svg path {
-  fill: var(--pluml);
-}
-
-#logout-form .sign svg path {
-  fill: var(--plumd);
 }
 
 /* text */
@@ -229,7 +256,8 @@ form button {
 }
 
 form button:hover {
-  background-color: var(--plumm);
+  color: var(--plumdark);
+  background-color: var(--citrine);
   box-shadow: 1px 2px 4px var(--pluml);
 }
 
@@ -240,6 +268,7 @@ form button:active {
 /*/////////////////////////////////
 HEADER */
 header {
+  min-height: 35px;
   height: 7vh;
   background: var(--plumdark);
   display: flex;
@@ -325,7 +354,7 @@ li.profile-border {
   font-weight: unset;
   background-color: transparent;
   padding: 5px 10px;
-  border: 1px solid var(--plumd);
+  border: 1px solid var(--plumm);
   border-radius: 30px 10px 30px 10px;
   transition: 0.75s ease;
 }
@@ -341,39 +370,52 @@ li.profile-border {
 /*/////////////////////////////////
  MAIN */
 main {
-  height: 90vh;
-  overflow: scroll;
+  height: 93vh;
+  padding-bottom: 24px;
 }
 
 /* Index Page */
 #welcome-page {
   height: 100%;
-}
-
-.wrapper {
-  height: 100%;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 90%;
+  max-height: 700px;
+  width: 80%;
+  max-width: 1400px;
+  background-color: var(--white);
+  border-radius: 10px 30px 10px 30px;
+  box-shadow: 1px 2px 4px var(--pluml);
+}
+
 .wrapper .left,
 .wrapper .right {
-  min-width: 490px;
-  max-width: 700px;
-  width: 45%;
-  min-height: 550px;
-  height: 60%;
-  max-height: 80%;
-  box-shadow: 1px 2px 4px var(--pluml);
+  width: 50%;
+  height: 700px;
 }
 
 .wrapper .left {
   display: flex;
   flex-wrap: wrap;
-  background-color: var(--citrine);
+  background: linear-gradient(
+    180deg,
+    var(--plumd) 25%,
+    var(--plumm) 50%,
+    var(--pluml) 75%
+  );
   border-radius: 0px 0px 0px 30px;
+}
+
+.wrapper .left svg {
+  margin: auto;
+  height: auto;
+  height: 50%;
 }
 
 .wrapper .right {
@@ -393,52 +435,46 @@ main {
   height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: var(--white);
 }
 
 #v-container {
   width: 80%;
-  height: 80%;
 }
 
-/* Profile Page */
-
-.w-profile {
+/*/////////////////////////////////
+ Profile Page */
+.profile-full{  
   width: 90%;
-  min-height: 550px;
-  height: 80%;
-  background-color: var(--white);
-  padding: 40px 25px 25px 25px;
-  border-radius: 0px 30px 0px 0px;
-  box-shadow: 1px 2px 4px var(--pluml);
+  height: 90%;
 }
 
-.profile-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  width: 100%;
+.profile-container { 
+  display: flex;  
+  flex-wrap: wrap; 
 }
+
+/* each profile + create profil */
+
 
 .profile-vignette {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;  
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-width: 200px;
-  width: 40%;
-  max-width: 375px;
-  min-height: 300px;
-  height: 60%;
-  max-height: 450px;
+  min-width: 250px;
+  width: 25%;
+  max-width: 500px;
+  min-height: 350px;  
+  max-height: 700px;
 }
 
-#one-profile {
-  width: 80%;
-  padding: 7.5%;
-  margin-top: 7.5%;
+#one-profile {  
+  height: 90%;
+  width: 90%;
+  padding: 20px;
   border-radius: 10px 30px 10px 30px;
   background: linear-gradient(
     180deg,
@@ -453,27 +489,39 @@ main {
   text-decoration: none;
 }
 
-.profile-vignette img,
-.profile-vignette svg {
-  width: 90%;
-  height: 90%;
-  border-radius: 10px 30px 10px 30px;
+#one-profile h3{
+  color: var(--citrine);
+  font-weight: bold;
+  text-shadow: 0px 0px 3px var(--plumdark);
 }
-.profile-vignette img {
+
+.profile-vignette img,
+#create-svg {
+  width: 90%;
+  height: 75%;
+  border-radius: 10px 30px 10px 30px;
+  object-fit: cover;
   border: 5px solid var(--white);
 }
 
-#create-svg {
-  border: 5px solid var(--white);
+div.sign #update-svg,
+div.sign #delete-svg {
+  min-width: 28px;
 }
 
 .profile-btn {
   width: 100%;
+  height: 32px;
   display: flex;
   justify-content: center;
 }
 
-#delete-btn button {
+#update-btn button {
+  margin-right: 5px;
+}
+
+#delete-btn button,
+#update-btn button {
   color: var(--plumm);
   font-family: var(--title);
   font-size: unset;
@@ -483,9 +531,11 @@ main {
   border: 1px solid var(--plumm);
   border-radius: 30px 10px 30px 10px;
   transition: 0.75s ease;
+  box-shadow: unset;
 }
 
-#delete-btn button:hover {
+#delete-btn button:hover,
+#update-btn button:hover {
   color: var(--plumd);
   border: 1px solid var(--plumd);
   background-color: transparent;
@@ -494,32 +544,21 @@ main {
 }
 
 #update-btn button {
-  color: var(--white);
-  font-family: var(--title);
-  font-size: unset;
-  font-weight: unset;
-  background-color: transparent;
-  padding: 5px 10px;
   border: 1px solid var(--plumd);
-  border-radius: 30px 10px 30px 10px;
-  transition: 0.75s ease;
-}
-
-#update-btn button:hover {
-  color: var(--pluml);
-  border: 1px solid var(--plumm);
-  background-color: transparent;
-  border-radius: 30px 10px 30px 10px;
-  box-shadow: unset;
 }
 
 /*/////////////////////////////////
  FOOTER */
 footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 3vh;
+
   color: white;
   border-radius: 15px 15px 0 0;
   background-color: var(--pluml);
@@ -623,8 +662,7 @@ footer a:hover {
 
 @media (min-width: 500px) and (max-width: 991px) {
   body {
-    display: flex;
-    flex-direction: column;
+    overflow: auto;
   }
   /*/////////////////////////////////
  HEADER */
@@ -637,6 +675,8 @@ footer a:hover {
   /*/////////////////////////////////
  MAIN */
   main {
+    display: flex;
+    flex-direction: column;
     min-height: 90vh;
     height: unset;
   }

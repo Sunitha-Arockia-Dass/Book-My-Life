@@ -1,32 +1,56 @@
-<div class="wrapper">
-  <div class="right">
-    <div class="embed-page">
-      <!-- SIGNUP FORM -->
-      <div id="vignette">
-        <div id="v-container">
-          <h2>Sign Up</h2>
-          <p>Already registered ? <a id="form" href="/auth/login">login</a></p>
-          <form action="/auth/signup" method="POST">
+<div id="welcome-page">
+  <div class="wrapper scroll-ok">
+    <div class="left">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">          
+          <path d="M3 19C3.69137 16.6928 5.46998 16 9.5 16C13.53 16 15.3086 16.6928 16 19" stroke="#963696"
+            stroke-width="2" stroke-linecap="round"></path>
+          <path
+            d="M13 9.5C13 11.433 11.433 13 9.5 13C7.567 13 6 11.433 6 9.5C6 7.567 7.567 6 9.5 6C11.433 6 13 7.567 13 9.5Z"
+            stroke="#963696" stroke-width="2"></path>
+          <path d="M15 5L16.5 6.5V6.5C16.7761 6.77614 17.2239 6.77614 17.5 6.5V6.5L21 3" stroke="#ead94c"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+      </svg>
 
-            <label>Username</label>
-            <input type="text" name="username" placeholder="" />
-            <br /><br />
+    </div>
+    <div class="right">
+      <div class="embed-page">
+        <!-- SIGNUP FORM -->
+        <div id="vignette">
+          <div id="v-container">
+            <h2>Sign Up</h2>
+            <p>Already registered ?
+              <a id="form" href="/auth/login">login</a>
+            </p>
+            <form action="/auth/signup" method="POST">
 
-            <label>Email</label>
-            <input type="email" name="email" placeholder="" />
-            <br /><br />
+              <label>Username
+                <input type="text" name="username" placeholder="" />
+              </label>
+              <br /><br />
 
-            <label>Password</label>
-            <input type="password" name="password" placeholder="" />
-            <br/><br/>
+              <label>Email
+                <input type="email" name="email" placeholder="" />
+              </label>
+              <br /><br />
 
-            <button type="submit">Sign Up</button>
+              <label>Password
+                <input type="password" name="password" placeholder="" />
+              </label>
+              <br /><br />
 
-            <!-- Error message -->
-            {{#if errorMessage}}
+              <button type="submit">Sign Up</button>
+              <br /><br />
+
+              <!-- Error message -->
+              {{#if errorMessage}}
               <p class="error">{{errorMessage}}</p>
-            {{/if}}
-          </form>
+              {{/if}}
+            </form>
+          </div>
         </div>
       </div>
     </div>
