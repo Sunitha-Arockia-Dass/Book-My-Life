@@ -1,11 +1,25 @@
 const breakfastBtn=document.getElementById("breakfast")
 const lunchBtn=document.getElementById("lunch")
 const dinnerBtn=document.getElementById("dinner")
+const snackBtn=document.getElementById("snacks")
 const breakfastMenu=document.querySelector(".breakfast-menu")
 const lunchMenu=document.querySelector(".lunch-menu")
 const dinnerMenu=document.querySelector(".dinner-menu")
+const snackMenu=document.querySelector(".snack-menu")
 
+const agendaInfoList=document.querySelectorAll(".agenda-info")
+const agendaDetails = document.querySelectorAll('.details')
 
+agendaInfoList.forEach((agendaInfo,index)=>{
+
+  agendaInfo.addEventListener("click",(event)=>{
+    agendaDetails.forEach((agendaDetail) => {
+      agendaDetail.style.display = "none";
+    });
+  agendaDetails[index].style.display="block"
+})
+
+})
   
 
   // In your client-side JavaScript (e.g., a separate .js file or inline script in your HTML)
@@ -102,6 +116,7 @@ const dinnerMenu=document.querySelector(".dinner-menu")
         },
         options: {
           responsive: true,
+          
         },
       });
   
@@ -119,27 +134,10 @@ const dinnerMenu=document.querySelector(".dinner-menu")
     dinnerBtn.addEventListener("click",(event)=>{
       dinnerMenu.style.display="block"
     })
+    snackBtn.addEventListener("click",(event)=>{
+      snackMenu.style.display="block"
+    })
 
     
     
     
-    /*//////////////////////////////////////////////////////////////
-  HIDE THE MENU DEPENDING ON THE LOG STATUS
-  */
-
-  /*const logOutBtn = document.getElementById("logout")
-  const loginBtn = document.getElementById("login")
-  const logInId = document.getElementById("is-log-in")
-  const logOutId = document.getElementById("is-log-out")
-
-  loginBtn.addEventListener("click", (event) => {
-    logOutId.style.display = "none"
-    logInId.style.display = "block"  
-  })
-
-  logOutBtn.addEventListener("click", (event) => {
-    logOutId.style.display = "block"
-    logInId.style.display = "none"
-  
-  })*/
-    // windows onload closure

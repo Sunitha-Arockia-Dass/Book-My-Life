@@ -12,8 +12,10 @@ const saltRounds = 10
 const User = require("../models/User.model")
 
 // middleware
-const isLoggedOut = require("../middleware/isLoggedOut")
-const isLoggedIn = require("../middleware/isLoggedIn")
+const {
+  isLoggedIn,
+  isLoggedOut,
+} =require("../middleware/functions");
 
 const userFindbyId=(userId)=>{
  return User.findById(userId)
@@ -298,8 +300,8 @@ router.get("/logout", isLoggedIn, (req, res) => {
       return
     }
 
-    res.render("")
-  })
+    res.redirect('/')
+    })
 })
 
 

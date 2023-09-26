@@ -5,11 +5,9 @@ const router = express.Router();
 const Profile = require("../models/Profile.model");
 const {
   storeProfileId,
-  calculateAge,profileFindbyId}=require("../middleware/functions")
+  calculateAge,profileFindbyId,isLoggedOut,isLoggedIn}=require("../middleware/functions")
 
-// middlaware
-const isLoggedOut = require("../middleware/isLoggedOut");
-const isLoggedIn = require("../middleware/isLoggedIn");
+
 
 
 /*////////////////////////////////////////////////////////////// 

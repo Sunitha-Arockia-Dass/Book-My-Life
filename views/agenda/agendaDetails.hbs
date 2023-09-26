@@ -1,14 +1,25 @@
-<br>
-<br>
-<br>
-hi
+
 
 {{#each appt}}
-<h1>{{appointmentName}}</h1>
-<h2>{{appointmentType}}</h2>
-<h3>{{formattedAppointmentDate}}</h3>
-<h3>{{appointmentTime}}</h3>
+<div class="agenda-info">
+<h3>Appointment Date:{{formattedAppointmentDate}}</h3>
+<h1>Appointment Name:{{appointmentName}}</h1>
+</div>
+<br>
+
+<div style="display:none" class="details">
+
+<h3>Appointment Type:{{appointmentType}}</h2>
+<h3>Appointment Time{{appointmentTime}}</h3>
+<h3>Appointment With:{{appointmentwith}}</h3>
+<h3>Total Duration:{{duration}}</h3>
+<br>
+<br>
+
+</div>
 {{/each}}
 <button>
     <a href="/agenda/agendaCreate">Create an Appointment</a>
 </button>
+
+
