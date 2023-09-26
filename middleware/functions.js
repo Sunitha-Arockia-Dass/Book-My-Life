@@ -1,7 +1,50 @@
 const Profile = require("../models/Profile.model");
 const axios = require('axios')
 
+const isAuthenticated=(req, res, next) => {
+  res.locals.isAuthenticated = !!req.session.currentUser;
+  next();
+};
+ 
+const isLoggedIn=(req, res, next) => {
+  // res.locals.isLoggedIn =true
+  if (!req.session.currentUser) {
+    res.locals.isLoggedIn = false;
+    res.locals.isLoggedOut =false
 
+    console.log("User is not logged in",res.locals.isLoggedIn )
+    res.locals.isLoggedOut = true;
+    return res.redirect("/auth/login");
+  }
+
+  else{
+
+    const userId = req.session.currentUser._id;
+    Profile.find({ user: userId })
+    .then((foundProfile) => {
+      res.locals.isLoggedIn = true;
+      res.locals.profile = foundProfile;
+      next();
+    })
+    .catch((error) => {
+      console.log("error while finding profiles:", error);
+      res.locals.profile = null;
+      next();
+    });
+  }
+};
+const isLoggedOut=(req, res, next) => {
+  // if an already logged in user tries to access the login page it
+  // redirects the user to the home page
+  if (req.session.currentUser) {
+    
+    res.locals.isLoggedIn =true
+    res.locals.isLoggedOut =true
+    console.log("User is logged in",res.locals.isLoggedIn )
+    return res.redirect("/");
+  }
+  next();
+};
 const storeProfileId=(req, res, next)=> {
     const profileId = req.params.id;
     req.session.selectedProfileId = profileId;
@@ -103,7 +146,7 @@ function dateFormatted(dateString) {
 async function fetchRecipesData() {
   const recipes = []
   try {
-    const response = await axios.get('http://localhost:8000/recipes');
+    const response = await axios.get('https://erin-adorable-barracuda.cyclic.cloud/recipes');
     recipes.push(...response.data);
     console.log('Recipe data fetched and populated.');
     return recipes
@@ -121,4 +164,7 @@ async function fetchRecipesData() {
     optimalWeight,
     dateFormatted,
     fetchRecipesData,
+    isLoggedIn,
+    isLoggedOut,
+    isAuthenticated,
 };

@@ -14,6 +14,7 @@ const express = require("express")
 const hbs = require("hbs")
 
 const app = express()
+const authMiddleware=require("./middleware/functions").isAuthenticated
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app)
@@ -23,7 +24,7 @@ const projectName = "Book-My-Life"
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`
 
-
+app.use(authMiddleware)
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes")
 app.use("/", indexRoutes)

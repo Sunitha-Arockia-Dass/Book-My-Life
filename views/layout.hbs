@@ -34,14 +34,19 @@
           <!-- Menus -->
           <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
             <ul id="is-log-out" class="navbar-nav align-items-center">
+              {{#unless isAuthenticated}}
               <li class="nav-item">
                 <a class="nav-link alink fs-5" aria-current="page" href="/auth/signup">Signup</a>
               </li>
+             
               <li class="nav-item">
                 <a class="nav-link alink fs-5" href="/auth/login">Login</a>
               </li>
+              {{/unless}}
+
             </ul>
             <ul id="is-log-in" class="navbar-nav align-items-center">
+              {{#if isAuthenticated}}
               <li class="nav-item">
                 <a class="nav-link alink fs-5" href="/profile/profile">Profile</a>
               </li>
@@ -52,14 +57,14 @@
                   data-bs-toggle="dropdown" aria-expanded="false">
                   Profile.s page
                 </a>
-                {{#if isLoggedIn}}
+               
                 <ul class="dropdown-menu">
                   {{#each profile}}
                   <li class="profile-border"><a class="dropdown-item alink"
                       href="/profile/profileDetail/{{id}}">{{name}}</a></li>
                   {{/each}}
                 </ul>
-                {{/if}}
+                
               </li>
             </ul>
           </div>
@@ -68,6 +73,7 @@
         <div id="icons-menu" class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <ul id="is-log-out" class="navbar-nav align-items-center">
             <!--Account button-->
+                     
             <li class="nav-item">
               <form class="nav-link fs-5" id="account-form" action="/auth/userProfile" method="GET">
                 <button class="Btn">
@@ -89,6 +95,7 @@
             </li>
 
             <!--logout button-->
+           
             <li class="nav-item">
               <form class="nav-link fs-5" id="logout-form" action="/auth/logout" method="GET">
                 <button class="Btn">
@@ -110,6 +117,7 @@
                 </button>
               </form>
             </li>
+          {{/if}}
           </ul>
         </div>
 
@@ -140,7 +148,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-fillbetween/0.7.0/chartjs-plugin-fillbetween.min.js"></script>
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-fillbetween/0.7.0/chartjs-plugin-fillbetween.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   </body>
 
 </html>

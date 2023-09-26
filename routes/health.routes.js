@@ -87,12 +87,12 @@ router.get("/recipe/:recipeName", (req, res, next) => {
 });
 router.get("/weighLoss-vegetarian", (req, res, next) => {
  
-  res.render("/health/vegetarianWeightLoss")
+  res.render("health/vegetarianWeightLoss")
 });
 
 router.get("/weighLoss-vegan", (req, res, next) => {
  
-  res.render("/health/veganWeightLoss")
+  res.render("health/veganWeightLoss")
 });
 
 
