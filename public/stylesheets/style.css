@@ -417,9 +417,6 @@ li.profile-border {
 }
 
 
-
-
-
 /*/////////////////////////////////
  MAIN */
 main {
@@ -428,6 +425,7 @@ main {
   padding-top: 24px;
   padding-bottom: 24px;
 }
+
 
 /*/////////////////////////////////
  Back & Forward Button */
@@ -647,7 +645,6 @@ nav.back-Forward svg {
 
 #create-svg {
   background: unset;
-
   background-color: var(--white);
 }
 
@@ -731,6 +728,33 @@ div.sign #delete-svg {
 
 .healthify {
   padding: 10px 20px;
+}
+
+
+/*/////////////////////////////////
+ Agenda Page */
+.profile-full {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  max-width: 1400px;
+  height: 100%;
+}
+
+.profile-full h2 {
+  text-shadow: 2px 2px 4px var(--plumd);
+}
+
+.agenda-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
+}
+
+.agenda-container2 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 25%;
 }
 
 /*/////////////////////////////////
