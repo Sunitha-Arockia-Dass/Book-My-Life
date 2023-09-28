@@ -15,14 +15,14 @@
               <img class="profile-picture" src="{{profilePicture}}" alt="error" />
               <div class="middle">
                 <div class="text-hover">
-                  <form class="form-btn" action="/health/healthDetail" method="get">
+                  <form class="form-btn" action="/health/healthDetail/{{id}}" method="get">
                     <button type="submit"><span>Healthify</span></button>
                   </form>
                   <form class="form-btn" action="/agenda/agenda" method="get">
                     <button class="alink" type="submit"><span>Agenda</span></button>
                   </form>
                   <form class="form-btn" action="/profile/profileDetail/{{id}}" method="get">
-                    <button class="alink" type="submit"><span>Old Page</span></button>
+                    <button class="alink" type="submit"><span>View Profile</span></button>
                   </form>
                 </div>
               </div>
@@ -102,4 +102,5 @@
     <p class="error">{{errorMessage}}</p>
     {{/if}}
   </div>
-</div>
+</div>    
+
