@@ -24,7 +24,6 @@ if(!foundUser)
 {
 console.log ('foundUser not found')
 }
-console.log(foundUser)
 return foundUser
   })
   .catch(error=>{

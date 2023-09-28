@@ -26,6 +26,7 @@ router.post("/health", async (req, res, next) => {
   const heightInMeters = height / 100;
   const selectedProfileId = req.session.selectedProfileId;
   const profile = profileFindbyId(selectedProfileId).then((foundProfile) => {
+    console.log("foundProfile",foundProfile)
     const profileName = foundProfile.name;
     const BMI = (weight / (heightInMeters * heightInMeters)).toFixed(2);
    const currentWeight= isHealthyBmi(BMI) 
@@ -59,12 +60,11 @@ router.post("/health", async (req, res, next) => {
   });
 });
 
-router.get("/healthDetail", (req, res, next) => {
-  const selectedProfileId = req.session.selectedProfileId;
-  
+router.get("/healthDetail/:id", (req, res, next) => {
+  const selectedProfileId = req.params.id;
+  console.log(selectedProfileId)
   Data.find({ profile: selectedProfileId })
   .then((profileDatas) => {
-    console.log(profileDatas)
     const bmiData = profileDatas.map((data) => data.BMI);
     const createdDates = profileDatas.map((data) => data.formattedCreatedAt);   
     res.render("health/healthDetails", { data: profileDatas, bmiData: JSON.stringify(bmiData), 

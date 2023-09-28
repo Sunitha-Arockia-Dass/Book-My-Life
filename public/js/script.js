@@ -139,5 +139,31 @@ agendaInfoList.forEach((agendaInfo,index)=>{
     })
 
     
+
+
+//     window.onbeforeunload = function() { 
+//       return "u r leaving the page";
+  
+//     // fetch('http://localhost:3000/auth/logout', {
+//     //   method: 'GET',
+//     //   headers: {
+//     //     'Content-Type': 'application/json', 
+//     //   },
+//     // })
+//     // .then(response => {
+//     //   alert("u r leaving the page")
+//     //   if (response.ok) {
+//     //     console.log("successfully logged out")
+//     //   } else {
+//     //   }
+//     // })
+//     // .catch(error => {
+//     //   console.error('Fetch error:', error);
+//     // });
+  
+// };
+
+
+
     
     

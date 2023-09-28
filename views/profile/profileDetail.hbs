@@ -19,10 +19,10 @@
           <div id="v-container">
             {{#with profile}}
             <h2>Hello, <span class="capitalize">{{name}}</span></h2>
-            {{/with}}
             <p>Already {{age}} Years old! it's time to take care of you.</p>
             <br />
-            <form class="form-btn" action="/health/healthDetail" method="get">
+            {{/with}}
+            <form class="form-btn" action="/health/healthDetail/{{profile.id}}" method="get">
               <button type="submit"><span>Healthify</span></button>
             </form>
             <form class="form-btn" action="/agenda/agenda" method="get">

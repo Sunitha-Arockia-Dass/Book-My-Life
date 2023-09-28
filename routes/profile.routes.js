@@ -132,13 +132,12 @@ GET A PROFILE DETAIL
  */
 router.get("/profileDetail/:id", isLoggedIn, storeProfileId, (req, res, next) => {
   const profileId = req.params.id;
+
   Profile.findById(profileId)
     .then((updatedProfile) => {
-      console.log(updatedProfile)
       const dob=updatedProfile.dateOfBirth;
       const age= calculateAge(dob)
-      console.log(age)
-      // console.log(foundProfile)
+      console.log(updatedProfile.id)
 
       res.render("profile/profileDetail",{profile:updatedProfile,age});
     })
