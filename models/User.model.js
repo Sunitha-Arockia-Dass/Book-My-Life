@@ -1,4 +1,12 @@
 const { Schema, model } = require("mongoose");
+function dateFormatted(dateString) {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.toLocaleString('default', { month: 'short' });
+  const year = date.getFullYear();
+  return `${month} ${day}, ${year}`;
+}
+
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const userSchema = new Schema(
@@ -26,6 +34,13 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
+
+userSchema.virtual("formattedcreatedAt").get(function () {
+  return dateFormatted(this.createdAt);
+});
+userSchema.virtual("formattedupdatedAt").get(function () {
+  return dateFormatted(this.updatedAt);
+});
 
 const User = model("User", userSchema);
 

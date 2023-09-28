@@ -94,6 +94,18 @@ router.get("/weighLoss-vegan", (req, res, next) => {
  
   res.render("health/veganWeightLoss")
 });
+router.get("/weighGain-paleo", (req, res, next) => {
+ 
+  res.render("health/paleoWeightGain")
+});
+router.get("/weighGain-vegetarian", (req, res, next) => {
+ 
+  res.render("health/vegetarianWeightGain")
+});
+router.get("/weighGain-vegan", (req, res, next) => {
+ 
+  res.render("health/veganWeightGain")
+});
 
 
 /* module.exports */
