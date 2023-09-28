@@ -32,7 +32,8 @@
           </div>
 
           <!-- Menus -->
-          <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            
             <ul id="is-log-out" class="navbar-nav align-items-center">
               {{#unless isAuthenticated}}
               <li class="nav-item">
@@ -42,9 +43,10 @@
               <li class="nav-item">
                 <a class="nav-link alink fs-5" href="/auth/login">Login</a>
               </li>
-              {{/unless}}
-
+              {{/unless}}      
             </ul>
+            
+            
             <ul id="is-log-in" class="navbar-nav align-items-center">
               {{#if isAuthenticated}}
               <li class="nav-item">
@@ -63,15 +65,20 @@
                   <li class="profile-border"><a class="dropdown-item alink"
                       href="/profile/profileDetail/{{id}}">{{name}}</a></li>
                   {{/each}}
-                </ul>
-                
+                </ul>                
               </li>
+
+              <li class="nav-item">
+                <a class="nav-link alink fs-5" href="/agenda">Agenda</a>
+              </li>
+              {{/if}}
             </ul>
           </div>
         </div>
 
         <div id="icons-menu" class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-          <ul id="is-log-out" class="navbar-nav align-items-center">
+          <ul id="is-log-in" class="navbar-nav align-items-center">
+            {{#if isAuthenticated}}
             <!--Account button-->
                      
             <li class="nav-item">
@@ -89,7 +96,7 @@
                           stroke-width="2" stroke-linecap="round"></path>
                       </g>
                     </svg></div>
-                  <div class="text fs-5">Account</div>
+                  <div class="text fs-5 alink">Account</div>
                 </button>
               </form>
             </li>
@@ -113,14 +120,14 @@
                           stroke="#ce78ce" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                       </g>
                     </svg>
-                    <div class="text fs-5">Logout</div>
+                    <div class="text fs-5 alink">Logout</div>
                 </button>
               </form>
             </li>
           {{/if}}
           </ul>
         </div>
-
+        
       </nav>
     </header>
 
@@ -134,7 +141,7 @@
             rel="noopener noreferrer">Sunitha</a>
           and
           <a href="https://www.linkedin.com/in/thomas-lebas26/" target="_blank" rel="noopener noreferrer">Thomas</a>
-          development & design, all right reserved ©
+          development & design, all right reserved <sup>©</sup>
         </p>
       </div>
     </footer>

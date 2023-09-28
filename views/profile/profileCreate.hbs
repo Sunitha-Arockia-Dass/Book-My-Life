@@ -6,9 +6,14 @@
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
         <g id="SVGRepo_iconCarrier">
+          
           <path
-            d="M13 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V9M13 3L19 9M13 3V8C13 8.55228 13.4477 9 14 9H19M12 13V17M14 15H10"
-            stroke="#963696" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            d="M17.8284 6.82843C18.4065 7.40649 18.6955 7.69552 18.8478 8.06306C19 8.4306 19 8.83935 19 9.65685L19 17C19 18.8856 19 19.8284 18.4142 20.4142C17.8284 21 16.8856 21 15 21H9C7.11438 21 6.17157 21 5.58579 20.4142C5 19.8284 5 18.8856 5 17L5 7C5 5.11438 5 4.17157 5.58579 3.58579C6.17157 3 7.11438 3 9 3H12.3431C13.1606 3 13.5694 3 13.9369 3.15224C14.3045 3.30448 14.5935 3.59351 15.1716 4.17157L17.8284 6.82843Z"
+            stroke="#963696" stroke-width="2" stroke-linejoin="round"></path>
+          <path d="M12 11L12 16" stroke="#ead94c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          </path>
+          <path d="M14.5 13.5L9.5 13.5" stroke="#ead94c" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"></path>
         </g>
       </svg>
     </div>
@@ -17,7 +22,7 @@
         <div id="vignette">
           <div id="v-container">
             <h2>Create a profile</h2>
-            <form action="/profile/profile" method="POST">
+            <form class="form-btn" action="/profile/profile" method="POST">
 
               <label>
                 Name
@@ -47,8 +52,8 @@
               </label>
               <br /><br />
 
-              <button type="submit">Create</button>
-              <br /><br />
+              <button type="submit"><span>Create</span></button>
+              <br />
 
               <!-- Error message -->
               {{#if errorMessage}}

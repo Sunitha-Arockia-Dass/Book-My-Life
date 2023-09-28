@@ -19,7 +19,7 @@
             {{# with profile}}
             <div id="form">
               <h2>Update a profile</h2>
-              <form action="/profile/profileUpdate/{{id}}" method="POST">
+              <form class="form-btn" action="/profile/profileUpdate/{{id}}" method="POST">
 
                 <label> Name
                   <input type="text" name="name" value="{{name}}" />
@@ -48,8 +48,8 @@
                 </label>
                 <br><br>
 
-                <button type="submit">Update</button>
-                <br /><br />
+                <button type="submit"><span>Update</span></button>
+                <br />
 
                 {{/with}}
                 <!-- Error message -->

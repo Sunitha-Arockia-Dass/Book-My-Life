@@ -15,6 +15,10 @@
   --title: "Nunito", sans-serif;
 }
 
+span.citrine {
+  color: var(--citrine);
+}
+
 /* initialisation */
 * {
   margin: 0;
@@ -40,6 +44,7 @@ button {
   font-family: var(--title);
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 
 h2 {
@@ -49,13 +54,6 @@ h2 {
   font-size: 2em;
   padding-bottom: 10px;
   text-shadow: 2px 2px 4px var(--pluml);
-}
-
-h3 {
-  text-align: center;
-  color: var(--white);
-  padding-top: 10px;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
 }
 
 form,
@@ -115,6 +113,9 @@ Overflow and scrollbar */
 links colors */
 .alink:link {
   color: var(--white);
+  font-weight: 600;
+  transition: 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .alink:visited {
@@ -123,8 +124,9 @@ links colors */
 
 .alink:hover {
   color: var(--citrine);
-  background-color: var(--plumdark);
-  transition: 0.5s ease;
+  font-weight: 600;
+  text-shadow: -1px -1px 1px var(--white), 1px 1px 1px var(--black);
+  background-color: transparent;
 }
 
 .alink:active {
@@ -133,7 +135,7 @@ links colors */
   transform: translate(2px, 2px);
 }
 
-/*/////////////////////////////////
+/*///////////////////////// ////////
 Animated Buttons */
 
 .Btn {
@@ -146,7 +148,7 @@ Animated Buttons */
   position: relative;
   overflow: hidden;
   transition-duration: 0.3s;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* plus sign */
@@ -164,17 +166,19 @@ Animated Buttons */
 
 /* text */
 .text {
+  color: var(--white);
   position: absolute;
   right: 0%;
   width: 0%;
   opacity: 0;
-  transition-duration: 0.3s;
+  transition: all 0.5s ease;
 }
 
 /* hover effect on button width */
 .Btn:hover {
   width: 120px;
   transition-duration: 0.3s;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .Btn:hover .sign {
@@ -186,7 +190,7 @@ Animated Buttons */
 .Btn:hover .text {
   opacity: 1;
   width: 70%;
-  transition-duration: 0.3s;
+  transition: all 0.5s ease;
   padding-right: 5px;
 }
 /* button click effect*/
@@ -196,6 +200,11 @@ Animated Buttons */
 
 /*/////////////////////////////////
  FORM */
+
+form {
+  padding-bottom: 16px;
+}
+
 p {
   text-align: center;
   padding-bottom: 30px;
@@ -224,7 +233,7 @@ form select {
 input:focus,
 select:focus {
   outline: none;
-  box-shadow: 1px 2px 4px var(--pluml);
+  box-shadow: 2px 2px 4px var(--pluml);
 }
 
 a#form:link,
@@ -241,41 +250,89 @@ a#form:active {
   transition: 0.5s ease;
 }
 
-form button {
-  background: var(--plumdark);
-  border: 3px solid var(--plumd);
-  border-radius: 30px 10px 30px 10px;
+/*/////////////////////////////////
+FORM "SUBMIT" BUTTON */
+
+form.form-btn button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
   color: var(--white);
+  background: var(--plumdark);
+  border: 3px solid var(--plumm);
+  border-radius: 30px 10px 30px 10px;
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   font-size: 1.2em;
   font-weight: bold;
   padding: 8px 0px;
   margin: 10px 0px;
-  transition: 0.75s linear;
+  transition: 0.75s;
   width: 100%;
 }
 
-form button:hover {
-  color: var(--plumdark);
-  background-color: var(--citrine);
-  box-shadow: 1px 2px 4px var(--pluml);
+form.form-btn button:after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: var(--citrine);
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
 }
 
-form button:active {
+form.form-btn button:hover::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+
+form.form-btn button span {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  color: var(--white);
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
+
+form.form-btn button:hover span {
+  color: var(--white);
+  animation: scaleUp 0.3s ease-in-out;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+form.form-btn button:active {
   transform: translate(5px, 5px);
 }
 
 /*/////////////////////////////////
 HEADER */
 header {
-  min-height: 35px;
+  min-height: 40px;
   height: 7vh;
   background: var(--plumdark);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 0 0 15px 15px;
-  box-shadow: 2px 2px 4px var(--plumd);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 nav {
@@ -289,10 +346,6 @@ nav {
 nav h1 {
   color: var(--pluml);
   font-weight: bolder;
-}
-
-span.citrine {
-  color: var(--citrine);
 }
 
 button.navbar-toggler {
@@ -328,10 +381,8 @@ li.profile-border {
 }
 
 #logout-form button {
-  color: var(--plumd);
+  color: var(--white);
   font-family: var(--title);
-  font-size: unset;
-  font-weight: unset;
   background-color: transparent;
   padding: 5px 10px;
   border: 1px solid var(--plumd);
@@ -344,7 +395,6 @@ li.profile-border {
   border: 1px solid var(--plumm);
   background-color: transparent;
   border-radius: 30px 10px 30px 10px;
-  box-shadow: unset;
 }
 
 #account-form button {
@@ -364,7 +414,6 @@ li.profile-border {
   border: 1px solid var(--plumm);
   background-color: transparent;
   border-radius: 30px 10px 30px 10px;
-  box-shadow: unset;
 }
 
 /*/////////////////////////////////
@@ -385,19 +434,19 @@ main {
 .wrapper {
   display: flex;
   flex-direction: row;
-  height: 90%;
-  max-height: 700px;
+  height: 95%;
+  max-height: 650px;
   width: 80%;
-  max-width: 1400px;
+  max-width: 1300px;
   background-color: var(--white);
   border-radius: 10px 30px 10px 30px;
-  box-shadow: 1px 2px 4px var(--pluml);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .wrapper .left,
 .wrapper .right {
   width: 50%;
-  height: 700px;
+  height: 650px;
 }
 
 .wrapper .left {
@@ -416,6 +465,39 @@ main {
   margin: auto;
   height: auto;
   height: 50%;
+}
+
+/* welcome page presentation animation*/
+.wrapper .left .presentation {
+  width: 90%;
+  height: 90%;
+  padding: 20px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapper .left .presentation .decoration {
+  display: inline-block;
+  padding: 5px;
+  background-color: var(--plumdark);
+  border-radius: 30px 10px 30px 10px;
+}
+
+.wrapper .left .presentation h1 {
+  display: inline;
+  color: var(--pluml);
+  font-weight: bolder;
+  letter-spacing: 5px;
+  vertical-align: middle;
+}
+
+.wrapper .left .presentation h2 {
+  display: inline;
+  padding-left: 5px;
+  letter-spacing: 5px;
+  vertical-align: middle;
 }
 
 .wrapper .right {
@@ -445,37 +527,81 @@ main {
 
 /*/////////////////////////////////
  Profile Page */
-.profile-full{  
-  width: 90%;
-  height: 90%;
+.profile-full {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  max-width: 1400px;
+  height: 95%;
 }
 
-.profile-container { 
-  display: flex;  
-  flex-wrap: wrap; 
+.profile-full h2 {
+  text-shadow: 2px 2px 4px var(--plumd);
+}
+
+.profile-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* each profile + create profil */
-
-
 .profile-vignette {
   display: flex;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   text-align: center;
   min-width: 250px;
   width: 25%;
   max-width: 500px;
-  min-height: 350px;  
+  min-height: 350px;
   max-height: 700px;
 }
 
-#one-profile {  
+#one-profile {
   height: 90%;
   width: 90%;
-  padding: 20px;
+  padding: 5px 5px 0;
   border-radius: 10px 30px 10px 30px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: var(--white);
+}
+
+#frame-profile {
+  padding: 0px 0px 5px;
+  border-radius: 10px 30px 10px 30px;
+  background-color: var(--plumdark);
+}
+
+#frame-profile.create-profile {
+  background-color: transparent;
+}
+
+#frame-profile h3 {
+  color: var(--citrine);
+  width: 90%;
+  margin: 0px auto;
+  font-weight: bold;
+  border-radius: 10px 30px 10px 30px;
+  background-color: var(--plumdark);
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+#frame-profile.create-profile h3 {
+  padding: 5px 0 0;
+  color: var(--plumdark);
+  font-weight: bolder;
+  background-color: transparent;
+  text-shadow: 2px 2px 1px var(--pluml);
+}
+
+.profile-vignette img,
+#create-svg {
+  width: 100%;
+  height: 75%;
+  object-fit: cover;
+  border-radius: 10px 30px 10px 30px;
+  border: 5px solid var(--plumdark);
   background: linear-gradient(
     180deg,
     var(--plumdark) 20%,
@@ -485,23 +611,10 @@ main {
   );
 }
 
-#one-profile a {
-  text-decoration: none;
-}
-
-#one-profile h3{
-  color: var(--citrine);
-  font-weight: bold;
-  text-shadow: 0px 0px 3px var(--plumdark);
-}
-
-.profile-vignette img,
 #create-svg {
-  width: 90%;
-  height: 75%;
-  border-radius: 10px 30px 10px 30px;
-  object-fit: cover;
-  border: 5px solid var(--white);
+  background: unset;
+
+  background-color: var(--white);
 }
 
 div.sign #update-svg,
@@ -514,6 +627,7 @@ div.sign #delete-svg {
   height: 32px;
   display: flex;
   justify-content: center;
+  padding-top: 5px;
 }
 
 #update-btn button {
@@ -522,29 +636,67 @@ div.sign #delete-svg {
 
 #delete-btn button,
 #update-btn button {
-  color: var(--plumm);
   font-family: var(--title);
-  font-size: unset;
-  font-weight: unset;
+  font-weight: bold;
   background-color: transparent;
   padding: 5px 10px;
   border: 1px solid var(--plumm);
   border-radius: 30px 10px 30px 10px;
   transition: 0.75s ease;
-  box-shadow: unset;
+}
+
+#update-btn button {
+  border: 1px solid var(--plumd);
+}
+
+.prof-link {
+  color: var(--plumd);
 }
 
 #delete-btn button:hover,
 #update-btn button:hover {
   color: var(--plumd);
   border: 1px solid var(--plumd);
-  background-color: transparent;
   border-radius: 30px 10px 30px 10px;
-  box-shadow: unset;
 }
 
-#update-btn button {
-  border: 1px solid var(--plumd);
+/*/////////////////////////////////
+ when hover frame profile display two links for Agenda and Healthify*/
+#frame-profile {
+  position: relative;
+  width: 100%;
+}
+
+.profile-picture {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+#frame-profile:hover .profile-picture {
+  opacity: 0.25;
+}
+
+#frame-profile:hover .middle {
+  opacity: 1;
+}
+
+.healthify {
+  padding: 10px 20px;
 }
 
 /*/////////////////////////////////
@@ -558,14 +710,12 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  color: white;
+  color: var(--plumd);
   border-radius: 15px 15px 0 0;
   background-color: var(--pluml);
 }
 
 footer p {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   padding-bottom: 0;
 }
 
@@ -576,7 +726,9 @@ footer a {
 }
 
 footer a:hover {
-  color: var(--plumd);
+  color: var(--citrine);
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 /*/////////////////////////////////
@@ -584,7 +736,7 @@ footer a:hover {
 .error {
   box-sizing: border-box;
   width: 100%;
-  margin: 20px auto;
+  margin: 0px auto;
   padding: 20px;
   color: white;
   font-size: 1.1em;
@@ -630,19 +782,16 @@ footer a:hover {
 }
 
 .error-page .alink {
-  color: #ead94c;
   text-decoration: none;
-  padding: 5px 10px;
   font-weight: bold;
-  border: 1px solid transparent;
-  border-radius: 30px 10px 30px 10px;
 }
 
 .error-page .alink:hover,
 .error-page .alink:active,
 .error-page .alink:visited {
-  background-color: transparent;
-  border: 1px solid var(--citrine);
+  color: var(--citrine);
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.75);
 }
 
 /*/////////////////////////////////
@@ -661,45 +810,29 @@ footer a:hover {
 /* small screen ---------------------------------------------------*/
 
 @media (min-width: 500px) and (max-width: 991px) {
-  body {
-    overflow: auto;
-  }
-  /*/////////////////////////////////
- HEADER */
-
   header {
     min-height: 7vh;
     height: unset;
   }
-
-  /*/////////////////////////////////
- MAIN */
-  main {
-    display: flex;
-    flex-direction: column;
-    min-height: 90vh;
-    height: unset;
-  }
-
   /* Index Page */
-
   .wrapper {
-    justify-content: none;
-    align-items: none;
     flex-direction: column-reverse;
-    height: 100%;
-    padding: 10px 0;
+    height: 95%;
+    max-height: 1300px;
+    width: 95%;
+    max-width: unset;
   }
 
   .wrapper .left,
   .wrapper .right {
     width: 100%;
-    max-width: unset;
-    min-width: unset;
-    border-radius: 30px;
+    min-height: 650px;
   }
-  .wrapper .right {
-    margin-bottom: 10px;
+
+  .profile-full {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
   }
 }
 

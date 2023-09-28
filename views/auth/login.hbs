@@ -26,7 +26,7 @@
             <p>Need an account first ?
               <a id="form" href="/auth/signup">signup</a>
             </p>
-            <form action="/auth/login" method="POST">
+            <form class="form-btn" action="/auth/login" method="POST">
               <label>
                 Username
                 <input type="username" name="username" placeholder="" />
@@ -39,8 +39,8 @@
               </label>
               <br /><br />
 
-              <button id="login" type="submit">Log In</button>
-              <br /><br />
+              <button id="login" type="submit"><span>Log In</span></button>
+              <br />
 
               <!-- Error message -->
               {{#if errorMessage}}

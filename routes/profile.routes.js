@@ -130,7 +130,7 @@ router.get("/profileDelete/:id", isLoggedIn, (req, res, next) => {
 /*////////////////////////////////////////////////////////////// 
 GET A PROFILE DETAIL
  */
-router.get("/profileDetail/:id", isLoggedIn,storeProfileId, (req, res, next) => {
+router.get("/profileDetail/:id", isLoggedIn, storeProfileId, (req, res, next) => {
   const profileId = req.params.id;
   Profile.findById(profileId)
     .then((updatedProfile) => {

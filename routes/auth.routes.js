@@ -220,7 +220,7 @@ if (username === "" || email === "" || password === "") {
   userFindbyId(userId)
   .then(user=>{
     console.log("in router console:," , user)
-    res.render("auth/userUpdate",{userId,user:user,errorMessage: "All fields are mandatory. Please provide your username, email and password."})
+    res.render("auth/userUpdate",{userId,user:user,errorMessage: "Make at least one change and confirm with your current password"})
   })
   return
 }

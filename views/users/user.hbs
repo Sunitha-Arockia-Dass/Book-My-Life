@@ -35,10 +35,13 @@
                 Updated :<br /><span class="fw-bold">{{updatedAt}}</span></p>
 
             </form>
-            <form action="/auth/update/{{id}}" method="GET"><button class="edit-btn" href="/auth/update/{{id}}">Edit my
-                account</button>
+            <form class="form-btn" action="/auth/update/{{id}}" method="GET"><button class="edit-btn"
+                href="/auth/update/{{id}}">
+                <span>Edit my
+                  account</span></button>
+                  <br/>
             </form>
-            <br /><br />
+            
             {{/each}}
             {{/if}}
 
