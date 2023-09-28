@@ -33,20 +33,20 @@
 
           <!-- Menus -->
           <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-            
+
             <ul id="is-log-out" class="navbar-nav align-items-center">
               {{#unless isAuthenticated}}
               <li class="nav-item">
                 <a class="nav-link alink fs-5" aria-current="page" href="/auth/signup">Signup</a>
               </li>
-             
+
               <li class="nav-item">
                 <a class="nav-link alink fs-5" href="/auth/login">Login</a>
               </li>
-              {{/unless}}      
+              {{/unless}}
             </ul>
-            
-            
+
+
             <ul id="is-log-in" class="navbar-nav align-items-center">
               {{#if isAuthenticated}}
               <li class="nav-item">
@@ -59,17 +59,17 @@
                   data-bs-toggle="dropdown" aria-expanded="false">
                   Profile.s page
                 </a>
-               
+
                 <ul class="dropdown-menu">
                   {{#each profile}}
                   <li class="profile-border"><a class="dropdown-item alink"
                       href="/profile/profileDetail/{{id}}">{{name}}</a></li>
                   {{/each}}
-                </ul>                
+                </ul>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link alink fs-5" href="/agenda">Agenda</a>
+                <a class="nav-link alink fs-5" href="/agenda/agenda">Agenda</a>
               </li>
               {{/if}}
             </ul>
@@ -80,7 +80,7 @@
           <ul id="is-log-in" class="navbar-nav align-items-center">
             {{#if isAuthenticated}}
             <!--Account button-->
-                     
+
             <li class="nav-item">
               <form class="nav-link fs-5" id="account-form" action="/auth/userProfile" method="GET">
                 <button class="Btn">
@@ -102,7 +102,7 @@
             </li>
 
             <!--logout button-->
-           
+
             <li class="nav-item">
               <form class="nav-link fs-5" id="logout-form" action="/auth/logout" method="GET">
                 <button class="Btn">
@@ -124,27 +124,61 @@
                 </button>
               </form>
             </li>
-          {{/if}}
+            {{/if}}
           </ul>
         </div>
-        
+
       </nav>
     </header>
 
     <main>
+      <!-- Navigation Buttons -->
+      <section class="navigation">
+        <nav class="back-Forward">
+          <button onclick="history.back()"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path opacity="0.2"
+                  d="M17.4 8L17.5867 7.88333C18.2019 7.4988 19 7.94112 19 8.66667L19 15.3333C19 16.0589 18.2019 16.5012 17.5867 16.1167L17.4 16L12.6 13C11.861 12.5381 11.861 11.4619 12.6 11L17.4 8Z"
+                  fill="#ead94c"></path>
+                <path
+                  d="M17.4 8L17.5867 7.88333C18.2019 7.4988 19 7.94112 19 8.66667L19 15.3333C19 16.0589 18.2019 16.5012 17.5867 16.1167L17.4 16L12.6 13C11.861 12.5381 11.861 11.4619 12.6 11L17.4 8Z"
+                  stroke="#963696" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </g>
+            </svg></button>
+          <button onclick="history.forward()"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path opacity="0"
+                  d="M6.6 8L6.41333 7.88333C5.79807 7.4988 5 7.94112 5 8.66667L5 15.3333C5 16.0589 5.79807 16.5012 6.41333 16.1167L6.6 16L11.4 13C12.139 12.5381 12.139 11.4619 11.4 11L6.6 8Z"
+                  fill="#ead94c"></path>
+                <path
+                  d="M6.6 8L6.41333 7.88333C5.79807 7.4988 5 7.94112 5 8.66667L5 15.3333C5 16.0589 5.79807 16.5012 6.41333 16.1167L6.6 16L11.4 13C12.139 12.5381 12.139 11.4619 11.4 11L6.6 8Z"
+                  stroke="#963696" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </g>
+            </svg></button>
+        </nav>
+      </section>
+
       {{{body}}}
+
+      <!-- FOOTER -->
+      <footer>
+        <div id="footer" class="text-sm-start text-md-start">
+          <p><a href="https://www.linkedin.com/in/sunitha-arockia-dass-587b8679/" target="_blank"
+              rel="noopener noreferrer">Sunitha</a>
+            and
+            <a href="https://www.linkedin.com/in/thomas-lebas26/" target="_blank" rel="noopener noreferrer">Thomas</a>
+            development & design, all right reserved <sup>©</sup>
+          </p>
+        </div>
+      </footer>
     </main>
 
-    <footer>
-      <div id="footer" class="text-sm-start text-md-start">
-        <p><a href="https://www.linkedin.com/in/sunitha-arockia-dass-587b8679/" target="_blank"
-            rel="noopener noreferrer">Sunitha</a>
-          and
-          <a href="https://www.linkedin.com/in/thomas-lebas26/" target="_blank" rel="noopener noreferrer">Thomas</a>
-          development & design, all right reserved <sup>©</sup>
-        </p>
-      </div>
-    </footer>
+
+
 
     <!-- Bootstrap script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
@@ -154,12 +188,9 @@
     <script src="/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-fillbetween/0.7.0/chartjs-plugin-fillbetween.min.js"
-    ></script>
+      src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-fillbetween/0.7.0/chartjs-plugin-fillbetween.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   </body>
 

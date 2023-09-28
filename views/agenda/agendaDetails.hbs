@@ -1,6 +1,9 @@
-
-
-{{#each appt}}
+<div id="welcome-page">
+  <div class="profile-full scroll-ok">
+    <br>
+    <h2>Profile Page</h2>
+    <div class="profile-container">
+        {{#each appt}}
 <div class="agenda-info">
 <h3>Appointment Date:{{formattedAppointmentDate}}</h3>
 <h1>Appointment Name:{{appointmentName}}</h1>
@@ -18,8 +21,23 @@
 
 </div>
 {{/each}}
-<button>
-    <a href="/agenda/agendaCreate">Create an Appointment</a>
-</button>
+
+<div class="profile-vignette">
+        <div id="one-profile">
+          <div id="frame-profile" class="create-profile">
+        
+            <a href="/agenda/agendaCreate">
+              <h3>Add <br />Appointment</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      </div>
+       </div>
+        </div>
+
+
 
 

@@ -1,31 +1,75 @@
+<div id="welcome-page">
+  <div class="wrapper scroll-ok">
+    <div class="left">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            d="M3 10.312C3 5.93757 3.93757 5 8.312 5H15.688C20.0624 5 21 5.93757 21 10.312V15.688C21 20.0624 20.0624 21 15.688 21H8.312C3.93757 21 3 20.0624 3 15.688V10.312Z"
+            stroke="#963696" stroke-width="2"></path>
+          <path d="M12 11L12 16" stroke="#ead94c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          </path>
+          <path d="M14.5 13.5L9.5 13.5" stroke="#ead94c" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path d="M6 5L6 3" stroke="#963696" stroke-width="2" stroke-linecap="round"></path>
+          <path d="M18 5L18 3" stroke="#963696" stroke-width="2" stroke-linecap="round"></path>
+        </g>
+      </svg>
+    </div>
 
-    <h1>Create Appointment</h1>
-    <form action="/agenda/agendaCreate" method="POST">
-        <label>Appointment Name:</label>
-        <input type="text" id="appointmentName" name="appointmentName" required>
 
-       
-        <label>
-     Appointment Type
-      <select name="appointmentType" id="type" >
-        <option value="personal">Personal</option>
-        <option value="work">Work</option>
-        <option value="other">Other</option>
-      </select>
-    </label>
-       
-        
+    <div class="right">
+      <div class="embed-page">
+        <div id="vignette">
+          <div id="v-container">
+            <h2>Create Appointment</h2>
+            <form class="form-btn" action="/agenda/agendaCreate" method="POST">
 
-        <label>Appointment Date:</label>
-        <input type="date" id="appointmentDate" name="appointmentDate" required>
-        <label>Appointment Time:</label>
-        <input type="time" id="appointmentTime" name="appointmentTime" required>
+              <label>Appointment Name:
+                <input type="text" id="appointmentName" name="appointmentName" required>
+              </label>
+              <br />
 
-        <label>With:</label>
-        <input type="text" id="with" name="appointmentwith" required>
 
-        <label>Duration (minutes):</label>
-        <input type="number" id="duration" name="duration" required>
+              <label>
+                Appointment Type
+                <select name="appointmentType" id="type">
+                  <option value="personal">Personal</option>
+                  <option value="work">Work</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <br />
 
-        <button type="submit" >Create Appointment</button>
-    </form>
+              <label>Appointment Date:
+                <input type="date" id="appointmentDate" name="appointmentDate" required>
+              </label>
+              <br />
+
+              <label>Appointment Time:
+                <input type="time" id="appointmentTime" name="appointmentTime" required>
+              </label>
+              <br />
+
+              <label>With:
+                <input type="text" id="with" name="appointmentwith" required>
+              </label>
+              <br />
+
+              <label>Duration (minutes):
+                <input type="number" id="duration" name="duration" required>
+              </label>
+              <br />
+
+              <button type="submit"><span>Add Appointment</span></button>
+              <br />
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
