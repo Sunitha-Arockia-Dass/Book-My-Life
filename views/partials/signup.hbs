@@ -6,28 +6,32 @@
 <!-- SIGNUP FORM -->
 <div id="vignette">
   <div id="v-container">
-  <h2>Sign Up</h2>
-  <p>Already registered ? <a id="form" href="/auth/login">login</a></p>
-  <form action="/auth/signup" method="POST">
+    <h2>Sign Up</h2>
+    <p>Already registered ? <a id="form" href="/auth/login">login</a></p>
+    <form action="/auth/signup" method="POST">
 
-    <label>Username</label>
-    <input type="text" name="username" placeholder="" />
-    <br /><br />
+      <label>Username
+        <input type="text" name="username" placeholder="" />
+      </label>
+      <br /><br />
 
-    <label>Email</label>
-    <input type="email" name="email" placeholder="" />
-    <br /><br />
+      <label>Email
+        <input type="email" name="email" placeholder="" />
+      </label>
+      <br /><br />
 
-    <label>Password</label>
-    <input type="password" name="password" placeholder="" />
-    <br /><br />
+      <label>Password
+        <input type="password" name="password" placeholder="" />
+      </label>
+      <br /><br />
 
-    <button type="submit">Sign Up</button>
+      <button type="submit">Sign Up</button>
+      <br /><br />
 
-    <!-- Error message -->
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+      <!-- Error message -->
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
+    </form>
   </div>
 </div>

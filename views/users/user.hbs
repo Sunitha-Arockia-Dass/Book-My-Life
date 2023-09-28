@@ -1,29 +1,48 @@
 <!-- MY ACCOUNT PAGE -->
-<div class="wrapper">
-  <div class="right">
-    <div class="embed-page">
-      <div id="vignette">
-        <div id="v-container">
-          <form>
-            {{#if userInSession}}
-            {{#each user}}
-            <h2>Welcome <span class="capitalize">{{username}},</span></h2>
-            <p>To your account page my friend!</p>
-            
-            <p>Username : <span class="fw-bold">{{username}}</span></p>
-            <p>Email : <span class="fw-bold">{{email}}</span></p>
-            <p>
-              Created :<br /><span class="fw-bold">{{formattedcreatedAt}}</span></p>
-            <p>
-              Updated :<br /><span class="fw-bold">{{formattedupdatedAt}}</span></p>
-            
-          </form>
-          <form action="/auth/update/{{id}}" method="GET"><button class="edit-btn" href="/auth/update/{{id}}">Edit my
-              account</button>
-          </form>
-          {{/each}}
-          {{/if}}
+<div id="welcome-page">
+  <div class="wrapper scroll-ok">
+    <div class="left">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            d="M17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8Z"
+            fill="#ead94c"></path>
+          <path
+            d="M17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8Z"
+            stroke="#963696" stroke-width="2"></path>
+          <path d="M3 21C3.95728 17.9237 6.41998 17 12 17C17.58 17 20.0427 17.9237 21 21" stroke="#963696"
+            stroke-width="2" stroke-linecap="round"></path>
+        </g>
+      </svg>
+    </div>
+    <div class="right">
+      <div class="embed-page">
+        <div id="vignette">
+          <div id="v-container">
+            <form>
+              {{#if userInSession}}
+              {{#each user}}
+              <h2>Welcome, <span class="capitalize">{{username}}</span></h2>
+              <p>To your account page my friend!</p>
 
+              <p>Username : <span class="fw-bold">{{username}}</span></p>
+              <p>Email : <span class="fw-bold">{{email}}</span></p>
+              <p>
+                Created :<br /><span class="fw-bold">{{formattedcreatedAt}}</span></p>
+              <p>
+                Updated :<br /><span class="fw-bold">{{formattedupdatedAt}}</span></p>
+
+            </form>
+            <form action="/auth/update/{{id}}" method="GET"><button class="edit-btn" href="/auth/update/{{id}}">Edit my
+                account</button>
+            </form>
+            <br /><br />
+            {{/each}}
+            {{/if}}
+
+          </div>
         </div>
       </div>
     </div>

@@ -7,12 +7,8 @@
     <title>{{appTitle}}</title>
 
     <!-- Bootstrap & CSS link -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
@@ -22,45 +18,25 @@
         <div class="container-fluid">
           <!-- Logo -->
           <div class="text-center">
-            <a class="navbar-brand" href="/"><img
-                id="logo-img"
-                src=""
-                alt="Logo"
-                width="auto"
-                height="0"
-                class="d-inline-block"
-              /></a>
+            <a class="navbar-brand" href="/"><img id="logo-img" src="" alt="Logo" width="auto" height="0"
+                class="d-inline-block" /></a>
             <a id="logo-text" class="navbar-brand" href="/">
               <h1>H.E.A.L.<span class="citrine">T.H.</span></h1>
             </a>
           </div>
           <div class="text-start">
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNavDropdown"
-              aria-controls="navbarNavDropdown"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
           </div>
 
           <!-- Menus -->
-          <div
-            class="collapse navbar-collapse justify-content-center"
-            id="navbarNavDropdown"
-          >
+          <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
             <ul id="is-log-out" class="navbar-nav align-items-center">
               {{#unless isAuthenticated}}
               <li class="nav-item">
-                <a
-                  class="nav-link alink fs-5"
-                  aria-current="page"
-                  href="/auth/signup"
-                >Signup</a>
+                <a class="nav-link alink fs-5" aria-current="page" href="/auth/signup">Signup</a>
               </li>
              
               <li class="nav-item">
@@ -72,30 +48,20 @@
             <ul id="is-log-in" class="navbar-nav align-items-center">
               {{#if isAuthenticated}}
               <li class="nav-item">
-                <a
-                  class="nav-link alink fs-5"
-                  href="/profile/profile"
-                >Profile</a>
+                <a class="nav-link alink fs-5" href="/profile/profile">Profile</a>
               </li>
 
               <!-- dropdown menu -->
               <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle alink fs-5"
-                  href="/profile/profile"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
+                <a class="nav-link dropdown-toggle alink fs-5" href="/profile/profile" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
                   Profile.s page
                 </a>
                
                 <ul class="dropdown-menu">
                   {{#each profile}}
-                    <li class="profile-border"><a
-                        class="dropdown-item alink"
-                        href="/profile/profileDetail/{{id}}"
-                      >{{name}}</a></li>
+                  <li class="profile-border"><a class="dropdown-item alink"
+                      href="/profile/profileDetail/{{id}}">{{name}}</a></li>
                   {{/each}}
                 </ul>
                 
@@ -104,25 +70,25 @@
           </div>
         </div>
 
-        
-        <div id="icons-menu"
-          class="collapse navbar-collapse justify-content-end"
-          id="navbarNavDropdown"
-        >
+        <div id="icons-menu" class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <ul id="is-log-out" class="navbar-nav align-items-center">
             <!--Account button-->
                      
             <li class="nav-item">
-              <form
-                class="nav-link fs-5"
-                id="account-form"
-                action="/auth/userProfile"
-                method="GET"
-              >
+              <form class="nav-link fs-5" id="account-form" action="/auth/userProfile" method="GET">
                 <button class="Btn">
-                  <div class="sign"><svg viewBox="0 0 24 24"><path
-                        d="M9.6,3.32a3.86,3.86,0,1,0,3.86,3.85A3.85,3.85,0,0,0,9.6,3.32M16.35,11a.26.26,0,0,0-.25.21l-.18,1.27a4.63,4.63,0,0,0-.82.45l-1.2-.48a.3.3,0,0,0-.3.13l-1,1.66a.24.24,0,0,0,.06.31l1,.79a3.94,3.94,0,0,0,0,1l-1,.79a.23.23,0,0,0-.06.3l1,1.67c.06.13.19.13.3.13l1.2-.49a3.85,3.85,0,0,0,.82.46l.18,1.27a.24.24,0,0,0,.25.2h1.93a.24.24,0,0,0,.23-.2l.18-1.27a5,5,0,0,0,.81-.46l1.19.49c.12,0,.25,0,.32-.13l1-1.67a.23.23,0,0,0-.06-.3l-1-.79a4,4,0,0,0,0-.49,2.67,2.67,0,0,0,0-.48l1-.79a.25.25,0,0,0,.06-.31l-1-1.66c-.06-.13-.19-.13-.31-.13L19.5,13a4.07,4.07,0,0,0-.82-.45l-.18-1.27a.23.23,0,0,0-.22-.21H16.46M9.71,13C5.45,13,2,14.7,2,16.83v1.92h9.33a6.65,6.65,0,0,1,0-5.69A13.56,13.56,0,0,0,9.71,13m7.6,1.43a1.45,1.45,0,1,1,0,2.89,1.45,1.45,0,0,1,0-2.89Z"
-                      ></path></svg></div>
+                  <div class="sign"><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8Z"
+                          stroke="#dda0dd" stroke-width="2"></path>
+                        <path d="M3 21C3.95728 17.9237 6.41998 17 12 17C17.58 17 20.0427 17.9237 21 21" stroke="#dda0dd"
+                          stroke-width="2" stroke-linecap="round"></path>
+                      </g>
+                    </svg></div>
                   <div class="text fs-5">Account</div>
                 </button>
               </form>
@@ -131,24 +97,23 @@
             <!--logout button-->
            
             <li class="nav-item">
-              <form
-                class="nav-link fs-5"
-                id="logout-form"
-                action="/auth/logout"
-                method="GET"
-              >
+              <form class="nav-link fs-5" id="logout-form" action="/auth/logout" method="GET">
                 <button class="Btn">
-                  <div class="sign"><svg
-                      viewBox="0 0 24 24"
-                      transform="matrix(-1, 0, 0, 1, 0, 0)"
-                    ><path
-                        d="M14.9453 1.25C13.5778 1.24998 12.4754 1.24996 11.6085 1.36652C10.7084 1.48754 9.95048 1.74643 9.34857 2.34835C8.82363 2.87328 8.55839 3.51836 8.41916 4.27635C8.28387 5.01291 8.25799 5.9143 8.25196 6.99583C8.24966 7.41003 8.58357 7.74768 8.99778 7.74999C9.41199 7.7523 9.74964 7.41838 9.75194 7.00418C9.75803 5.91068 9.78643 5.1356 9.89448 4.54735C9.99859 3.98054 10.1658 3.65246 10.4092 3.40901C10.686 3.13225 11.0746 2.9518 11.8083 2.85315C12.5637 2.75159 13.5648 2.75 15.0002 2.75H16.0002C17.4356 2.75 18.4367 2.75159 19.1921 2.85315C19.9259 2.9518 20.3144 3.13225 20.5912 3.40901C20.868 3.68577 21.0484 4.07435 21.1471 4.80812C21.2486 5.56347 21.2502 6.56459 21.2502 8V16C21.2502 17.4354 21.2486 18.4365 21.1471 19.1919C21.0484 19.9257 20.868 20.3142 20.5912 20.591C20.3144 20.8678 19.9259 21.0482 19.1921 21.1469C18.4367 21.2484 17.4356 21.25 16.0002 21.25H15.0002C13.5648 21.25 12.5637 21.2484 11.8083 21.1469C11.0746 21.0482 10.686 20.8678 10.4092 20.591C10.1658 20.3475 9.99859 20.0195 9.89448 19.4527C9.78643 18.8644 9.75803 18.0893 9.75194 16.9958C9.74964 16.5816 9.41199 16.2477 8.99778 16.25C8.58357 16.2523 8.24966 16.59 8.25196 17.0042C8.25799 18.0857 8.28387 18.9871 8.41916 19.7236C8.55839 20.4816 8.82363 21.1267 9.34857 21.6517C9.95048 22.2536 10.7084 22.5125 11.6085 22.6335C12.4754 22.75 13.5778 22.75 14.9453 22.75H16.0551C17.4227 22.75 18.525 22.75 19.392 22.6335C20.2921 22.5125 21.0499 22.2536 21.6519 21.6517C22.2538 21.0497 22.5127 20.2919 22.6337 19.3918C22.7503 18.5248 22.7502 17.4225 22.7502 16.0549V7.94513C22.7502 6.57754 22.7503 5.47522 22.6337 4.60825C22.5127 3.70814 22.2538 2.95027 21.6519 2.34835C21.0499 1.74643 20.2921 1.48754 19.392 1.36652C18.525 1.24996 17.4227 1.24998 16.0551 1.25H14.9453Z"
-                        fill="#ffffff"
-                      ></path><path
-                        d="M15 11.25C15.4142 11.25 15.75 11.5858 15.75 12C15.75 12.4142 15.4142 12.75 15 12.75H4.02744L5.98809 14.4306C6.30259 14.7001 6.33901 15.1736 6.06944 15.4881C5.79988 15.8026 5.3264 15.839 5.01191 15.5694L1.51191 12.5694C1.34567 12.427 1.25 12.2189 1.25 12C1.25 11.7811 1.34567 11.573 1.51191 11.4306L5.01191 8.43056C5.3264 8.16099 5.79988 8.19741 6.06944 8.51191C6.33901 8.8264 6.30259 9.29988 5.98809 9.56944L4.02744 11.25H15Z"
-                        fill="#ffffff"
-                      ></path></svg></div>
-                  <div class="text fs-5">Logout</div>
+                  <div class="sign"><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path d="M21 12L13 12" stroke="#ce78ce" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                        <path d="M18 15L20.913 12.087V12.087C20.961 12.039 20.961 11.961 20.913 11.913V11.913L18 9"
+                          stroke="#ce78ce" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path
+                          d="M16 5V4.5V4.5C16 3.67157 15.3284 3 14.5 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H14.5C15.3284 21 16 20.3284 16 19.5V19.5V19"
+                          stroke="#ce78ce" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </g>
+                    </svg>
+                    <div class="text fs-5">Logout</div>
                 </button>
               </form>
             </li>
@@ -160,35 +125,28 @@
     </header>
 
     <main>
-      {{{body}}}      
+      {{{body}}}
     </main>
 
     <footer>
       <div id="footer" class="text-sm-start text-md-start">
-        <p><a
-            href="https://www.linkedin.com/in/sunitha-arockia-dass-587b8679/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Sunitha</a>
+        <p><a href="https://www.linkedin.com/in/sunitha-arockia-dass-587b8679/" target="_blank"
+            rel="noopener noreferrer">Sunitha</a>
           and
-          <a
-            href="https://www.linkedin.com/in/thomas-lebas26/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Thomas</a>
-          development & design, all right reserved ©</p>
+          <a href="https://www.linkedin.com/in/thomas-lebas26/" target="_blank" rel="noopener noreferrer">Thomas</a>
+          development & design, all right reserved ©
+        </p>
       </div>
     </footer>
 
     <!-- Bootstrap script -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
     <!-- JavaScript script -->
     <script src="/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
     ></script>

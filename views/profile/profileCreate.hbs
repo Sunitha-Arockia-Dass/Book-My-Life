@@ -1,17 +1,29 @@
 <!-- Create a new profile Form-->
-<div class="wrapper">
-  <div class="right">
-    <div class="embed-page">
-      <div id="vignette">
-        <div id="v-container">
-          <h2>Create a profile</h2>
-          <form action="/profile/profile" method="POST">
+<div id="welcome-page">
+  <div class="wrapper scroll-ok">
+    <div class="left">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            d="M13 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V9M13 3L19 9M13 3V8C13 8.55228 13.4477 9 14 9H19M12 13V17M14 15H10"
+            stroke="#963696" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+      </svg>
+    </div>
+    <div class="right">
+      <div class="embed-page">
+        <div id="vignette">
+          <div id="v-container">
+            <h2>Create a profile</h2>
+            <form action="/profile/profile" method="POST">
 
-            <label>
-              Name
-              <input type="text" name="name" placeholder="Your name" />
-            </label>
-            <br /><br />
+              <label>
+                Name
+                <input type="text" name="name" placeholder="Your name" />
+              </label>
+              <br /><br />
 
             <label>
               Birthdate
@@ -19,34 +31,32 @@
             </label>
             <br /><br />
 
-            <label>
-              Gender
-              <select name="gender" id="gender">
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-                <option value="other">Other</option>
-              </select>
-            </label>
-            <br /><br />
+              <label>
+                Gender
+                <select name="gender" id="gender">
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <br /><br />
 
-            <label>
-              Profile Picture
-              <input
-                type="text"
-                name="profilePicture"
-                placeholder="Your picture's url"
-              />
-            </label>
-            <br /><br />
+              <label>
+                Profile Picture
+                <input type="text" name="profilePicture" placeholder="Your picture's url" />
+              </label>
+              <br /><br />
 
-            <button type="submit">Create</button>
+              <button type="submit">Create</button>
+              <br /><br />
 
-            <!-- Error message -->
-            {{#if errorMessage}}
+              <!-- Error message -->
+              {{#if errorMessage}}
               <p class="error">{{errorMessage}}</p>
-            {{/if}}
+              {{/if}}
 
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
