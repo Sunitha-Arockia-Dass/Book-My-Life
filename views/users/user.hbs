@@ -7,15 +7,15 @@
           <form>
             {{#if userInSession}}
             {{#each user}}
-            <h2>Welcome, <span class="capitalize">{{username}}</span></h2>
+            <h2>Welcome <span class="capitalize">{{username}},</span></h2>
             <p>To your account page my friend!</p>
             
             <p>Username : <span class="fw-bold">{{username}}</span></p>
             <p>Email : <span class="fw-bold">{{email}}</span></p>
             <p>
-              Created :<br /><span class="fw-bold">{{createdAt}}</span></p>
+              Created :<br /><span class="fw-bold">{{formattedcreatedAt}}</span></p>
             <p>
-              Updated :<br /><span class="fw-bold">{{updatedAt}}</span></p>
+              Updated :<br /><span class="fw-bold">{{formattedupdatedAt}}</span></p>
             
           </form>
           <form action="/auth/update/{{id}}" method="GET"><button class="edit-btn" href="/auth/update/{{id}}">Edit my

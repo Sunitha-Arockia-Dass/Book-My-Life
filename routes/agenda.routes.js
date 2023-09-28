@@ -13,7 +13,7 @@ const {
 /*////////////////////////////////////////////////////////////// 
 GET HOME PAGE
  */
-router.get("/", (req, res, next) => {
+router.get("/agenda", (req, res, next) => {
   Appointment.find()
   .then(foundAppointment=>{
 
@@ -27,14 +27,18 @@ router.get("/agendaCreate", (req, res, next) => {
 
 router.post("/agendaCreate", (req, res, next) => {
   const {appointmentName,appointmentType,appointmentDate,appointmentTime,appointmentwith,duration} = req.body
+  console.log(appointmentDate)
   const selectedProfileId = req.session.selectedProfileId;
   const profile = profileFindbyId(selectedProfileId).then((foundProfile) => {
   const profileName = foundProfile.name;
 Appointment.create({appointmentName,appointmentType,appointmentDate,appointmentTime,appointmentwith,duration,profileName:profileName})
 .then(createdAppt=>{
-console.log(createdAppt)
-console.log(createdAppt.formattedAppointmentDate)
-  res.render("agenda/agendaDetails",{appt:createdAppt});
+Appointment.find()
+.sort({ appointmentDate: 1 }) 
+.then(appointments=>{
+
+  res.render("agenda/agendaDetails",{appt:appointments});
+})
 })
 
   })
