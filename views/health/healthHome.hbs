@@ -1,15 +1,36 @@
-<div class="wrapper">
-  <div class="right">
-    <div class="embed-page">
-      <div id="vignette">
-        <div id="v-container">
+<div id="welcome-page">
+  <div class="wrapper scroll-ok">
+    <div class="left">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <rect width="48" height="48" fill="white" fill-opacity="0.01"></rect>
+          <path d="M35 25C27.89 22.42 20.11 22.42 13 25L12 14C19 11 29 11 36 14L35 25Z" fill="#ead94c" stroke="#963696"
+            stroke-width="2.4" stroke-miterlimit="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M24 23L21 18" stroke="white" stroke-width="2.4" stroke-miterlimit="2" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path
+            d="M42 39C42 40.6569 40.6569 42 39 42H9C7.34315 42 6 40.6569 6 39L6 9C6 7.34315 7.34315 6 9 6H39C40.6569 6 42 7.34315 42 9V39Z"
+            stroke="#963696" stroke-width="2.4" stroke-miterlimit="2" stroke-linecap="round" stroke-linejoin="round">
+          </path>
+          <path d="M29 23.4553C25.6869 22.9349 22.3131 22.9349 19 23.4553" stroke="#963696" stroke-width="2.4"
+            stroke-miterlimit="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+      </svg>
+    </div>
+
+ <div class="right">
+      <div class="embed-page">
+        <div id="vignette">
+          <div id="v-container">
           <h1>Hi,Lets calculate {{profile.name}}'s BMI </h1>
           <h2>BMI Calculator</h2>
 
           <p><span class="fw-bold">B</span>ody
             <span class="fw-bold">M</span>ass
             <span class="fw-bold">I</span>ndex</p>
-          <form action="/health/health/{{profile.id}}" method="POST">
+          <form class="form-btn" action="/health/health/{{profile.id}}" method="POST">
 
             <label>
               HEIGHT
@@ -33,15 +54,18 @@
             </label>
             <br /><br />
 
-            <button id="calculate" type="submit">Calculate</button>
+            <button id="calculate" type="submit"><span>Calculate</span></button>
 
             <!-- Error message -->
             {{#if errorMessage}}
               <p class="error">{{errorMessage}}</p>
             {{/if}}
           </form>
+
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
