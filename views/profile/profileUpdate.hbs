@@ -2,15 +2,22 @@
 <div id="welcome-page">
   <div class="wrapper scroll-ok">
     <div class="left">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+      <svg viewBox="0 0 24 24" fill="none" version="1.1" id="svg1" inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg"
+        xmlns:svg="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
         <g id="SVGRepo_iconCarrier">
           <path
-            d="M13 3H7C5.89543 3 5 3.89543 5 5V10M13 3L19 9M13 3V8C13 8.55228 13.4477 9 14 9H19M19 9V19C19 20.1046 18.1046 21 17 21H10C7.79086 21 6 19.2091 6 17V17C6 14.7909 7.79086 13 10 13H13M13 13L10 10M13 13L10 16"
-            stroke="#963696" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            d="m 17.8284,6.82843 c 0.5781,0.57806 0.8671,0.86709 1.0194,1.23463 C 19,8.4306 19,8.83935 19,9.65685 V 17 c 0,1.8856 0,2.8284 -0.5858,3.4142 C 17.8284,21 16.8856,21 15,21 H 9 C 7.11438,21 6.17157,21 5.58579,20.4142 5,19.8284 5,18.8856 5,17 V 7 C 5,5.11438 5,4.17157 5.58579,3.58579 6.17157,3 7.11438,3 9,3 h 3.3431 c 0.8175,0 1.2263,0 1.5938,0.15224 0.3676,0.15224 0.6566,0.44127 1.2347,1.01933 z"
+            stroke="#963696" stroke-width="2" stroke-linejoin="round" id="path1" />
+          <path id="secondary"
+            d="m 14.676317,9.5704468 a 0.60218573,0.60218573 0 0 0 -0.602186,0.6021862 v 0.764776 a 3.3059996,3.3059996 0 1 0 0.469704,4.654896 0.60377942,0.60377942 0 1 0 -0.939409,-0.758754 2.0775408,2.0775408 0 0 1 -1.637945,0.758754 2.10765,2.10765 0 1 1 1.469333,-3.613114 h -1.16824 a 0.60218575,0.60218575 0 0 0 0,1.204371 h 2.408743 a 0.60218573,0.60218573 0 0 0 0.602186,-0.602185 V 10.172633 A 0.60218573,0.60218573 0 0 0 14.676317,9.5704468 Z"
+            style="fill:#ead94c;stroke-width:0.602186" />
         </g>
       </svg>
+
     </div>
     <div class="right">
       <div class="embed-page">
@@ -18,7 +25,7 @@
           <div id="v-container">
             {{# with profile}}
             <div id="form">
-              <h2>Update a profile</h2>
+              <h2>Update a Member</h2>
               <form class="form-btn" action="/profile/profileUpdate/{{id}}" method="POST">
 
                 <label> Name
@@ -30,6 +37,7 @@
                   Birthdate
                   <input type="text" name="dob" value="{{dateOfBirth}}" />
                 </label>
+
                 <br /><br />
 
                 <label>

@@ -1,31 +1,54 @@
 <div id="welcome-page">
   <div class="profile-full scroll-ok">
     <br>
-    <h2>Profile Page</h2>
-    <div class="profile-container">
-        {{#each appt}}
-<div class="agenda-info">
-<h3>Appointment Date:{{formattedAppointmentDate}}</h3>
-<h1>Appointment Name:{{appointmentName}}</h1>
-</div>
-<br>
+    <h2>Agenda</h2>
+    <div class="agenda-container">
 
-<div style="display:none" class="details">
 
-<h3>Appointment Type:{{appointmentType}}</h2>
-<h3>Appointment Time{{appointmentTime}}</h3>
-<h3>Appointment With:{{appointmentwith}}</h3>
-<h3>Total Duration:{{duration}}</h3>
-<br>
-<br>
+      {{#each appt}}
+      <div class="profile-vignette">
+        <div class="agenda-info">
+          <h3>Appointment Date:{{formattedAppointmentDate}}</h3>
+          <h1>Appointment Name:{{appointmentName}}</h1>
+        </div>
+        <br>
 
-</div>
-{{/each}}
+        <div style="display:none" class="details">
 
-<div class="profile-vignette">
+          <h3>Appointment Type:{{appointmentType}}</h2>
+            <h3>Appointment Time{{appointmentTime}}</h3>
+            <h3>Appointment With:{{appointmentwith}}</h3>
+            <h3>Total Duration:{{duration}}</h3>
+            <br>
+            <br>
+
+        </div>
+      </div>
+      {{/each}}
+    </div>
+
+    <div class="agenda-container2">
+      <!-- Add an Appointment -->
+      <div class="profile-vignette">
         <div id="one-profile">
           <div id="frame-profile" class="create-profile">
-        
+            <a href="/agenda/agendaCreate"><svg id="create-svg" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M3 10.312C3 5.93757 3.93757 5 8.312 5H15.688C20.0624 5 21 5.93757 21 10.312V15.688C21 20.0624 20.0624 21 15.688 21H8.312C3.93757 21 3 20.0624 3 15.688V10.312Z"
+                    stroke="#963696" stroke-width="2"></path>
+                  <path d="M12 11L12 16" stroke="#ead94c" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                  </path>
+                  <path d="M14.5 13.5L9.5 13.5" stroke="#ead94c" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path d="M6 5L6 3" stroke="#963696" stroke-width="2" stroke-linecap="round"></path>
+                  <path d="M18 5L18 3" stroke="#963696" stroke-width="2" stroke-linecap="round"></path>
+                </g>
+              </svg></a>
             <a href="/agenda/agendaCreate">
               <h3>Add <br />Appointment</h3>
             </a>
@@ -34,10 +57,7 @@
       </div>
     </div>
 
-      </div>
-       </div>
-        </div>
+  </div>
 
-
-
-
+</div>
+</div>
