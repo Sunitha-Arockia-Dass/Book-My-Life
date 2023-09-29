@@ -36,7 +36,7 @@ router.post("/agendaCreate", (req, res, next) => {
   const profileName = foundProfile.name;
 Appointment.create({appointmentName,appointmentType,appointmentDate,appointmentTime,appointmentwith,duration,profileName:profileName,user: userId})
 .then(createdAppt=>{
-Appointment.find()
+Appointment.find({ user: userId })
 .sort({ appointmentDate: 1 }) 
 .then(appointments=>{
 

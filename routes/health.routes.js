@@ -59,7 +59,8 @@ router.post("/health/:id", async (req, res, next) => {
             bmiData: JSON.stringify(bmiData), 
             createdDates: JSON.stringify(createdDates),
             currentWeight,
-            optimalWeightToBe
+            optimalWeightToBe,
+            profile:foundProfile,
           });
         });
       });
