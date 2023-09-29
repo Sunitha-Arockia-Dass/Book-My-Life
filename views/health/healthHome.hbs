@@ -3,12 +3,13 @@
     <div class="embed-page">
       <div id="vignette">
         <div id="v-container">
+          <h1>Hi,Lets calculate {{profile.name}}'s BMI </h1>
           <h2>BMI Calculator</h2>
 
           <p><span class="fw-bold">B</span>ody
             <span class="fw-bold">M</span>ass
             <span class="fw-bold">I</span>ndex</p>
-          <form action="/health/health" method="POST">
+          <form action="/health/health/{{profile.id}}" method="POST">
 
             <label>
               HEIGHT

@@ -16,18 +16,25 @@ const {
 /*////////////////////////////////////////////////////////////// 
 GET HEALTHIFY HOME PAGE
  */
-router.get("/health", (req, res, next) => {
-    console.log("hello")
-  res.render("health/healthHome");
+router.get("/health/:id", (req, res, next) => {
+  const selectedProfileId = req.params.id;
+  const profile = profileFindbyId(selectedProfileId).then((foundProfile) => {
+
+    console.log("foundProfile",foundProfile)
+    console.log("foundProfile's",foundProfile.id)
+    res.render("health/healthHome",{profile:foundProfile});
+  })
 });
 
-router.post("/health", async (req, res, next) => {
+router.post("/health/:id", async (req, res, next) => {
   const { height, weight } = req.body;
   const heightInMeters = height / 100;
-  const selectedProfileId = req.session.selectedProfileId;
+  const selectedProfileId = req.params.id;
+  console.log("selectedProfileId",selectedProfileId)
   const profile = profileFindbyId(selectedProfileId).then((foundProfile) => {
     console.log("foundProfile",foundProfile)
     const profileName = foundProfile.name;
+    console.log("profileName",profileName)
     const BMI = (weight / (heightInMeters * heightInMeters)).toFixed(2);
    const currentWeight= isHealthyBmi(BMI) 
    const optimalWeightToBe=optimalWeight(currentWeight.currentWeight,BMI,weight)
@@ -62,14 +69,17 @@ router.post("/health", async (req, res, next) => {
 
 router.get("/healthDetail/:id", (req, res, next) => {
   const selectedProfileId = req.params.id;
-  console.log(selectedProfileId)
-  Data.find({ profile: selectedProfileId })
-  .then((profileDatas) => {
-    const bmiData = profileDatas.map((data) => data.BMI);
-    const createdDates = profileDatas.map((data) => data.formattedCreatedAt);   
-    res.render("health/healthDetails", { data: profileDatas, bmiData: JSON.stringify(bmiData), 
-        createdDates: JSON.stringify(createdDates) });
-
+  profileFindbyId(selectedProfileId).then((profile) => {
+    
+    Data.find({ profile: selectedProfileId })
+    .then((profileDatas) => {
+      const bmiData = profileDatas.map((data) => data.BMI);
+      
+      const createdDates = profileDatas.map((data) => data.formattedCreatedAt);   
+      res.render("health/healthDetails", { data: profileDatas, bmiData: JSON.stringify(bmiData), 
+        createdDates: JSON.stringify(createdDates),profile });
+        
+      });
   })
 
 });

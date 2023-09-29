@@ -14,7 +14,9 @@ const {
 GET HOME PAGE
  */
 router.get("/agenda", (req, res, next) => {
-  Appointment.find()
+  const user = req.session.currentUser;
+  const userId = user._id;
+  Appointment.find({ user: userId })
   .then(foundAppointment=>{
 
     res.render("agenda/agendaDetails",{appt:foundAppointment});
@@ -27,11 +29,12 @@ router.get("/agendaCreate", (req, res, next) => {
 
 router.post("/agendaCreate", (req, res, next) => {
   const {appointmentName,appointmentType,appointmentDate,appointmentTime,appointmentwith,duration} = req.body
-  console.log(appointmentDate)
   const selectedProfileId = req.session.selectedProfileId;
+  const user = req.session.currentUser;
+  const userId = user._id;
   const profile = profileFindbyId(selectedProfileId).then((foundProfile) => {
   const profileName = foundProfile.name;
-Appointment.create({appointmentName,appointmentType,appointmentDate,appointmentTime,appointmentwith,duration,profileName:profileName})
+Appointment.create({appointmentName,appointmentType,appointmentDate,appointmentTime,appointmentwith,duration,profileName:profileName,user: userId})
 .then(createdAppt=>{
 Appointment.find()
 .sort({ appointmentDate: 1 }) 
@@ -43,7 +46,12 @@ Appointment.find()
 
   })
 });
+router.get("/agendaDetail", (req, res, next) => {
+  Appointment.find()
+  .then(foundAppointment=>{
 
+    res.json(foundAppointment)  })
+});
 
 /* module.exports */
 module.exports = router;

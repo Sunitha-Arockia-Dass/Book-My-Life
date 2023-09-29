@@ -1,3 +1,19 @@
+window.onload = function () {
+
+  fetch('http://localhost:3000/agenda/agendaDetail', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  .then(response => response.json()) 
+  .then(data => {
+    console.log(data[0]);
+  })
+    .catch(error => {
+      console.error('Fetch error:', error);
+    });
+};
 const breakfastBtn=document.getElementById("breakfast")
 const lunchBtn=document.getElementById("lunch")
 const dinnerBtn=document.getElementById("dinner")
@@ -23,7 +39,7 @@ agendaInfoList.forEach((agendaInfo,index)=>{
   
 
   // In your client-side JavaScript (e.g., a separate .js file or inline script in your HTML)
-  document.addEventListener("DOMContentLoaded", function () {
+  document?.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById("bmiChart").getContext("2d")
 
     // Use the data that you passed from the server
@@ -95,7 +111,7 @@ agendaInfoList.forEach((agendaInfo,index)=>{
     })
 
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document?.addEventListener("DOMContentLoaded", function () {
       const ctxNutrition = document.getElementById("nutritionChart").getContext("2d")
 
       const carbohydrates = document.getElementById("carbohydrates").value
@@ -140,28 +156,6 @@ agendaInfoList.forEach((agendaInfo,index)=>{
 
     
 
-
-//     window.onbeforeunload = function() { 
-//       return "u r leaving the page";
-  
-//     // fetch('http://localhost:3000/auth/logout', {
-//     //   method: 'GET',
-//     //   headers: {
-//     //     'Content-Type': 'application/json', 
-//     //   },
-//     // })
-//     // .then(response => {
-//     //   alert("u r leaving the page")
-//     //   if (response.ok) {
-//     //     console.log("successfully logged out")
-//     //   } else {
-//     //   }
-//     // })
-//     // .catch(error => {
-//     //   console.error('Fetch error:', error);
-//     // });
-  
-// };
 
 
 

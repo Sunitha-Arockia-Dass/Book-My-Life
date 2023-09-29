@@ -34,7 +34,12 @@ const appointmentSchema = new Schema(
     },
     profileName:{
         type: String, 
-    }
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   {
     // This object adds extra properties: `createdAt` and `updatedAt`
