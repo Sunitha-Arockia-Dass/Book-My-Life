@@ -44,6 +44,12 @@ Appointment.find()
   })
 });
 
+router.get("/agendaDetail", (req, res, next) => {
+  Appointment.find()
+  .then(foundAppointment=>{
+
+    res.json(foundAppointment)  })
+});
 
 /* module.exports */
 module.exports = router;

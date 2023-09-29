@@ -182,7 +182,7 @@ router.get("/userProfile", isLoggedIn, (req, res) => {
       console.log ('foundProfile not found')
     }
     console.log(foundProfile)
-    res.render("users/user", { userInSession: req.session.currentUser,user:foundProfile });
+    res.render("auth/user", { userInSession: req.session.currentUser,user:foundProfile });
   })
   .catch(error=>{
     console.log("error while finding user by id:",error)

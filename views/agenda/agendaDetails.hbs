@@ -1,63 +1,121 @@
-<div id="welcome-page">
-  <div class="profile-full scroll-ok">
-    <br>
-    <h2>Agenda</h2>
-    <div class="agenda-container">
+<head>
+  <link rel="stylesheet" href="/stylesheets/agenda.css">
+</head>
 
 
-      {{#each appt}}
-      <div class="profile-vignette">
-        <div class="agenda-info">
-          <h3>Appointment Date:{{formattedAppointmentDate}}</h3>
-          <h1>Appointment Name:{{appointmentName}}</h1>
-        </div>
-        <br>
 
-        <div style="display:none" class="details">
 
-          <h3>Appointment Type:{{appointmentType}}</h2>
-            <h3>Appointment Time{{appointmentTime}}</h3>
-            <h3>Appointment With:{{appointmentwith}}</h3>
-            <h3>Total Duration:{{duration}}</h3>
-            <br>
-            <br>
 
+
+
+<h2>Agenda</h2>
+<br>
+
+<div id="welcome-page2" class="scroll-ok">
+
+
+  <!-- Calendar -->
+  <div id="calendar-container">
+    <div id="calendar"></div>
+  </div>
+
+  <!-- Agenda Details -->
+  <div class="agenda-full">
+
+    <div class="agenda-container1">
+      <!-- Add Appointment -->
+      <div class="add-appointment">
+        <div id="frame-agenda">
+          <a class="alink fs-4" href="/agenda/agendaCreate">
+            <svg viewBox="0 0 24 24" fill="none">
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+              <g id="SVGRepo_iconCarrier" transform="translate(-0.02018503,-1.5340622)">
+                <path
+                  d="M 3,10.312 C 3,5.93757 3.93757,5 8.312,5 h 7.376 C 20.0624,5 21,5.93757 21,10.312 v 5.376 C 21,20.0624 20.0624,21 15.688,21 H 8.312 C 3.93757,21 3,20.0624 3,15.688 Z"
+                  stroke="#963696" stroke-width="2" id="path1" />
+                <path d="m 12,11 v 5" stroke="#ead94c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  id="path2" />
+                <path d="m 14.5,13.5 h -5" stroke="#ead94c" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" id="path3" />
+                <path d="M 6,5 V 3" stroke="#963696" stroke-width="2" stroke-linecap="round" id="path4" />
+                <path d="M 18,5 V 3" stroke="#963696" stroke-width="2" stroke-linecap="round" id="path5" />
+              </g>
+            </svg>
+            Add Appointment
+          </a>
         </div>
       </div>
+    </div>
+
+    <!-- Display Appointments -->
+    <div class="agenda-container2">
+      {{#each appt}}
+      <div class="appointment">
+        <div id="frame-agenda2" class="agenda-info">
+          <br>
+          <h3 class="text-uppercase fw-bold">{{appointmentName}}</h3>
+          <h4>On {{formattedAppointmentDate}}</h4>
+          <br>
+        </div>
+        
+
+        <div class="details-app">
+          <hr class="appointment">
+          <h4>At {{appointmentTime}} for {{duration}}min</h4>
+          <br><br>
+          <h4 class="text-capitalize">{{appointmentType}}</h4><h4> with {{appointmentwith}}</h4>
+          <br>
+
+          <div class="profile-btn">
+            <!-- Update button-->
+            <form class="nav-link fs-5" id="update-btn" action="/agenda/agendaCreate" method="GET">
+              <button class="Btn">
+                <div class="sign"><svg id="update-svg" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        d="M19 9L13 3M19 9H16.2C15.0799 9 14.5198 9 14.092 8.78201C13.7157 8.59027 13.4097 8.28431 13.218 7.90798C13 7.48016 13 6.9201 13 5.8V3M19 9V11M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.07989 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21H11M19.5 20.2361C18.9692 20.7111 18.2684 21 17.5 21C15.8431 21 14.5 19.6569 14.5 18C14.5 16.3431 15.8431 15 17.5 15C18.8062 15 19.9175 15.8348 20.3293 17M21 14.5V17.5H18"
+                        stroke="#ce78ce" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path
+                        d="M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H10.5M13 3L19 9M19 9V11M21 14.5V17.5H18M19.5 20.2361C18.9692 20.7111 18.2684 21 17.5 21C15.8431 21 14.5 19.6569 14.5 18C14.5 16.3431 15.8431 15 17.5 15C18.8062 15 19.9175 15.8348 20.3293 17"
+                        stroke="#ce78ce" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                  </svg></div>
+                <div class="text fs-5 prof-link">Update</div>
+              </button>
+            </form>
+
+            <!-- Delete button-->
+            <form class="nav-link fs-5" id="delete-btn" action="/agenda/agendaCreate" method="GET">
+              <button class="Btn">
+                <div class="sign"><svg id="delete-svg" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        d="M17 17L21 21M21 17L17 21M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H13M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19M19 9V14"
+                        stroke="#dda0dd" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                  </svg></div>
+                <div class="text fs-5 prof-link">Delete</div>
+              </button>
+            </form>
+          </div>
+
+        <br>
+        </div>
+      </div>
+
       {{/each}}
     </div>
 
-    <div class="agenda-container2">
-      <!-- Add an Appointment -->
-      <div class="profile-vignette">
-        <div id="one-profile">
-          <div id="frame-profile" class="create-profile">
-            <a href="/agenda/agendaCreate"><svg id="create-svg" viewBox="0 0 24 24" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    d="M3 10.312C3 5.93757 3.93757 5 8.312 5H15.688C20.0624 5 21 5.93757 21 10.312V15.688C21 20.0624 20.0624 21 15.688 21H8.312C3.93757 21 3 20.0624 3 15.688V10.312Z"
-                    stroke="#963696" stroke-width="2"></path>
-                  <path d="M12 11L12 16" stroke="#ead94c" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                  </path>
-                  <path d="M14.5 13.5L9.5 13.5" stroke="#ead94c" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                  <path d="M6 5L6 3" stroke="#963696" stroke-width="2" stroke-linecap="round"></path>
-                  <path d="M18 5L18 3" stroke="#963696" stroke-width="2" stroke-linecap="round"></path>
-                </g>
-              </svg></a>
-            <a href="/agenda/agendaCreate">
-              <h3>Add <br />Appointment</h3>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
+</div>
 
-</div>
-</div>
+<!-- Agenda -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+<script src="/js/agenda.js"></script>
