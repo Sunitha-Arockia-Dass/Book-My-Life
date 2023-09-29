@@ -22,9 +22,9 @@ agendaInfoList.forEach((agendaInfo, index) => {
 })
 
 
-// In your client-side JavaScript (e.g., a separate .js file or inline script in your HTML)
-document.addEventListener("DOMContentLoaded", function () {
-  const ctx = document.getElementById("bmiChart").getContext("2d")
+  // In your client-side JavaScript (e.g., a separate .js file or inline script in your HTML)
+  document?.addEventListener("DOMContentLoaded", function () {
+    const ctx = document.getElementById("bmiChart").getContext("2d")
 
   // Use the data that you passed from the server
   const bmiData = JSON.parse(document.getElementById("bmiData").value)
@@ -95,8 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  const ctxNutrition = document.getElementById("nutritionChart").getContext("2d")
+    document?.addEventListener("DOMContentLoaded", function () {
+      const ctxNutrition = document.getElementById("nutritionChart").getContext("2d")
 
   const carbohydrates = document.getElementById("carbohydrates").value
   const protein = document.getElementById("protein").value
@@ -125,18 +125,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-breakfastBtn.addEventListener("click", (event) => {
-  breakfastMenu.style.display = "block"
-})
-lunchBtn.addEventListener("click", (event) => {
-  lunchMenu.style.display = "block"
-})
-dinnerBtn.addEventListener("click", (event) => {
-  dinnerMenu.style.display = "block"
-})
-snackBtn.addEventListener("click", (event) => {
-  snackMenu.style.display = "block"
-})
+    breakfastBtn.addEventListener("click",(event)=>{
+      breakfastMenu.style.display="block"
+    })
+    lunchBtn.addEventListener("click",(event)=>{
+      lunchMenu.style.display="block"
+    })
+    dinnerBtn.addEventListener("click",(event)=>{
+      dinnerMenu.style.display="block"
+    })
+    snackBtn.addEventListener("click",(event)=>{
+      snackMenu.style.display="block"
+    })
+
+    
 
 
 

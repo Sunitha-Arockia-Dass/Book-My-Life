@@ -40,7 +40,6 @@ router.post("/profile", (req, res) => {
 
   const user = req.session.currentUser;
   const userId = user._id;
-  console.log(userId);
   if (name === "" || dob === "") {
     res.status(400).render("profile/profileCreate", {
       errorMessage: "Please provide your Name and Age.",
@@ -74,7 +73,6 @@ GET UPDATE A PROFILE PAGE
 router.get("/profileUpdate/:id", isLoggedIn, (req, res, next) => {
   const profileId = req.params.id;
   profileFindbyId(profileId).then((profile) => {
-    console.log("in router console:,", profile);
     res.render("profile/profileUpdate", { profileId, profile: profile });
   });
 });
@@ -87,7 +85,6 @@ router.post("/profileUpdate/:id", isLoggedIn, (req, res, next) => {
   const { name, age, profilePicture } = req.body;
   if (name === "" || age === "") {
     profileFindbyId(profileId).then((profile) => {
-      console.log("in router console:,", profile);
       res.render("profile/profileUpdate", {
         profileId,
         profile: profile,
@@ -104,7 +101,6 @@ router.post("/profileUpdate/:id", isLoggedIn, (req, res, next) => {
     { new: true }
   )
     .then((updatedProfile) => {
-      console.log(updatedProfile);
       res.redirect("/profile/profile");
     })
     .catch((error) => {
@@ -137,8 +133,6 @@ router.get("/profileDetail/:id", isLoggedIn, storeProfileId, (req, res, next) =>
     .then((updatedProfile) => {
       const dob=updatedProfile.dateOfBirth;
       const age= calculateAge(dob)
-      console.log(updatedProfile.id)
-
       res.render("profile/profileDetail",{profile:updatedProfile,age});
     })
     .catch((error) => {
