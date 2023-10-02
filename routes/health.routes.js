@@ -81,7 +81,6 @@ router.post("/health/:id", async (req, res, next) => {
         newData.percentile = percentile;
         newData.ageInMonths = ageMonths;
       }
-      Profile.findById(selectedProfileId).then((foundProfile) => {
         Data.create(newData).then((currentData) => {
           Data.find({ profile: selectedProfileId }).then((profileDatas) => {
             const bmiData = profileDatas.map((data) => data.BMI);
@@ -109,7 +108,6 @@ router.post("/health/:id", async (req, res, next) => {
       });
     });
   });
-});
 
 router.get("/weighLoss-paleo", (req, res, next) => {
   res.render("health/paleoWeightLoss");
