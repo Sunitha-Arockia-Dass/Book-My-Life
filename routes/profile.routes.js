@@ -3,6 +3,7 @@ const router = express.Router();
 
 // Profile schema
 const Profile = require("../models/Profile.model");
+const Data = require("../models/data.model");
 const {
   storeProfileId,
   calculateAge,profileFindbyId,isLoggedOut,isLoggedIn}=require("../middleware/functions")
@@ -115,7 +116,11 @@ router.get("/profileDelete/:id", isLoggedIn, (req, res, next) => {
   const profileId = req.params.id;
   Profile.findByIdAndDelete(profileId)
     .then((updatedProfile) => {
-      res.redirect("/profile/profile");
+      Data.deleteMany({profile:profileId})
+      .then(deletedData=>{
+
+        res.redirect("/profile/profile");
+      })
     })
     .catch((error) => {
       console.log("error while updating profiles:", error);
@@ -131,8 +136,6 @@ router.get("/profileDetail/:id", isLoggedIn, storeProfileId, (req, res, next) =>
 
   Profile.findById(profileId)
     .then((updatedProfile) => {
-      const dob=updatedProfile.dateOfBirth;
-      const age= calculateAge(dob)
       res.render("profile/profileDetail",{profile:updatedProfile,age});
     })
     .catch((error) => {

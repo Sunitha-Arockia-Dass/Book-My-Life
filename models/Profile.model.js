@@ -14,6 +14,7 @@ const profileSchema = new Schema(
     name: {
       type: String,
       required: true,
+      unique:true
     },
     dateOfBirth: {
       type: Date,
@@ -42,16 +43,7 @@ const profileSchema = new Schema(
 profileSchema.virtual("formatteddateOfBirth").get(function () {
   return dateFormatted(this.dateOfBirth);
 });
-profileSchema.pre("remove", function (next) {
-  // Find and remove all data associated with this profile
-  Data.deleteMany({ profile: this._id })
-    .then(() => {
-      next();
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
+
 
 
 const Profile = model("Profile", profileSchema);

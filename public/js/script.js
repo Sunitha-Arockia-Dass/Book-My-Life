@@ -1,38 +1,37 @@
-const breakfastBtn = document.getElementById("breakfast")
-const lunchBtn = document.getElementById("lunch")
-const dinnerBtn = document.getElementById("dinner")
-const snackBtn = document.getElementById("snacks")
-const breakfastMenu = document.querySelector(".breakfast-menu")
-const lunchMenu = document.querySelector(".lunch-menu")
-const dinnerMenu = document.querySelector(".dinner-menu")
-const snackMenu = document.querySelector(".snack-menu")
+const breakfastBtn = document.getElementById("breakfast");
+const lunchBtn = document.getElementById("lunch");
+const dinnerBtn = document.getElementById("dinner");
+const snackBtn = document.getElementById("snacks");
+const breakfastMenu = document.querySelector(".breakfast-menu");
+const lunchMenu = document.querySelector(".lunch-menu");
+const dinnerMenu = document.querySelector(".dinner-menu");
+const snackMenu = document.querySelector(".snack-menu");
 
-const agendaInfoList = document.querySelectorAll(".agenda-info")
-const agendaDetails = document.querySelectorAll('.details-app')
+const agendaInfoList = document.querySelectorAll(".agenda-info");
+const agendaDetails = document.querySelectorAll(".details-app");
 
 agendaInfoList.forEach((agendaInfo, index) => {
-
   agendaInfo.addEventListener("click", (event) => {
     agendaDetails.forEach((agendaDetail) => {
       agendaDetail.style.display = "none";
     });
-    agendaDetails[index].style.display = "block"
-  })
+    agendaDetails[index].style.display = "block";
+  });
+});
 
-})
-
-
-  // In your client-side JavaScript (e.g., a separate .js file or inline script in your HTML)
-  document?.addEventListener("DOMContentLoaded", function () {
-    const ctx = document.getElementById("bmiChart").getContext("2d")
+// In your client-side JavaScript (e.g., a separate .js file or inline script in your HTML)
+document.addEventListener("DOMContentLoaded", function () {
+  const ctx = document.getElementById("bmiChart").getContext("2d");
 
   // Use the data that you passed from the server
-  const bmiData = JSON.parse(document.getElementById("bmiData").value)
-  const createdDates = JSON.parse(document.getElementById("createdDates").value)
-  const normalData = Array(bmiData.length).fill(25)
-  const overweightData = Array(bmiData.length).fill(30)
-  const obeseData = Array(bmiData.length).fill(40)
-  const underweightData = Array(bmiData.length).fill(18.5)
+  const bmiData = JSON.parse(document.getElementById("bmiData").value);
+  const createdDates = JSON.parse(
+    document.getElementById("createdDates").value
+  );
+  const normalData = Array(bmiData.length).fill(25);
+  const overweightData = Array(bmiData.length).fill(30);
+  const obeseData = Array(bmiData.length).fill(40);
+  const underweightData = Array(bmiData.length).fill(18.5);
 
   new Chart(ctx, {
     type: "line",
@@ -81,28 +80,36 @@ agendaInfoList.forEach((agendaInfo, index) => {
       ],
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true,
+      scales:{
+      x: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Date Checked',
         },
-
       },
-
-
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'BMI',
+        },
     },
-
+  }
+  }
   })
-})
+});
 
+document.addEventListener("DOMContentLoaded", function () {
+  const ctxNutrition = document
+    .getElementById("nutritionChart")
+    .getContext("2d");
 
-    document?.addEventListener("DOMContentLoaded", function () {
-      const ctxNutrition = document.getElementById("nutritionChart").getContext("2d")
-
-  const carbohydrates = document.getElementById("carbohydrates").value
-  const protein = document.getElementById("protein").value
-  const fat = document.getElementById("fat").value
-  const fiber = document.getElementById("fiber").value
-  console.log(carbohydrates, protein, fat, fiber)
+  const carbohydrates = document.getElementById("carbohydrates").value;
+  const protein = document.getElementById("protein").value;
+  const fat = document.getElementById("fat").value;
+  const fiber = document.getElementById("fiber").value;
+  console.log(carbohydrates, protein, fat, fiber);
   new Chart(ctxNutrition, {
     type: "pie",
     data: {
@@ -116,32 +123,99 @@ agendaInfoList.forEach((agendaInfo, index) => {
     },
     options: {
       responsive: true,
-
     },
   });
-
-
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const ctxBmiKids = document
+    .getElementById("bmiChartKid")
+    .getContext("2d");
 
 
-    breakfastBtn.addEventListener("click",(event)=>{
-      breakfastMenu.style.display="block"
-    })
-    lunchBtn.addEventListener("click",(event)=>{
-      lunchMenu.style.display="block"
-    })
-    dinnerBtn.addEventListener("click",(event)=>{
-      dinnerMenu.style.display="block"
-    })
-    snackBtn.addEventListener("click",(event)=>{
-      snackMenu.style.display="block"
-    })
+    // Use the data that you passed from the server
+     const ageData = JSON.parse(document.getElementById("ageData").value);
+    const bmiPercentile = JSON.parse(
+      document.getElementById("percentile").value
+    );
+     const normalData = Array(bmiPercentile.length).fill(85);
+    const overweightData = Array(bmiPercentile.length).fill(95);
+     const obeseData = Array(bmiPercentile.length).fill(120);
+    const underweightData = Array(bmiPercentile.length).fill(10);
+  
+    new Chart(ctxBmiKids, {
+      type: "line",
+      data: {
+        labels: ageData,
+        datasets: [
+          {
+            label: 'BMI Percentile',
+            data: bmiPercentile,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          },
+          {
+            label: "Normal Percentile",
+            data: normalData,
+            borderColor: "rgba(0, 255, 0, 1)",
+            backgroundColor: "rgba(255, 255, 255, 0.2)",
+            borderWidth: 0,
+            // fill: "true",
+          },
+          {
+            label: "Overweight Percentile",
+            data: overweightData,
+            borderColor: "rgba(255, 255, 0, 1)",
+            backgroundColor: "rgba(255, 255, 0, 0.2)",
+            borderWidth: 0,
+            fill: "-1",
+          },
+          {
+            label: "Obese Percentile",
+            data: obeseData,
+            borderColor: "rgba(255, 0, 0, 1)",
+            backgroundColor: "rgba(255, 0, 0, 0.2)",
+            borderWidth: 0,
+            fill: "-1",
+          },
+          {
+            label: "Underweight Percentile",
+            data: underweightData,
+            borderColor: "rgba(0, 0, 255, 1)",
+            backgroundColor: "rgba(0, 0, 255,  0.2)",
+            borderWidth: 0,
+            fill: "start",
+          },
+        ],
+      },
+      options: {
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Age in Months',
+            },
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Percentile',
+            },
+          },
+        },
+      },
+    });
+});
 
-    
-
-
-
-
-
-
+breakfastBtn?.addEventListener("click", (event) => {
+  breakfastMenu.style.display = "block";
+});
+lunchBtn?.addEventListener("click", (event) => {
+  lunchMenu.style.display = "block";
+});
+dinnerBtn?.addEventListener("click", (event) => {
+  dinnerMenu.style.display = "block";
+});
+snackBtn?.addEventListener("click", (event) => {
+  snackMenu.style.display = "block";
+});

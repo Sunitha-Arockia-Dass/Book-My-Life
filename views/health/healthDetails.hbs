@@ -1,8 +1,6 @@
-
-
+{{#if isAdult}}
 {{#if currentData}}
-
-  <h4>Hi {{profile.name}}, YOUR CURRENT BMI IS {{currentData.BMI}} on </h4>
+  <h4>Hi {{profile.name}}, YOUR CURRENT BMI IS {{currentData.BMI}}  </h4>
   <h4>You are {{currentWeight.currentWeight}}</h4>
   
   {{#if currentWeight.isOverWeight}}
@@ -22,7 +20,6 @@
 
 <input type="hidden" id="bmiData" value="{{bmiData}}" />
 <input type="hidden" id="createdDates" value="{{createdDates}}" />
-
 <div class="row">
   <h4>Hi This is {{profile.name}}'s BMI chart </h4>
 
@@ -59,3 +56,43 @@
 
   </div>
 </div>
+{{else}}
+  <h4>Hi This is {{profile.name}}'s BMI chart </h4>
+
+{{#if currentData}}
+  <h4>Hi {{profile.name}}, YOUR CURRENT BMI IS {{currentData.BMI}}  </h4>
+  <h4>you fall under {{percentile}}th percentile</h4>
+  <h4>You are in {{category.currentWeightKid}} weight range</h4>
+  
+  {{#if currentWeightKid.isOverWeight}}
+  <h3>You need to consult a doctor</h3>
+{{/if}}
+  
+  {{#if currentWeightKid.isUnderWeight}}
+  <h3>You need to consult a doctor</h3>
+{{/if}}
+  
+  {{#if currentWeightKid.isObese}}
+  <h3>You need to consult a doctor</h3>
+{{/if}}
+  
+  {{#if currentWeightKid.isNormalWeight}}
+  <h3>You r doing great.continue to do what ur doig</h3>
+{{/if}}
+{{/if}}
+<input type="hidden" id="ageData" value="{{ageData}}" />
+<input type="hidden" id="percentile" value="{{bmiPercentile}}" />
+
+<div class="row">
+
+  <div class="col-6">
+<canvas id="bmiChartKid" ></canvas>
+
+    <button>
+      <a href="/health/health/{{profile.id}}">CHECK YOUR BMI</a>
+    </button>
+
+  </div>
+
+
+{{/if}}
