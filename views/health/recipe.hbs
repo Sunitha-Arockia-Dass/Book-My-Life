@@ -1,40 +1,40 @@
 <div id="welcome-page">
-    <div class="wrapper scroll-ok">
+    <div class="wrapper">
         <div class="left">
-            {{#with myRecipe}}
-
-
-            <img src="{{image}}" alt="no image">
-            <h1>{{title}}</h1></img>
-
+            <div class="image-title">
+                {{#with myRecipe}}
+                <img class="recipe-img" src="{{image}}" alt="image of the recipe">
+                </img>
+                <div id="nutrition">
+                    <h2 class="recipe">"{{title}}"</h2>
+                    <br>
+                    <canvas id="nutritionChart"></canvas>
+                </div>
+                {{/with}}
+            </div>
         </div>
 
 
-
-
-
-        <div class="right">
-            <div class="embed-page">
+        <div class="right  scroll-ok">
+            <div class="embed-page-recipe">
                 <div id="vignette">
-                    <div id="v-container">
-                        <h2>Recipe page</h2>
+                    <div id="v-container-recipe">
+                        {{#with myRecipe}}
+                        <h3 class="recipe">Ingredients</h3>
 
-                        <h2>Ingredients</h2>
                         <ul>
                             {{#each ingredients}}
                             <li>{{this}}</li>
-
                             {{/each}}
                         </ul>
 
-                        <h2>INSTRUCTIONS</h2>
+                        <h3 class="recipe">Instructions</h3>
+
                         <ul>
                             {{#each instructions}}
                             <li>{{this}}</li>
-
                             {{/each}}
                         </ul>
-
 
                         <input type="hidden" id="carbohydrates" value={{nutrition.carbohydrates}} />
                         <input type="hidden" id="protein" value={{nutrition.protein}} />
@@ -42,12 +42,7 @@
                         <input type="hidden" id="fiber" value={{nutrition.fiber}} />
                         {{/with}}
 
-
-                        <canvas id="nutritionChart"></canvas>
-
-
                     </div>
-
                 </div>
             </div>
         </div>

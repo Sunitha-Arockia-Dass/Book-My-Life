@@ -1,12 +1,3 @@
-const breakfastBtn = document.getElementById("breakfast");
-const lunchBtn = document.getElementById("lunch");
-const dinnerBtn = document.getElementById("dinner");
-const snackBtn = document.getElementById("snacks");
-const breakfastMenu = document.querySelector(".breakfast-menu");
-const lunchMenu = document.querySelector(".lunch-menu");
-const dinnerMenu = document.querySelector(".dinner-menu");
-const snackMenu = document.querySelector(".snack-menu");
-
 const agendaInfoList = document.querySelectorAll(".agenda-info");
 const agendaDetails = document.querySelectorAll(".details-app");
 
@@ -113,11 +104,11 @@ document.addEventListener("DOMContentLoaded", function () {
   new Chart(ctxNutrition, {
     type: "pie",
     data: {
-      labels: ["Carbohydrates", "Protein", "Fat", "Fiber"],
+      labels: ["Protein", "Fat", "Fiber", "Carbohydrates"],
       datasets: [
         {
-          data: [carbohydrates, protein, fat, fiber],
-          backgroundColor: ["#FF5733", "#FFC300", "#C70039", "#581845"],
+          data: [protein, fat, fiber, carbohydrates],
+          backgroundColor: ["#ead94c", "#963696", "#dda0dd", "#eed2ee"],
         },
       ],
     },
@@ -205,17 +196,4 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
     });
-});
-
-breakfastBtn?.addEventListener("click", (event) => {
-  breakfastMenu.style.display = "block";
-});
-lunchBtn?.addEventListener("click", (event) => {
-  lunchMenu.style.display = "block";
-});
-dinnerBtn?.addEventListener("click", (event) => {
-  dinnerMenu.style.display = "block";
-});
-snackBtn?.addEventListener("click", (event) => {
-  snackMenu.style.display = "block";
 });
