@@ -32,6 +32,12 @@ const dataSchema = new Schema(
     profileName: {
       type: String, 
     },
+    percentile:{
+      type :Number
+    },
+    ageInMonths:{
+      type:Number
+    }
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
