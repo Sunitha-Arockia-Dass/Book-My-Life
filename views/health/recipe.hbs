@@ -1,40 +1,57 @@
-Hi this is the recipe page
-<div class="row">
-
-{{#with myRecipe}}
-<div class="col-3">
-<h1>{{title}}</h1>
-<img src="{{image}}" alt="no image">
-</div>
-<div class="col-3">
+<div id="welcome-page">
+    <div class="wrapper scroll-ok">
+        <div class="left">
+            {{#with myRecipe}}
 
 
-<h2>Ingredients</h2>
-<ul>
-    {{#each ingredients}}
-<li>{{this}}</li>
+            <img src="{{image}}" alt="no image">
+            <h1>{{title}}</h1></img>
 
-    {{/each}}
-</ul>
-</div>
-<div class="col-3">
-<h2>INSTRUCTIONS</h2>
-<ul>
-    {{#each instructions}}
-<li>{{this}}</li>
+        </div>
 
-    {{/each}}
-</ul>
-</div>
 
-<input type="hidden" id="carbohydrates" value={{nutrition.carbohydrates}} />
-<input type="hidden" id="protein" value={{nutrition.protein}} />
-<input type="hidden" id="fat" value={{nutrition.fat}} />
-<input type="hidden" id="fiber" value={{nutrition.fiber}} />
-{{/with}}
-<div class="col-3">
 
- <canvas id="nutritionChart"></canvas>
-</div>
 
+
+        <div class="right">
+            <div class="embed-page">
+                <div id="vignette">
+                    <div id="v-container">
+                        <h2>Recipe page</h2>
+
+                        <h2>Ingredients</h2>
+                        <ul>
+                            {{#each ingredients}}
+                            <li>{{this}}</li>
+
+                            {{/each}}
+                        </ul>
+
+                        <h2>INSTRUCTIONS</h2>
+                        <ul>
+                            {{#each instructions}}
+                            <li>{{this}}</li>
+
+                            {{/each}}
+                        </ul>
+
+
+                        <input type="hidden" id="carbohydrates" value={{nutrition.carbohydrates}} />
+                        <input type="hidden" id="protein" value={{nutrition.protein}} />
+                        <input type="hidden" id="fat" value={{nutrition.fat}} />
+                        <input type="hidden" id="fiber" value={{nutrition.fiber}} />
+                        {{/with}}
+
+
+                        <canvas id="nutritionChart"></canvas>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </div>

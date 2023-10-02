@@ -634,10 +634,9 @@ nav.back-Forward svg {
   border: 5px solid var(--plumdark);
   background: linear-gradient(
     180deg,
-    var(--plumdark) 20%,
-    var(--plumd) 40%,
-    var(--plumm) 60%,
-    var(--pluml) 80%
+    var(--plumd) 25%,
+    var(--plumm) 50%,
+    var(--pluml) 75%
   );
 }
 
