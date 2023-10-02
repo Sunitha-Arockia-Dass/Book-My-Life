@@ -136,6 +136,8 @@ router.get("/profileDetail/:id", isLoggedIn, storeProfileId, (req, res, next) =>
 
   Profile.findById(profileId)
     .then((updatedProfile) => {
+      const dob=updatedProfile.dateOfBirth;
+            const age= calculateAge(dob)
       res.render("profile/profileDetail",{profile:updatedProfile,age});
     })
     .catch((error) => {
