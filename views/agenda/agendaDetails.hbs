@@ -26,7 +26,7 @@
       <!-- Add Appointment -->
       <div class="add-appointment">
         <div id="frame-agenda">
-          <a class="alink fs-4" href="/agenda/agendaCreate">
+          <a class="alink fs-4" href="/agenda/agendaCreate/{{id}}">
             <svg viewBox="0 0 24 24" fill="none">
               <g id="SVGRepo_bgCarrier" stroke-width="0" />
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
@@ -89,7 +89,7 @@
             </form>
 
             <!-- Delete button-->
-            <form class="nav-link fs-5" id="delete-btn" action="/agenda/agendaCreate" method="GET">
+            <form class="nav-link fs-5" id="delete-btn" action="/agenda/agendaDelete/{{id}}" method="GET">
               <button class="Btn">
                 <div class="sign"><svg id="delete-svg" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
