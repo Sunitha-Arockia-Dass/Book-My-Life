@@ -553,6 +553,7 @@ nav.back-Forward svg {
 
 #v-container {
   width: 80%;
+  height: 100%;
 }
 
 /*/////////////////////////////////
@@ -735,7 +736,7 @@ div.sign #delete-svg {
   height: 93%;
   width: 100%;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -757,14 +758,14 @@ div.sign #delete-svg {
   max-height: 100%;
 }
 
-#calendar{
+#calendar {
   width: 95%;
 }
 
 .agenda-container1 {
   position: sticky;
   top: 0;
-  left:0;
+  left: 0;
   width: 95%;
   min-width: 400px;
   max-width: 700px;
@@ -785,8 +786,8 @@ div.sign #delete-svg {
 .appointment {
   display: flex;
   flex-direction: column;
-  text-align: center; 
-  width: 100%; 
+  text-align: center;
+  width: 100%;
   margin-bottom: 5px;
   border-radius: 10px 30px 10px 30px;
   background-color: var(--white);
@@ -794,9 +795,8 @@ div.sign #delete-svg {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-
-.add-appointment {  
-  width: 100%; 
+.add-appointment {
+  width: 100%;
   border-radius: 10px 30px 10px 30px;
   background-color: var(--plumm);
   border: solid 5px var(--plumdark);
@@ -805,12 +805,12 @@ div.sign #delete-svg {
 
 #frame-agenda {
   width: 100%;
-  height: 100%; 
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100%;  
+  width: 100%;
   border-radius: 10px 30px 10px 30px;
 }
 
@@ -820,27 +820,26 @@ div.sign #delete-svg {
   border-radius: 10px 30px 10px 30px;
 }
 
-
 #frame-agenda svg {
   height: 80%;
 }
 
-#frame-agenda a{
+#frame-agenda a {
   display: inline-block;
   text-align: center;
   width: 100%;
 }
 
 .details-app {
-  display:none;
+  display: none;
   color: var(--plumdark);
 }
 
-.details-app h4{
+.details-app h4 {
   display: inline-block;
 }
 
-hr.appointment{
+hr.appointment {
   margin: 0 auto;
   margin-bottom: 1em;
   width: 75%;
@@ -850,6 +849,99 @@ hr.appointment{
   box-shadow: unset;
 }
 
+/*/////////////////////////////////
+ Recipe Page */
+ .right .embed-page-recipe {
+  padding: 10px 25px 25px 25px;
+  height: 100%;
+  width: 100%;
+}
+
+#v-container-recipe {
+  width: 100%;
+  height: 100%;
+}
+
+div.image-title {
+  position: relative;
+}
+
+img.recipe-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+}
+
+h2.recipe {
+  font-size: 2.5em;
+  color: var(--black);
+  text-shadow: 4px 4px 4px var(--pluml), -4px -4px 4px var(--pluml);
+}
+
+h3.recipe {
+  color: var(--black);
+  font-weight: bold;
+  font-size: 1.5em;
+  padding-bottom: 10px;
+  text-shadow: 2px 2px 4px var(--pluml);
+}
+
+div#nutrition {
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  width: 75%;
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px 30px 10px 30px;
+}
+
+div#nutrition1 {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  width: 75%;
+  max-width: 500px;
+}
+
+/*/////////////////////////////////
+ CAROUSSEL */
+.recipe-page{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+
+ #carouselExampleIndicators{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px 30px 10px 30px;
+  background: linear-gradient(
+    180deg,
+    var(--plumd) 25%,
+    var(--plumm) 50%,
+    var(--pluml) 75%
+  );
+ }
+
+.carousel-item img{
+  width: 100%;
+  height: 650px;
+  object-fit: cover;
+  opacity: 0.75;
+  border: solid 5px var(--plumdark);
+  border-radius: 10px 30px 10px 30px; 
+}
+
+.carousel-caption ul {
+  background-color: rgba(150, 54, 150, 0.5) ;
+  border-radius: 10px 30px 10px 30px;
+  list-style: none;
+  font-weight: 800;
+  font-size: 1.2em;
+}
 
 /*/////////////////////////////////
  FOOTER */
