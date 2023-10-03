@@ -12,7 +12,6 @@ const isLoggedIn = (req, res, next) => {
     res.locals.isLoggedIn = false;
     res.locals.isLoggedOut = false;
 
-    console.log("User is not logged in", res.locals.isLoggedIn);
     res.locals.isLoggedOut = true;
     return res.redirect("/auth/login");
   } else {
@@ -46,6 +45,12 @@ const storeProfileId = (req, res, next) => {
   req.session.selectedProfileId = profileId;
   next();
 };
+function agendaSelectedProfileId(req, res, next) {
+  const selectedProfileId = req.body.selectedProfileId;
+  req.locals = req.locals || {};
+  req.locals.selectedProfileId = selectedProfileId;
+  next();
+}
 
 const calculateAge = (dateOfBirth) => {
   const today = new Date();
@@ -275,5 +280,6 @@ module.exports = {
   fetchBmiReferenceData,
   findPercentile,
   calculateAgeInMonths,
-  findCategory
+  findCategory,
+  agendaSelectedProfileId
 };

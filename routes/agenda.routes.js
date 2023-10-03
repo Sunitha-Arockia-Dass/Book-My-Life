@@ -8,48 +8,35 @@ const {
   profileFindbyId,
   isHealthyBmi,
   optimalWeight,
-  isAuthenticated
+  isAuthenticated,
+  isLoggedIn,agendaSelectedProfileId
 } = require("../middleware/functions");
 
 /*////////////////////////////////////////////////////////////// 
 GET HOME PAGE
  */
-// router.get("/agenda", (req, res, next) => {
-//   const user = req.session.currentUser;
-//   const userId = user._id;
-//   // const selectedProfileId =req.session.selectedProfileId
-//   profileFindbyId(selectedProfileId).then((foundProfile) => {
-//     const profileName = foundProfile.name;
 
-//     Appointment.find({ profileName: profileName }).then((foundAppointment) => {
-//       res.render("agenda/agendaDetails", { appt: foundAppointment });
-//     });
-//   });
-// });
-
-router.get("/agenda/:id", (req, res, next) => {
-  const selectedProfileId = req.params.id;
+router.get("/agenda", (req, res, next) => {
   const user = req.session.currentUser;
   const userId = user._id;
-  profileFindbyId(selectedProfileId).then((foundProfile) => {
-    const profileName = foundProfile.name;
-
     Appointment.find({ user: userId }).then((foundAppointment) => {
       res.render("agenda/agendaDetails", {
         appt: foundAppointment,
-        id: selectedProfileId,
       });
     });
   });
-});
-
-router.get("/agendaCreate/:id", (req, res, next) => {
-  const selectedProfileId = req.params.id;
+router.post("/agenda", agendaSelectedProfileId, (req,res,next)=>{
+  const selectedProfileId = req.body.selectedProfileId;
+  req.session.selectedProfileId = selectedProfileId;
+  res.redirect("/agenda/agenda")
+})
+router.get("/agendaCreate",isLoggedIn, (req, res, next) => {
+  const selectedProfileId = req.session.selectedProfileId
 
   res.render("agenda/agendaCreate", { id: selectedProfileId });
 });
 
-router.post("/agendaCreate/:id", (req, res, next) => {
+router.post("/agendaCreate",isLoggedIn,(req, res, next) => {
   const {
     appointmentName,
     appointmentType,
@@ -58,8 +45,8 @@ router.post("/agendaCreate/:id", (req, res, next) => {
     appointmentwith,
     duration,
   } = req.body;
-  const selectedProfileId = req.params.id;
-  const user = req.session.currentUser;
+  const selectedProfileId = req.session.selectedProfileId ;
+    const user = req.session.currentUser;
   const userId = user._id;
   profileFindbyId(selectedProfileId).then((foundProfile) => {
     const profileName = foundProfile.name;
@@ -84,7 +71,7 @@ router.post("/agendaCreate/:id", (req, res, next) => {
     });
   });
 });
-router.get("/agendaDetail", (req, res, next) => {
+router.get("/agendaDetail",isLoggedIn, (req, res, next) => {
   const user = req.session.currentUser;
   const userId = user._id
   Appointment.find({user:userId}).then((foundAppointment) => {
@@ -92,14 +79,18 @@ router.get("/agendaDetail", (req, res, next) => {
   });
 });
 
-router.get("/agendaDelete/:id", (req, res, next) => {
+router.get("/agendaDelete/:id",isLoggedIn, (req, res, next) => {
   const appointmentId = req.params.id;
-  Appointment.findByIdAndDelete(appointmentId).then((foundAppointment) => {
-    res.redirect("/agenda/agenda");
+  const user = req.session.currentUser;
+  const userId = user._id
+  Appointment.findByIdAndDelete(appointmentId).then((appointment) => {
+    Appointment.find({user:userId}).then((foundAppointment) => {
+      res.redirect("/agenda/agenda");
+       });
   });
 });
 
-router.get("/agendaUpdate/:id", (req, res, next) => {
+router.get("/agendaUpdate/:id",isLoggedIn, (req, res, next) => {
   const selectedProfileId = req.params.id;
   Appointment.findById(selectedProfileId).then((foundAppointment) => {
     res.render("agenda/agendaUpdate", {
@@ -109,7 +100,7 @@ router.get("/agendaUpdate/:id", (req, res, next) => {
   });
 });
 
-router.post("/agendaUpdate/:id", (req, res, next) => {
+router.post("/agendaUpdate/:id",isLoggedIn, (req, res, next) => {
   const {
     appointmentName,
     appointmentType,
@@ -117,7 +108,6 @@ router.post("/agendaUpdate/:id", (req, res, next) => {
     appointmentTime,
     appointmentwith,
     duration,
-    profileName,
   } = req.body;
   const id = req.params.id;
   const user = req.session.currentUser;
@@ -135,18 +125,12 @@ router.post("/agendaUpdate/:id", (req, res, next) => {
       user: userId,
     },
     { new: true }
-  ).then((createdAppt) => {
-    Appointment.find({ user: userId })
-      .sort({ appointmentDate: 1 })
-      .then((appointments) => {
-        res.render("agenda/agendaDetails", {
-          appt: appointments,
-          id: selectedProfileId,
-        });
+  ).then((updatedAppt) => {
+    Appointment.find({ user:userId}).then((foundAppointment) => {
+      res.redirect("/agenda/agenda");
+    });
       });
   });
-});
-// });
 
 /* module.exports */
 module.exports = router;

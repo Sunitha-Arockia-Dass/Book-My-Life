@@ -36,7 +36,7 @@ router.get("/profileCreate", isLoggedIn, (req, res, next) => {
 /*////////////////////////////////////////////////////////////// 
 POST NEW PROFILE FORM
  */
-router.post("/profile", (req, res) => {
+router.post("/profile",isLoggedIn, (req, res) => {
   const { name,dob,gender, profilePicture } = req.body;
 
   const user = req.session.currentUser;
@@ -71,7 +71,7 @@ router.post("/profile", (req, res) => {
 /*////////////////////////////////////////////////////////////// 
 GET UPDATE A PROFILE PAGE
  */
-router.get("/profileUpdate/:id", isLoggedIn, (req, res, next) => {
+router.get("/profileUpdate/:id", isLoggedIn,isLoggedIn, (req, res, next) => {
   const profileId = req.params.id;
   profileFindbyId(profileId).then((profile) => {
     res.render("profile/profileUpdate", { profileId, profile: profile });
@@ -81,7 +81,7 @@ router.get("/profileUpdate/:id", isLoggedIn, (req, res, next) => {
 /*////////////////////////////////////////////////////////////// 
 POST UPDATE A PROFILE FORM
  */
-router.post("/profileUpdate/:id", isLoggedIn, (req, res, next) => {
+router.post("/profileUpdate/:id",isLoggedIn, isLoggedIn, (req, res, next) => {
   const profileId = req.params.id;
   const { name, age, profilePicture } = req.body;
   if (name === "" || age === "") {
@@ -112,7 +112,7 @@ router.post("/profileUpdate/:id", isLoggedIn, (req, res, next) => {
 /*////////////////////////////////////////////////////////////// 
 GET DELETE A PROFILE
  */
-router.get("/profileDelete/:id", isLoggedIn, (req, res, next) => {
+router.get("/profileDelete/:id",isLoggedIn, isLoggedIn, (req, res, next) => {
   const profileId = req.params.id;
   Profile.findByIdAndDelete(profileId)
     .then((updatedProfile) => {

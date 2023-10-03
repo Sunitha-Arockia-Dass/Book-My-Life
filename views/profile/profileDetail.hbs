@@ -45,7 +45,8 @@
             <form class="form-btn" action="/health/healthDetail/{{profile.id}}" method="get">
               <button type="submit"><span>Healthify</span></button>
             </form>
-            <form class="form-btn" action="/agenda/agenda/{{profile.id}}" method="get">
+            <form class="form-btn" action="/agenda/agenda" method="post">
+                              <input type="hidden" name="selectedProfileId" value="{{id}}">
               <button class="alink"  type="submit"><span>Agenda</span></button>
             </form>
           </div>
