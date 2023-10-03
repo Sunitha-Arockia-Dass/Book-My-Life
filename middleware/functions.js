@@ -153,7 +153,7 @@ async function fetchRecipesData() {
   const recipes = [];
   try {
     const response = await axios.get(
-      "https://erin-adorable-barracuda.cyclic.cloud/recipes"
+      "https://ochre-dibbler-hem.cyclic.cloud/recipes"
     );
     recipes.push(...response.data);
     console.log("Recipe data fetched and populated.");
@@ -165,8 +165,8 @@ async function fetchRecipesData() {
 
 const fetchBmiReferenceData = async () => {
   try {
-    const boysData = await axios.get("https://erin-adorable-barracuda.cyclic.cloud/boys");
-    const girlsData = await axios.get("https://erin-adorable-barracuda.cyclic.cloud/girls");
+    const boysData = await axios.get("https://ochre-dibbler-hem.cyclic.cloud/boys");
+    const girlsData = await axios.get("https://ochre-dibbler-hem.cyclic.cloud/girls");
     return { boysData, girlsData };
   } catch (error) {
     console.error("Error fetching bmi data:", error);

@@ -100,10 +100,14 @@ contain the javascript code for DOM manipulations
 
 ## API used
 
-<h2>MongoDB & Mongo Atlas</h2> for the DB
+<h2>MongoDB & Mongo Atlas</h2> for the DB.
 
-<h2>Our own API</h2> for the recipies DB using a JSON server deployed on ??
+<h2>Our own API</h2> for the recipies DB using a JSON server deployed on Cyclic.
 
-<h2>Cloudinary</h2> allow members to upload a profile picture
+<h2>Cloudinary</h2> allow members to upload a profile picture.
 
-<h2>Bcrypt</h2> to crypt password and check them
+<h2>Bcrypt</h2> to crypt password and check them.
+
+<h2>Axios</h2> to handle and fetch API.
+
+<h2>ChartJS</h2> to display BMI and nutrition graph.
