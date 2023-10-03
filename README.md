@@ -1,4 +1,16 @@
-# Ironhack-Project-2-Book My Life
+# Ironhack-Project-2-Book My Life : HEALTH
+
+<h1>Links</h1>
+
+<h3>Follow the Trello Board : <a href="https://trello.com/invite/b/EhPvP6Rw/ATTI57e20a1ccba83676966514416cfca6aaCFE5A2A1/ironhack-projet2-bookmylife">Here</a></h3>
+
+<h3>Slides presentation : <a href="https://slides.com/thomaslebas/palette">Here</a></h3>
+
+<h3>Github repository : <a href="https://github.com/Sunitha-Arockia-Dass/HEALTH">Here</a></h3>
+
+<h3>App deployed with Cyclic : <a href="">Here</a></h3>
+
+<h3>JSON server for recipies : <a href="https://erin-adorable-barracuda.cyclic.cloud/">Here</a></h3>
 
 <h1>Introduction</h1>
 <h2>Technical Requirements Your app must:</h2>
@@ -46,8 +58,52 @@ The color plum is a symbol of new beginnings, enthusiasm and fresh energy. It is
 --grey: #6b5f6b;
 --black: #000000;
 
-## Screens
+## CRUD
+
+<h2>User</h2>
+User can sign up to create an account, he can acces to his data and update them.
+
+<h2>Members Profile</h2>
+User can create members, each members can be updated, deleted and acces to 3 levels : details, agenda, healthify app.
+
+<h2>Agenda</h2>
+User can create appointments, each appointment can be updated, deleted or display to see details.
+
+## MONGOOSE MODELS
+
+<ul>
+  <li>User.model.js for user account with feedback</li>
+  <li>Profile.model.js for members profile with feedback</li>
+  <li>Agenda.model.js for appointments with feedback</li>
+  <li>Data.model.jsfor BMI calculator with feedback</li> 
+</ul>
+
+## Agenda
+
+all members can accès to the same agenda.
+
+## Healthify
+
+this the art of the app that allow you to calculate and follow your BMI, depending on it you will have acces to healthy lifestyle to gain or loss weight depending of the last BMI and adapted to the user diet Paleo, Vegan or Vegetarian.
+
+## app.js
+
+contain the app.use informations
+
+## routes folder
+
+contain all the routes to display all the pages and run the form
 
 ## script.js
 
-this file contain the windows onload, the buttons click actions, the handleKeydown functions and launch the Game class.
+contain the javascript code for DOM manipulations
+
+## API used
+
+<h2>MongoDB & Mongo Atlas</h2> for the DB
+
+<h2>Our own API</h2> for the recipies DB using a JSON server deployed on ??
+
+<h2>Cloudinary</h2> allow members to upload a profile picture
+
+<h2>Bcrypt</h2> to crypt password and check them
