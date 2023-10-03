@@ -16,18 +16,19 @@ const {
   findPercentile,
   calculateAgeInMonths,
   findCategory,
+  isLoggedIn
 } = require("../middleware/functions");
 /*////////////////////////////////////////////////////////////// 
 GET HEALTHIFY HOME PAGE
  */
-router.get("/health/:id", (req, res, next) => {
+router.get("/health/:id", isLoggedIn,(req, res, next) => {
   const selectedProfileId = req.params.id;
   const profile = profileFindbyId(selectedProfileId).then((foundProfile) => {
     res.render("health/healthHome", { profile: foundProfile });
   });
 });
 
-router.get("/healthDetail/:id", (req, res, next) => {
+router.get("/healthDetail/:id",isLoggedIn, (req, res, next) => {
   const selectedProfileId = req.params.id;
   profileFindbyId(selectedProfileId).then((profile) => {
     const dob = profile.dateOfBirth;
@@ -50,7 +51,7 @@ router.get("/healthDetail/:id", (req, res, next) => {
     });
   });
 });
-router.post("/health/:id", async (req, res, next) => {
+router.post("/health/:id",isLoggedIn, async (req, res, next) => {
   const { height, weight } = req.body;
   const heightInMeters = height / 100;
   const selectedProfileId = req.params.id;
@@ -109,30 +110,30 @@ router.post("/health/:id", async (req, res, next) => {
     });
   });
 
-router.get("/weighLoss-paleo", (req, res, next) => {
+router.get("/weighLoss-paleo",isLoggedIn, (req, res, next) => {
   res.render("health/paleoWeightLoss");
 });
-router.get("/recipe/:recipeName", (req, res, next) => {
+router.get("/recipe/:recipeName",isLoggedIn, (req, res, next) => {
   fetchRecipesData().then((recipes) => {
     const mealName = req.params.recipeName;
     const myRecipe = recipes.find((recipe) => recipe.title === mealName);
     res.render("health/recipe", { myRecipe });
   });
 });
-router.get("/weighLoss-vegetarian", (req, res, next) => {
+router.get("/weighLoss-vegetarian",isLoggedIn, (req, res, next) => {
   res.render("health/vegetarianWeightLoss");
 });
 
-router.get("/weighLoss-vegan", (req, res, next) => {
+router.get("/weighLoss-vegan",isLoggedIn, (req, res, next) => {
   res.render("health/veganWeightLoss");
 });
-router.get("/weighGain-paleo", (req, res, next) => {
+router.get("/weighGain-paleo",isLoggedIn, (req, res, next) => {
   res.render("health/paleoWeightGain");
 });
-router.get("/weighGain-vegetarian", (req, res, next) => {
+router.get("/weighGain-vegetarian",isLoggedIn, (req, res, next) => {
   res.render("health/vegetarianWeightGain");
 });
-router.get("/weighGain-vegan", (req, res, next) => {
+router.get("/weighGain-vegan",isLoggedIn, (req, res, next) => {
   res.render("health/veganWeightGain");
 });
 
