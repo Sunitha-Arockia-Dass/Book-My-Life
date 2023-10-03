@@ -1,60 +1,62 @@
 <div id="welcome-page">
-    <div class="wrapper">
-     
-            <div class="left">
-                <div class="image-title">
-                    {{#with myRecipe}}
-                    <img class="recipe-img" src="{{image}}" alt="image of the recipe">
-                    </img>
-                    <div id="nutrition">
-                        <h2 class="recipe">"{{title}}"</h2>
-                    </div>
-                    {{/with}}
+    <div id="scroll" class="wrapper">
+
+        <div class="left">
+            <div class="image-title">
+                {{#with myRecipe}}
+                <img class="recipe-img" src="{{image}}" alt="image of the recipe">
+                </img>
+                <div id="nutrition">
+                    <h2 class="recipe">"{{title}}"</h2>
                 </div>
+                {{/with}}
             </div>
+        </div>
 
 
-            <div class="right  scroll-ok">
-                <div class="embed-page-recipe">
-                    <div id="vignette">
-                        <div id="v-container-recipe">
-                            {{#with myRecipe}}
-                            <br>
-                            <h3 class="recipe">Ingredients</h3>
+        <div id="scroll" class="right  scroll-ok">
+            <div class="embed-page-recipe">
+                <div id="vignette">
+                    <div id="v-container-recipe">
+                        {{#with myRecipe}}
+                        <br>
+                        <h3 class="recipe">Ingredients</h3>
 
-                            <ul>
-                                {{#each ingredients}}
-                                <li>{{this}}</li>
-                                {{/each}}
-                            </ul>
+                        <ul>
+                            {{#each ingredients}}
+                            <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
 
-                            <br>
-                            <h3 class="recipe">Instructions</h3>
+                        <br>
+                        <h3 class="recipe">Instructions</h3>
 
-                            <ul>
-                                {{#each instructions}}
-                                <li>{{this}}</li>
-                                {{/each}}
-                            </ul>
+                        <ul>
+                            {{#each instructions}}
+                            <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
 
-                            <input type="hidden" id="carbohydrates" value={{nutrition.carbohydrates}} />
-                            <input type="hidden" id="protein" value={{nutrition.protein}} />
-                            <input type="hidden" id="fat" value={{nutrition.fat}} />
-                            <input type="hidden" id="fiber" value={{nutrition.fiber}} />
+                        <input type="hidden" id="carbohydrates" value={{nutrition.carbohydrates}} />
+                        <input type="hidden" id="protein" value={{nutrition.protein}} />
+                        <input type="hidden" id="fat" value={{nutrition.fat}} />
+                        <input type="hidden" id="fiber" value={{nutrition.fiber}} />
+                        <br>
+                        <h3 class="recipe">Composition:</h3>
 
-                            <div id="nutrition2">
-                                <br>
-                                <h3 class="recipe">Composition:</h3>
+                        <div id="nutrition2">
+                            <div class="size-chart">
                                 <canvas id="nutritionChart"></canvas>
-                                <br>
                             </div>
-                            {{/with}}
-
+                            <br>
                         </div>
+                        {{/with}}
+
                     </div>
                 </div>
             </div>
+        </div>
 
-     
+
     </div>
 </div>
