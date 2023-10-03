@@ -1,3 +1,5 @@
+ 
+
 !function () {
 
     let today = moment();
@@ -54,12 +56,7 @@
     Calendar.prototype.drawMonth = function () {
         let self = this;
 
-        this.events.forEach(function (ev) {
-            ev.date = self.current.clone().date(Math.random() * (29 - 1) + 1);
-        });
-
-
-        if (this.month) {
+          if (this.month) {
             this.oldMonth = this.month;
             this.oldMonth.className = 'month out ' + (self.next ? 'next' : 'prev');
             this.oldMonth.addEventListener('webkitAnimationEnd', function () {
@@ -153,18 +150,22 @@
     Calendar.prototype.drawEvents = function (day, element) {
         if (day.month() === this.current.month()) {
             let todaysEvents = this.events.reduce(function (memo, ev) {
-                if (ev.date.isSame(day, 'day')) {
+                // Parse the date string into a Moment.js object
+                const evDate = moment(ev.date, 'YYYY-MM-DD');
+                
+                if (evDate.isSame(day, 'day')) {
                     memo.push(ev);
                 }
                 return memo;
             }, []);
-
+    
             todaysEvents.forEach(function (ev) {
                 let evSpan = createElement('span', ev.color);
                 element.appendChild(evSpan);
             });
         }
     }
+    
 
     Calendar.prototype.getDayClass = function (day) {
         classes = ['day'];
@@ -176,105 +177,85 @@
         return classes.join(' ');
     }
 
-    Calendar.prototype.openDay = function (el) {
-        let details, arrow;
-        let dayNumber = +el.querySelectorAll('.day-number')[0].innerText || +el.querySelectorAll('.day-number')[0].textContent;
-        let day = this.current.clone().date(dayNumber);
+    // Inside the Calendar.prototype.openDay function, update the rendering of events:
 
-        let currentOpened = document.querySelector('.details');
+Calendar.prototype.openDay = function (el) {
+    let details, arrow;
+    let dayNumber = +el.querySelectorAll('.day-number')[0].innerText || +el.querySelectorAll('.day-number')[0].textContent;
+    let day = this.current.clone().date(dayNumber);
 
-        //Check to see if there is an open detais box on the current row
-        if (currentOpened && currentOpened.parentNode === el.parentNode) {
-            details = currentOpened;
-            arrow = document.querySelector('.arrow');
-        } else {
-            //Close the open events on differnt week row
-            //currentOpened && currentOpened.parentNode.removeChild(currentOpened);
-            if (currentOpened) {
-                currentOpened.addEventListener('webkitAnimationEnd', function () {
-                    currentOpened.parentNode.removeChild(currentOpened);
-                });
-                currentOpened.addEventListener('oanimationend', function () {
-                    currentOpened.parentNode.removeChild(currentOpened);
-                });
-                currentOpened.addEventListener('msAnimationEnd', function () {
-                    currentOpened.parentNode.removeChild(currentOpened);
-                });
-                currentOpened.addEventListener('animationend', function () {
-                    currentOpened.parentNode.removeChild(currentOpened);
-                });
-                currentOpened.className = 'details out';
-            }
+    let currentOpened = document.querySelector('.details');
 
-            //Create the Details Container
-            details = createElement('div', 'details in');
-
-            //Create the arrow
-            let arrow = createElement('div', 'arrow');
-
-            //Create the event wrapper
-
-            details.appendChild(arrow);
-            el.parentNode.appendChild(details);
+    // Check to see if there is an open details box on the current row
+    if (currentOpened && currentOpened.parentNode === el.parentNode) {
+        details = currentOpened;
+        arrow = document.querySelector('.arrow');
+    } else {
+        // Close the open events on different week row
+        if (currentOpened) {
+            currentOpened.parentNode.removeChild(currentOpened);
         }
 
-        let todaysEvents = this.events.reduce(function (memo, ev) {
-            if (ev.date.isSame(day, 'day')) {
-                memo.push(ev);
-            }
-            return memo;
-        }, []);
+        // Create the Details Container
+        details = createElement('div', 'details in');
 
-        this.renderEvents(todaysEvents, details);
+        // Create the arrow
+        let arrow = createElement('div', 'arrow');
 
-        arrow.style.left = el.offsetLeft - el.parentNode.offsetLeft + 27 + 'px';
+        // Create the event wrapper
+        let eventsWrapper = createElement('div', 'events');
+
+        details.appendChild(arrow);
+        details.appendChild(eventsWrapper);
+        el.parentNode.appendChild(details);
     }
 
-    Calendar.prototype.renderEvents = function (events, ele) {
-        //Remove any events in the current details element
-        let currentWrapper = ele.querySelector('.events');
-        let wrapper = createElement('div', 'events in' + (currentWrapper ? ' new' : ''));
+    let todaysEvents = this.events.filter(function (ev) {
+        // Filter events that match the clicked date
+        return moment(ev.date).isSame(day, 'day');
+    });
 
-        events.forEach(function (ev) {
-            let div = createElement('div', 'event');
-            let square = createElement('div', 'event-category ' + ev.color);
-            let span = createElement('span', '', ev.eventName);
+    this.renderEvents(todaysEvents, details);
+    arrow.style.left = el.offsetLeft - el.parentNode.offsetLeft + 27 + 'px';
+}
 
-            div.appendChild(square);
-            div.appendChild(span);
-            wrapper.appendChild(div);
-        });
+// Update the renderEvents method to populate event details correctly:
 
-        if (!events.length) {
-            let div = createElement('div', 'event empty');
-            let span = createElement('span', '', 'No Events');
+Calendar.prototype.renderEvents = function (events, ele) {
+    // Remove any events in the current details element
+    let currentWrapper = ele.querySelector('.events');
+    let wrapper = createElement('div', 'events in' + (currentWrapper ? ' new' : ''));
 
-            div.appendChild(span);
-            wrapper.appendChild(div);
-        }
+    events.forEach(function (ev) {
+        // Create event elements with event data
+        let div = createElement('div', 'event');
+        let square = createElement('div', 'event-category ' + ev.color);
+        let span = createElement('span', '', ev.eventName); // Use ev.eventName to display the event name
 
-        if (currentWrapper) {
-            currentWrapper.className = 'events out';
-            currentWrapper.addEventListener('webkitAnimationEnd', function () {
-                currentWrapper.parentNode.removeChild(currentWrapper);
-                ele.appendChild(wrapper);
-            });
-            currentWrapper.addEventListener('oanimationend', function () {
-                currentWrapper.parentNode.removeChild(currentWrapper);
-                ele.appendChild(wrapper);
-            });
-            currentWrapper.addEventListener('msAnimationEnd', function () {
-                currentWrapper.parentNode.removeChild(currentWrapper);
-                ele.appendChild(wrapper);
-            });
-            currentWrapper.addEventListener('animationend', function () {
-                currentWrapper.parentNode.removeChild(currentWrapper);
-                ele.appendChild(wrapper);
-            });
-        } else {
+        div.appendChild(square);
+        div.appendChild(span);
+        wrapper.appendChild(div);
+    });
+
+    if (!events.length) {
+        // Display a message when there are no events
+        let div = createElement('div', 'event empty');
+        let span = createElement('span', '', 'No Events');
+
+        div.appendChild(span);
+        wrapper.appendChild(div);
+    }
+
+    if (currentWrapper) {
+        currentWrapper.className = 'events out';
+        currentWrapper.addEventListener('animationend', function () {
+            currentWrapper.parentNode.removeChild(currentWrapper);
             ele.appendChild(wrapper);
-        }
+        });
+    } else {
+        ele.appendChild(wrapper);
     }
+}
 
     Calendar.prototype.drawLegend = function () {
         let legend = createElement('div', 'legend');
@@ -324,28 +305,28 @@
     let data = [
 
 
-        { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange' },
-        { eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'orange' },
-        { eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange' },
-        { eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'orange' },
+        { date: '2023-10-05',eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange' },
+        { date: '2023-10-05',eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'orange' },
+        { date: '2023-10-05',eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange' },
+        { date: '2023-10-05',eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'orange' },
     
-        { eventName: 'Game vs Portalnd', calendar: 'Personal', color: 'blue' },
-        { eventName: 'Game vs Houston', calendar: 'Personal', color: 'blue' },
-        { eventName: 'Game vs Denver', calendar: 'Personal', color: 'blue' },
-        { eventName: 'Game vs San Degio', calendar: 'Personal', color: 'blue' },
+        { date: '2023-10-05',eventName: 'Game vs Portalnd', calendar: 'Personal', color: 'blue' },
+        { date: '2023-10-05',eventName: 'Game vs Houston', calendar: 'Personal', color: 'blue' },
+        { date: '2023-10-05',eventName: 'Game vs Denver', calendar: 'Personal', color: 'blue' },
+        { date: '2023-10-05',eventName: 'Game vs San Degio', calendar: 'Personal', color: 'blue' },
     
-        { eventName: 'School Play', calendar: 'kids', color: 'yellow' },
-        { eventName: 'Parent/Teacher Conference', calendar: 'kids', color: 'yellow' },
-        { eventName: 'Pick up from Soccer Practice', calendar: 'kids', color: 'yellow' },
-        { eventName: 'Ice Cream Night', calendar: 'kids', color: 'yellow' },
+        {date: '2023-10-05', eventName: 'School Play', calendar: 'kids', color: 'yellow' },
+        { date: '2023-10-05',eventName: 'Parent/Teacher Conference', calendar: 'kids', color: 'yellow' },
+        { date: '2023-10-05',eventName: 'Pick up from Soccer Practice', calendar: 'kids', color: 'yellow' },
+        { date: '2023-10-05',eventName: 'Ice Cream Night', calendar: 'kids', color: 'yellow' },
     
-        { eventName: 'Free Tamale Night', calendar: 'other', color: 'green' },
-        { eventName: 'Bowling Team', calendar: 'other', color: 'green' },
-        { eventName: 'Teach Kids to Code', calendar: 'other', color: 'green' },
-        { eventName: 'Startup Weekend', calendar: 'other', color: 'green' }
+        { date: '2023-10-05',eventName: 'Free Tamale Night', calendar: 'other', color: 'green' },
+        { date: '2023-10-05',eventName: 'Bowling Team', calendar: 'other', color: 'green' },
+        { date: '2023-10-05',eventName: 'Teach Kids to Code', calendar: 'other', color: 'green' },
+        { date: '2023-10-05',eventName: 'Startup Weekend', calendar: 'other', color: 'green' }
     ];
 
-
+    
     fetch('http://localhost:3000/agenda/agendaDetail', {
         method: 'GET',
         headers: {
@@ -354,31 +335,25 @@
     })
         .then(response => response.json())
         .then(agendaDatas => {
-            
-
-            data.forEach(particularData => {
-                agendaDatas.forEach(agendaData=> {
-                    particularData.eventName = agendaData.appointmentName
-                    particularData.calendar = agendaData.appointmentType
-                    
-                })
-                
-                
-            })
-            console.log(data)
+            console.log(agendaDatas);
+            data = data.slice(0, agendaDatas.length)
+            data.forEach((particularData, i) => {
+                if (agendaDatas[i]) {
+                    particularData.eventName = agendaDatas[i].appointmentName;
+                    particularData.calendar = agendaDatas[i].appointmentType;
+                    particularData.date = agendaDatas[i].appointmentDate;
+                }
+            });
+            console.log(data);
+            function addDate(ev) {
+        
+            }
+        
+            let calendar = new Calendar('#calendar', data);
         })
         .catch(error => {
             console.error('Fetch error:', error);
         });
 
-
-
-
-
-    function addDate(ev) {
-
-    }
-
-    let calendar = new Calendar('#calendar', data);
-
 }();
+

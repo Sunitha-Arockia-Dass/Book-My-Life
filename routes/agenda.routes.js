@@ -8,22 +8,24 @@ const {
   profileFindbyId,
   isHealthyBmi,
   optimalWeight,
+  isAuthenticated
 } = require("../middleware/functions");
 
 /*////////////////////////////////////////////////////////////// 
 GET HOME PAGE
  */
-router.get("/agenda", (req, res, next) => {
-  const user = req.session.currentUser;
-  const userId = user._id;
-  profileFindbyId(selectedProfileId).then((foundProfile) => {
-    const profileName = foundProfile.name;
+// router.get("/agenda", (req, res, next) => {
+//   const user = req.session.currentUser;
+//   const userId = user._id;
+//   // const selectedProfileId =req.session.selectedProfileId
+//   profileFindbyId(selectedProfileId).then((foundProfile) => {
+//     const profileName = foundProfile.name;
 
-    Appointment.find({ profileName: profileName }).then((foundAppointment) => {
-      res.render("agenda/agendaDetails", { appt: foundAppointment });
-    });
-  });
-});
+//     Appointment.find({ profileName: profileName }).then((foundAppointment) => {
+//       res.render("agenda/agendaDetails", { appt: foundAppointment });
+//     });
+//   });
+// });
 
 router.get("/agenda/:id", (req, res, next) => {
   const selectedProfileId = req.params.id;
@@ -32,7 +34,7 @@ router.get("/agenda/:id", (req, res, next) => {
   profileFindbyId(selectedProfileId).then((foundProfile) => {
     const profileName = foundProfile.name;
 
-    Appointment.find({ profileName: profileName }).then((foundAppointment) => {
+    Appointment.find({ user: userId }).then((foundAppointment) => {
       res.render("agenda/agendaDetails", {
         appt: foundAppointment,
         id: selectedProfileId,
@@ -71,7 +73,7 @@ router.post("/agendaCreate/:id", (req, res, next) => {
       profileName: profileName,
       user: userId,
     }).then((createdAppt) => {
-      Appointment.find({ profileName: profileName })
+      Appointment.find({ user: userId })
         .sort({ appointmentDate: 1 })
         .then((appointments) => {
           res.render("agenda/agendaDetails", {
@@ -83,7 +85,9 @@ router.post("/agendaCreate/:id", (req, res, next) => {
   });
 });
 router.get("/agendaDetail", (req, res, next) => {
-  Appointment.find().then((foundAppointment) => {
+  const user = req.session.currentUser;
+  const userId = user._id
+  Appointment.find({user:userId}).then((foundAppointment) => {
     res.json(foundAppointment);
   });
 });
@@ -132,7 +136,7 @@ router.post("/agendaUpdate/:id", (req, res, next) => {
     },
     { new: true }
   ).then((createdAppt) => {
-    Appointment.find({ profileName: profileName })
+    Appointment.find({ user: userId })
       .sort({ appointmentDate: 1 })
       .then((appointments) => {
         res.render("agenda/agendaDetails", {

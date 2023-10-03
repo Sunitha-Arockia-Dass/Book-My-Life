@@ -160,8 +160,8 @@ async function fetchRecipesData() {
 
 const fetchBmiReferenceData = async () => {
   try {
-    const boysData = await axios.get("http://localhost:8000/boys");
-    const girlsData = await axios.get("http://localhost:8000/girls");
+    const boysData = await axios.get("https://erin-adorable-barracuda.cyclic.cloud/boys");
+    const girlsData = await axios.get("https://erin-adorable-barracuda.cyclic.cloud/girls");
     return { boysData, girlsData };
   } catch (error) {
     console.error("Error fetching bmi data:", error);

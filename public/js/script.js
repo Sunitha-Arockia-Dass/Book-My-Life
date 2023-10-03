@@ -3,10 +3,15 @@ const agendaDetails = document.querySelectorAll(".details-app");
 
 agendaInfoList.forEach((agendaInfo, index) => {
   agendaInfo.addEventListener("click", (event) => {
-    agendaDetails.forEach((agendaDetail) => {
-      agendaDetail.style.display = "none";
-    });
-    agendaDetails[index].style.display = "block";
+    if (agendaDetails[index].style.display === "block") {
+      agendaDetails[index].style.display = "none";
+    } else {
+      agendaDetails.forEach((agendaDetail) => {
+        agendaDetail.style.display = "none";
+      });
+
+      agendaDetails[index].style.display = "block";
+    }
   });
 });
 
