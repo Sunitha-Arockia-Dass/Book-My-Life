@@ -7,7 +7,6 @@ const Profile = require("../models/Profile.model");
 const {
   storeProfileId,
   calculateAge,
-  profileFindbyId,
   isHealthyBmi,
   optimalWeight,
   dateFormatted,
@@ -21,17 +20,11 @@ const {
 /*////////////////////////////////////////////////////////////// 
 GET HEALTHIFY HOME PAGE
  */
-router.get("/health/:id", isLoggedIn,(req, res, next) => {
-  const selectedProfileId = req.params.id;
-  const profile = profileFindbyId(selectedProfileId).then((foundProfile) => {
-    res.render("health/healthHome", { profile: foundProfile });
-  });
-});
-
 router.get("/healthDetail/:id",isLoggedIn, (req, res, next) => {
   const selectedProfileId = req.params.id;
-  profileFindbyId(selectedProfileId).then((profile) => {
-    const dob = profile.dateOfBirth;
+    Profile.findById(selectedProfileId)
+    .then(profile=>{
+  const dob = profile.dateOfBirth;
     const age = calculateAge(dob);
     const isAdult = age > 20;
     Data.find({ profile: selectedProfileId }).then((profileDatas) => {
@@ -51,12 +44,23 @@ router.get("/healthDetail/:id",isLoggedIn, (req, res, next) => {
     });
   });
 });
+
+router.get("/health/:id", isLoggedIn,(req, res, next) => {
+  const selectedProfileId = req.params.id;
+  Profile.findById(selectedProfileId)
+  .then(foundProfile=>{
+  res.render("health/healthHome", { profile: foundProfile });
+  });
+});
+
+
 router.post("/health/:id",isLoggedIn, async (req, res, next) => {
   const { height, weight } = req.body;
   const heightInMeters = height / 100;
   const selectedProfileId = req.params.id;
-  const profile = profileFindbyId(selectedProfileId).then((foundProfile) => {
-    const profileName = foundProfile.name;
+    Profile.findById(selectedProfileId)
+    .then(foundProfile=>{  
+  const profileName = foundProfile.name;
     const BMI = (weight / (heightInMeters * heightInMeters)).toFixed(1);
     const currentWeight = isHealthyBmi(BMI);
     const optimalWeightToBe = optimalWeight(
