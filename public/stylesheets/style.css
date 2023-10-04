@@ -474,7 +474,7 @@ nav.back-Forward svg {
   max-width: 1300px;
   background-color: var(--white);
   border-radius: 10px 30px 10px 30px;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .wrapper .left,
@@ -558,6 +558,41 @@ nav.back-Forward svg {
 #v-container {
   width: 80%;
   height: 100%;
+}
+
+/*profile detail page */
+.name-age {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-vignette2 {
+  width: 200px;
+  height: 200px;
+}
+
+.profile-vignette2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px 30px 10px 30px;
+  border: 5px solid var(--plumdark);
+  background: linear-gradient(
+    180deg,
+    var(--plumd) 25%,
+    var(--plumm) 50%,
+    var(--pluml) 75%
+  );
+}
+
+.profile-details {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /*/////////////////////////////////
@@ -854,6 +889,140 @@ hr.appointment {
 }
 
 /*/////////////////////////////////
+ BMI Page */
+ .profile-container2 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 99%;
+  height: 99%;
+  margin: auto;
+}
+
+/*chart bmi*/
+.profile-vignette-BMI {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 500px;
+  width: 95%;
+  max-width: 1200px;
+
+  margin: 15px auto; 
+  border-radius: 10px 30px 10px 30px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: var(--white);
+  border: 5px solid var(--plumm)
+}
+
+.one-profile-BMI {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+/* calculate bmi btn*/
+.profile-vignette-BMI2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 250px;
+  width: 25%;
+  max-width: 500px;
+  height: 50%;
+  max-height: 500px; 
+  margin: auto;
+}
+.form-BMI {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 98%;
+  width: 98%;
+}
+
+.form-BMI form{
+  width: 100%;
+  padding-bottom: 0;
+}
+
+.form-BMI form.form-btn button{
+  height: 100%;
+  border: 5px solid var(--plumm)
+}
+
+/* display current bmi*/
+.profile-vignette-BMI3 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 500px;
+  width: 50%;
+  max-width: 600px;
+  min-height: 250px;
+  height: 50%;
+  max-height: 400px;
+  margin:auto;
+}
+
+.frame-BMI3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 98%;
+  width: 98%;
+  margin: auto;
+  border-radius: 10px 30px 10px 30px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: var(--pluml);
+  border: 5px solid var(--plumm)
+}
+
+/*diet proposition*/
+.profile-vignette-BMI4 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 250px;
+  width: 25%;
+  max-width: 500px;
+  height: 50%;
+  max-height: 500px; 
+  margin: auto;
+}
+
+.frame-BMI4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.frame-BMI4 form{
+  width: 100%;
+  height: 33.33%;
+  padding-bottom: 0;
+}
+
+.frame-BMI4 form.form-btn button{
+  height: 100%;
+  border: 5px solid var(--plumm);
+}
+
+
+
+
+/*/////////////////////////////////
  Recipe Page */
 
 .right .embed-page-recipe {
@@ -877,7 +1046,7 @@ img.recipe-img {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  opacity: 0.5;
+  opacity: 0.7;
   border-radius: 10px 0px 0px 30px;
   border: solid 5px var(--plumdark);
 }
@@ -904,19 +1073,18 @@ div#nutrition {
   left: 5%;
 }
 
-div#nutrition2{
+div#nutrition2 {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-.size-chart{
+.size-chart {
   min-width: 300px;
   width: 80%;
   max-width: 400px;
 }
-
 
 /*/////////////////////////////////
  CAROUSSEL */

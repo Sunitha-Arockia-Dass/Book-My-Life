@@ -10,7 +10,7 @@
 
 <h3>App deployed with Cyclic : <a href="">Here</a></h3>
 
-<h3>JSON server for recipies : <a href="https://erin-adorable-barracuda.cyclic.cloud/">Here</a></h3>
+<h3>JSON server for recipies : <a href="https://ochre-dibbler-hem.cyclic.cloud/">Here</a></h3>
 
 <h1>Introduction</h1>
 <h2>Technical Requirements Your app must:</h2>

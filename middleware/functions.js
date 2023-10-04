@@ -153,7 +153,7 @@ async function fetchRecipesData() {
   const recipes = [];
   try {
     const response = await axios.get(
-      "https://ochre-dibbler-hem.cyclic.cloud/recipes"
+      "https://crowded-erin-seahorse.cyclic.app/recipes"
     );
     recipes.push(...response.data);
     console.log("Recipe data fetched and populated.");
@@ -165,8 +165,8 @@ async function fetchRecipesData() {
 
 const fetchBmiReferenceData = async () => {
   try {
-    const boysData = await axios.get("https://ochre-dibbler-hem.cyclic.cloud/boys");
-    const girlsData = await axios.get("https://ochre-dibbler-hem.cyclic.cloud/girls");
+    const boysData = await axios.get("https://crowded-erin-seahorse.cyclic.app/boys");
+    const girlsData = await axios.get("https://crowded-erin-seahorse.cyclic.app/girls");
     return { boysData, girlsData };
   } catch (error) {
     console.error("Error fetching bmi data:", error);
