@@ -17,6 +17,7 @@ const {
   findCategory,
   isLoggedIn
 } = require("../middleware/functions");
+
 /*////////////////////////////////////////////////////////////// 
 GET HEALTHIFY HOME PAGE
  */
