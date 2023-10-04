@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-
+const fileUploader = require('../config/cloudinary.config')
 // Profile schema
 const Profile = require("../models/Profile.model");
 const Data = require("../models/data.model");
 const {
   storeProfileId,
-  calculateAge,profileFindbyId,isLoggedOut,isLoggedIn}=require("../middleware/functions")
+  calculateAge,isLoggedOut,isLoggedIn}=require("../middleware/functions")
 
 
 
@@ -36,9 +36,10 @@ router.get("/profileCreate", isLoggedIn, (req, res, next) => {
 /*////////////////////////////////////////////////////////////// 
 POST NEW PROFILE FORM
  */
-router.post("/profile",isLoggedIn, (req, res) => {
-  const { name,dob,gender, profilePicture } = req.body;
-
+router.post("/profile",fileUploader.single('profilePicture'),isLoggedIn, (req, res) => {
+  const { name,dob,gender } = req.body;
+const profilePicture= req.file.path 
+console.log(req.file)
   const user = req.session.currentUser;
   const userId = user._id;
   if (name === "" || dob === "") {
@@ -49,7 +50,7 @@ router.post("/profile",isLoggedIn, (req, res) => {
     return;
   }
   // create the profile
-  if (profilePicture === "") {
+  if (!profilePicture ) {
     Profile.create({ name,dateOfBirth:dob,gender,user: userId })
       .then((createdProfile) => {
         res.redirect("/profile/profile");
@@ -71,22 +72,27 @@ router.post("/profile",isLoggedIn, (req, res) => {
 /*////////////////////////////////////////////////////////////// 
 GET UPDATE A PROFILE PAGE
  */
-router.get("/profileUpdate/:id", isLoggedIn,isLoggedIn, (req, res, next) => {
+router.get("/profileUpdate/:id", isLoggedIn, (req, res, next) => {
   const profileId = req.params.id;
-  profileFindbyId(profileId).then((profile) => {
-    res.render("profile/profileUpdate", { profileId, profile: profile });
+    Profile.findById(profileId)
+    .then(profile=>{
+
+  res.render("profile/profileUpdate", { profileId, profile: profile });
   });
 });
 
 /*////////////////////////////////////////////////////////////// 
 POST UPDATE A PROFILE FORM
  */
-router.post("/profileUpdate/:id",isLoggedIn, isLoggedIn, (req, res, next) => {
+router.post("/profileUpdate/:id",fileUploader.single('profilePicture'),isLoggedIn, (req, res, next) => {
   const profileId = req.params.id;
-  const { name, age, profilePicture } = req.body;
+  const { name, age } = req.body;
+  const profilePicture= req.file.path 
   if (name === "" || age === "") {
-    profileFindbyId(profileId).then((profile) => {
-      res.render("profile/profileUpdate", {
+      Profile.findById(profileId)
+      .then(profile=>{
+  
+    res.render("profile/profileUpdate", {
         profileId,
         profile: profile,
         errorMessage:
@@ -112,7 +118,7 @@ router.post("/profileUpdate/:id",isLoggedIn, isLoggedIn, (req, res, next) => {
 /*////////////////////////////////////////////////////////////// 
 GET DELETE A PROFILE
  */
-router.get("/profileDelete/:id",isLoggedIn, isLoggedIn, (req, res, next) => {
+router.get("/profileDelete/:id",isLoggedIn, (req, res, next) => {
   const profileId = req.params.id;
   Profile.findByIdAndDelete(profileId)
     .then((updatedProfile) => {

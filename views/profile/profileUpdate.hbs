@@ -26,7 +26,7 @@
             {{# with profile}}
             <div id="form">
               <h2>Update Member</h2>
-              <form class="form-btn" action="/profile/profileUpdate/{{id}}" method="POST">
+              <form class="form-btn" action="/profile/profileUpdate/{{id}}" method="POST" enctype="multipart/form-data">
 
                 <label> Name
                   <input type="text" name="name" value="{{name}}" />
@@ -52,7 +52,7 @@
                 <br /><br />
 
                 <label> Profile Picture
-                  <input type="text" name="profilePicture" value={{profilePicture}} />
+                  <input type="file" name="profilePicture" value={{profilePicture}} />
                 </label>
                 <br><br>
 

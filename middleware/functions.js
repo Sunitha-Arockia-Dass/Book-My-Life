@@ -7,35 +7,19 @@ const isAuthenticated = (req, res, next) => {
 };
 
 const isLoggedIn = (req, res, next) => {
-  // res.locals.isLoggedIn =true
+  
   if (!req.session.currentUser) {
-    res.locals.isLoggedIn = false;
-    res.locals.isLoggedOut = false;
-
-    res.locals.isLoggedOut = true;
     return res.redirect("/auth/login");
   } else {
-    const userId = req.session.currentUser._id;
-    Profile.find({ user: userId })
-      .then((foundProfile) => {
-        res.locals.isLoggedIn = true;
-        res.locals.profile = foundProfile;
+    
         next();
-      })
-      .catch((error) => {
-        console.log("error while finding profiles:", error);
-        res.locals.profile = null;
-        next();
-      });
+   
   }
 };
 const isLoggedOut = (req, res, next) => {
-  // if an already logged in user tries to access the login page it
-  // redirects the user to the home page
+  
   if (req.session.currentUser) {
-    res.locals.isLoggedIn = true;
-    res.locals.isLoggedOut = true;
-    console.log("User is logged in", res.locals.isLoggedIn);
+    
     return res.redirect("/");
   }
   next();
@@ -60,7 +44,6 @@ const calculateAge = (dateOfBirth) => {
   const birthMonth = birthDate.getMonth();
   const currentMonth = today.getMonth();
 
-  // If the birthdate hasn't occurred this year yet, subtract 1 from the age
   if (
     currentMonth < birthMonth ||
     (currentMonth === birthMonth && today.getDate() < birthDate.getDate())
@@ -73,12 +56,11 @@ const calculateAge = (dateOfBirth) => {
 
 const calculateAgeInMonths = (dob) => {
   const currentDate = new Date();
-  dob = new Date(dob); // Parse the DOB into a Date object
+  dob = new Date(dob); 
 
   const yearsDiff = currentDate.getFullYear() - dob.getFullYear();
   const monthsDiff = currentDate.getMonth() - dob.getMonth();
 
-  // Calculate the total age in months
   const ageInMonths = yearsDiff * 12 + monthsDiff;
 
   return ageInMonths;
@@ -92,7 +74,6 @@ const profileFindbyId = (profileId) => {
       }
       console.log(foundProfile);
       return foundProfile;
-      //res.render("auth/userUpdate",{userId,user:foundUser})
     })
     .catch((error) => {
       console.log("error while finding profile by id:", error);
@@ -135,15 +116,12 @@ const optimalWeight = (currentWeight, BMI, weight) => {
 };
 
 function dateFormatted(dateString) {
-  // Create a new Date object from the input date string
   const date = new Date(dateString);
 
-  // Extract the components of the date
   const day = date.getDate();
   const month = date.toLocaleString("default", { month: "short" });
   const year = date.getFullYear();
 
-  // Construct the human-readable date string
   const formattedDate = `${month} ${day}, ${year}`;
 
   return formattedDate;
@@ -153,7 +131,7 @@ async function fetchRecipesData() {
   const recipes = [];
   try {
     const response = await axios.get(
-      "https://ochre-dibbler-hem.cyclic.cloud/recipes"
+      "  http://localhost:8000/recipes"
     );
     recipes.push(...response.data);
     console.log("Recipe data fetched and populated.");
@@ -165,8 +143,8 @@ async function fetchRecipesData() {
 
 const fetchBmiReferenceData = async () => {
   try {
-    const boysData = await axios.get("https://ochre-dibbler-hem.cyclic.cloud/boys");
-    const girlsData = await axios.get("https://ochre-dibbler-hem.cyclic.cloud/girls");
+    const boysData = await axios.get("http://localhost:8000/boys");
+    const girlsData = await axios.get("http://localhost:8000/girls");
     return { boysData, girlsData };
   } catch (error) {
     console.error("Error fetching bmi data:", error);
@@ -199,6 +177,8 @@ const findCategory = (percentile) => {
 const findPercentile = async (gender, ageMonths, bmi) => {
   try {
     const response = await fetchBmiReferenceData();
+    // console.log("response.boysData:",response.boysData)
+    // console.log("response.girlsData:",response.girlsData)
     let bmiData;
     if (gender === "male") {
       bmiData = response.boysData.data;
@@ -206,9 +186,11 @@ const findPercentile = async (gender, ageMonths, bmi) => {
       bmiData = response.girlsData.data;
     }
     const ageIndex = bmiData.ageMonths.indexOf(ageMonths);
+    console.log("ageIndex",ageIndex)
     if (ageIndex === -1) {
       return null;
     }
+
     const bmiPercentile1 = bmiData.percentile.first[ageIndex];
     const bmiPercentile3 = bmiData.percentile.third[ageIndex];
     const bmiPercentile5 = bmiData.percentile.fifth[ageIndex];
@@ -259,7 +241,7 @@ const findPercentile = async (gender, ageMonths, bmi) => {
         percentile = 99;
         break;
     }
-    return percentile; // Make sure this is the actual value you want to return
+    return percentile; 
   } catch (error) {
     console.error("Error fetching BMI data:", error);
     throw error;

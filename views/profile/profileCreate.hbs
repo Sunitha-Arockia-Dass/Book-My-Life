@@ -23,7 +23,7 @@
         <div id="vignette">
           <div id="v-container">
             <h2>Add a Member</h2>
-            <form class="form-btn" action="/profile/profile" method="POST">
+            <form class="form-btn" action="/profile/profile" method="POST" enctype="multipart/form-data">
 
               <label>
                 Name
@@ -49,7 +49,7 @@
 
               <label>
                 Profile Picture
-                <input type="text" name="profilePicture" placeholder="Your picture's url" />
+                <input type="file" name="profilePicture" placeholder="Your picture's url" />
               </label>
               <br /><br />
 
