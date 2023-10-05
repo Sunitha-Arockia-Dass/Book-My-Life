@@ -430,7 +430,7 @@ function dateFormatted(dateString) {
     },
   ];
 
-  fetch("http://localhost:3000/agenda/agendaDetail", {
+  fetch("https://kind-pink-iguana-gown.cyclic.app/agenda/agendaDetail", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

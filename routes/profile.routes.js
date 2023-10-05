@@ -38,7 +38,6 @@ router.post(
   isLoggedIn,
   (req, res) => {
     const { name, dob, gender } = req.body;
-    const profilePicture = req.file.path;
     const user = req.session.currentUser;
     const userId = user._id;
     if (name === "" || dob === "") {
@@ -49,7 +48,7 @@ router.post(
       return;
     }
     // create the profile
-    if (!profilePicture) {
+    if (!req.file) {
       Profile.create({ name, dateOfBirth: dob, gender, user: userId })
         .then((createdProfile) => {
           res.redirect("/profile/profile");
@@ -58,6 +57,7 @@ router.post(
           console.log("error while creating profile:", error);
         });
     } else {
+      const profilePicture = req.file.path;
       Profile.create({
         name,
         dateOfBirth: dob,
@@ -95,7 +95,6 @@ router.post(
   (req, res, next) => {
     const profileId = req.params.id;
     const { name, age } = req.body;
-    const profilePicture = req.file.path;
     if (name === "" || age === "") {
       Profile.findById(profileId).then((profile) => {
         res.render("profile/profileUpdate", {
@@ -108,17 +107,34 @@ router.post(
 
       return;
     }
-    Profile.findByIdAndUpdate(
-      profileId,
-      { name, age, profilePicture },
-      { new: true }
-    )
-      .then((updatedProfile) => {
-        res.redirect("/profile/profile");
-      })
-      .catch((error) => {
-        console.log("error while updating profiles:", error);
-      });
+    if(req.file){
+      const profilePicture = req.file.path;
+
+      Profile.findByIdAndUpdate(
+        profileId,
+        { name, age, profilePicture },
+        { new: true }
+        )
+        .then((updatedProfile) => {
+          res.redirect("/profile/profile");
+        })
+        .catch((error) => {
+          console.log("error while updating profiles:", error);
+        });
+      }
+      else{
+        Profile.findByIdAndUpdate(
+        profileId,
+        { name, age },
+        { new: true }
+        )
+        .then((updatedProfile) => {
+          res.redirect("/profile/profile");
+        })
+        .catch((error) => {
+          console.log("error while updating profiles:", error);
+        });
+      }
   }
 );
 
