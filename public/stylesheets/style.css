@@ -651,6 +651,63 @@ nav.back-Forward svg {
 
 /*index animation right */
 
+.presentation2{
+  padding: 40px 25px 0px 25px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.accroche{
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.pres-img, .pres-txt{
+  width: 50%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pres-txt {
+  border-radius: 10px 30px;
+  padding: 10px;
+  border: 3px solid var(--pluml)
+}
+
+.pres-img img{
+  width: auto;
+  height: 100%;  
+}
+
+.pres-center{
+  border-radius: 10px 30px;
+  padding: 10px;
+  border: 3px solid var(--plumm)
+}
+
+.pres-center article.pres {
+  display: inline;
+  padding: 0 2px;
+  border-radius: 30px 10px;
+  background-color: var(--plumm);
+}
+
+.pres-center article.citrine {
+  color: var(--citrine);
+}
+
+.pres-links p {
+  padding-bottom: 15px;
+}
+
 
 /*profile detail page */
 .name-age {

@@ -51,8 +51,55 @@
 
     <div class="right">
 
-      <div class="presentation">
+      <div class="presentation2">
+
+        <!-- what our app do for you -->
+        <div class="accroche">
+          <div class="pres-img">
+            <img src="/images/heroes.png" alt="all heroes don't wear a caps">
+          </div>
+          <div class="pres-txt">
+            <h2 class="fs-4">But they all have an app they can count on!</h2>
+          </div>
+        </div>
+
+        <div class="pres-center">
+          <article class="fs-5">Take care of the<span class="fw-bold">
+              <article class="pres">H</article>ealth
+            </span> of each member of your family.
+            <br><span class="fw-bold">
+              <article class="pres">E</article>nhance
+            </span> your family organisation with our <span class="fw-bold">
+              <article class="pres">A</article>genda
+            </span>.
+            <br>Improve your <span class="fw-bold">
+              <article class="pres">L</article>ifestyle
+            </span> with our nutritional
+            advices for common, vegetarian and vegan diets.
+            <br><span class="fw-bold">
+              <article class="pres citrine">T</article>rack
+            </span> your Body Mass Index.
+            <br><br>One <span class="fw-bold">
+              <article class="pres citrine">H</article>ub
+            </span> to succeed your objectives, your New Year's resolutions and your summer body goals!
+          <br></article>
+        </div>
+
+        <!-- login and signup links -->
        
+        <div class="pres-links">
+           {{#unless isAuthenticated}}
+          <form class="form-btn" action="/auth/signup" method="GET">
+            <button id="paleo" type="submit">
+              <span class="fs-6">Sign Up</span>
+            </button>
+          </form>
+
+          <p class="fst-italic">or <a id="form" href="/auth/login">login</a></p>
+          {{/unless}}
+        </div>
+       
+
 
       </div>
     </div>
