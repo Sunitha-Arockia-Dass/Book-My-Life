@@ -5,18 +5,17 @@ const router = express.Router();
 const Data = require("../models/data.model");
 const Profile = require("../models/Profile.model");
 const {
-  storeProfileId,
   calculateAge,
   isHealthyBmi,
   optimalWeight,
-  dateFormatted,
   fetchRecipesData,
   fetchBmiReferenceData,
   findPercentile,
   calculateAgeInMonths,
   findCategory,
-  isLoggedIn
 } = require("../middleware/functions");
+const {isLoggedIn}=require("../middleware/route-guard")
+
 
 /*////////////////////////////////////////////////////////////// 
 GET HEALTHIFY HOME PAGE

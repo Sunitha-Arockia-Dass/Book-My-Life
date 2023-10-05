@@ -1,35 +1,13 @@
 const Profile = require("../models/Profile.model");
 const axios = require("axios");
 
-const isAuthenticated = (req, res, next) => {
-  res.locals.isAuthenticated = !!req.session.currentUser;
-  next();
-};
 
-const isLoggedIn = (req, res, next) => {
-  
-  if (!req.session.currentUser) {
-    return res.redirect("/auth/login");
-  } else {
-    
-        next();
-   
-  }
-};
-const isLoggedOut = (req, res, next) => {
-  
-  if (req.session.currentUser) {
-    
-    return res.redirect("/");
-  }
-  next();
-};
 const storeProfileId = (req, res, next) => {
   const profileId = req.params.id;
   req.session.selectedProfileId = profileId;
   next();
 };
-function agendaSelectedProfileId(req, res, next) {
+const agendaSelectedProfileId=(req, res, next) =>{
   const selectedProfileId = req.body.selectedProfileId;
   req.locals = req.locals || {};
   req.locals.selectedProfileId = selectedProfileId;
@@ -66,19 +44,6 @@ const calculateAgeInMonths = (dob) => {
   return ageInMonths;
 };
 
-const profileFindbyId = (profileId) => {
-  return Profile.findById(profileId)
-    .then((foundProfile) => {
-      if (!foundProfile) {
-        console.log("foundUser not found");
-      }
-      console.log(foundProfile);
-      return foundProfile;
-    })
-    .catch((error) => {
-      console.log("error while finding profile by id:", error);
-    });
-};
 
 const isHealthyBmi = (BMI) => {
   let currentWeight;
@@ -115,23 +80,13 @@ const optimalWeight = (currentWeight, BMI, weight) => {
   }
 };
 
-function dateFormatted(dateString) {
-  const date = new Date(dateString);
 
-  const day = date.getDate();
-  const month = date.toLocaleString("default", { month: "short" });
-  const year = date.getFullYear();
 
-  const formattedDate = `${month} ${day}, ${year}`;
-
-  return formattedDate;
-}
-
-async function fetchRecipesData() {
+  const fetchRecipesData=async()=> {
   const recipes = [];
   try {
     const response = await axios.get(
-      "  https://ochre-dibbler-hem.cyclic.cloud/recipes"
+      "https://crowded-erin-seahorse.cyclic.app/recipes"
     );
     recipes.push(...response.data);
     console.log("Recipe data fetched and populated.");
@@ -143,8 +98,8 @@ async function fetchRecipesData() {
 
 const fetchBmiReferenceData = async () => {
   try {
-    const boysData = await axios.get("https://ochre-dibbler-hem.cyclic.cloud/boys");
-    const girlsData = await axios.get("https://ochre-dibbler-hem.cyclic.cloud/girls");
+    const boysData = await axios.get("https://crowded-erin-seahorse.cyclic.app/boys");
+    const girlsData = await axios.get("https://crowded-erin-seahorse.cyclic.app/girls");
     return { boysData, girlsData };
   } catch (error) {
     console.error("Error fetching bmi data:", error);
@@ -177,8 +132,6 @@ const findCategory = (percentile) => {
 const findPercentile = async (gender, ageMonths, bmi) => {
   try {
     const response = await fetchBmiReferenceData();
-    // console.log("response.boysData:",response.boysData)
-    // console.log("response.girlsData:",response.girlsData)
     let bmiData;
     if (gender === "male") {
       bmiData = response.boysData.data;
@@ -251,14 +204,9 @@ const findPercentile = async (gender, ageMonths, bmi) => {
 module.exports = {
   storeProfileId,
   calculateAge,
-  profileFindbyId,
   isHealthyBmi,
   optimalWeight,
-  dateFormatted,
   fetchRecipesData,
-  isLoggedIn,
-  isLoggedOut,
-  isAuthenticated,
   fetchBmiReferenceData,
   findPercentile,
   calculateAgeInMonths,
