@@ -223,6 +223,46 @@ form label {
   padding: 0 0 10px 10px;
 }
 
+/*Date Picker */
+::-webkit-datetime-edit {}
+::-webkit-datetime-edit-fields-wrapper {}
+::-webkit-datetime-edit-text {color: var(--pluml)}
+::-webkit-datetime-edit-month-field {}
+::-webkit-datetime-edit-day-field {}
+::-webkit-datetime-edit-year-field {}
+::-webkit-inner-spin-button {color: var(--pluml)}
+::-webkit-calendar-picker-indicator {background-color: var(--pluml); border-radius: 12px 4px; padding: 4px;}
+
+/* arrows */
+
+select {
+/* Removes the default <select> styling */
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+
+background: transparent;
+  background-image: url("/images/Arrow-down.png"); 
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: 50%;  
+}
+
+select:focus {
+  background: transparent;
+  background-image: url("/images/Arrow-up.png"); 
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: 50%; 
+}
+
+/* number input */
+
+
+/*global input*/
+
 form input,
 form select {
   display: inline-block;
@@ -239,6 +279,7 @@ select:focus {
   outline: none;
   box-shadow: 2px 2px 4px var(--pluml);
 }
+
 
 a#form:link,
 a#form:visited {
@@ -324,6 +365,21 @@ form.form-btn button:hover span {
 
 form.form-btn button:active {
   transform: translate(5px, 5px);
+}
+
+/*/////////////////////////////////
+Cloudinary button */
+input[type=file]::file-selector-button {
+  border: none;
+  font-weight: 500;
+  padding: 0px 15px 0px 5px;
+  border-radius: 15px 5px;
+  background-color: var(--pluml);
+  transition: 1s;
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: var(--plumm);
 }
 
 /*/////////////////////////////////
@@ -559,6 +615,42 @@ nav.back-Forward svg {
   width: 80%;
   height: 100%;
 }
+
+/*index animation left */
+/* subtle zoom to attention and then back */
+.pop-outin {
+  animation: 5s anim-popoutin ease;
+}
+
+@keyframes anim-popoutin {
+  0% {
+    color: var(--pluml);
+    transform: scale(0);
+    opacity: 0;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  25% {
+    color: var(--citrine);
+    transform: scale(5);
+    opacity: 1;
+    text-shadow: 3px 10px 5px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    color: var(--pluml);
+    transform: scale(1);
+    opacity: 1;
+    text-shadow: 1px 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    /* animate nothing to add pause at the end of animation */
+    transform: scale(1);
+    opacity: 1;
+    text-shadow: 1px 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+/*index animation right */
+
 
 /*profile detail page */
 .name-age {
@@ -890,7 +982,7 @@ hr.appointment {
 
 /*/////////////////////////////////
  BMI Page */
- .profile-container2 {
+.profile-container2 {
   display: flex;
   flex-wrap: wrap;
   width: 99%;
@@ -906,20 +998,20 @@ hr.appointment {
   align-items: center;
   text-align: center;
   min-width: 500px;
-  width: 95%;
-  max-width: 1200px;
-
-  margin: 15px auto; 
+  width: 98%;
+  max-width: 1200px; 
+  margin: 15px auto;
   border-radius: 10px 30px 10px 30px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   background-color: var(--white);
-  border: 5px solid var(--plumm)
+  border: 5px solid var(--plumm);
 }
 
 .one-profile-BMI {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 
@@ -930,11 +1022,11 @@ hr.appointment {
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-width: 250px;
+  min-width: 200px;
   width: 25%;
-  max-width: 500px;
-  height: 50%;
-  max-height: 500px; 
+  max-width: 300px;
+  height: 90%;
+  max-height: 250px;
   margin: auto;
 }
 .form-BMI {
@@ -942,17 +1034,19 @@ hr.appointment {
   justify-content: center;
   align-items: center;
   height: 98%;
-  width: 98%;
+  width: 95%;
+  border-radius: 30px 10px 30px 10px ;
+
 }
 
-.form-BMI form{
+.form-BMI form {
   width: 100%;
   padding-bottom: 0;
 }
 
-.form-BMI form.form-btn button{
-  height: 100%;
-  border: 5px solid var(--plumm)
+.form-BMI form.form-btn button {
+  background-color: var(--citrine);
+  border: 5px solid var(--plumm);
 }
 
 /* display current bmi*/
@@ -965,10 +1059,9 @@ hr.appointment {
   min-width: 500px;
   width: 50%;
   max-width: 600px;
-  min-height: 250px;
-  height: 50%;
-  max-height: 400px;
-  margin:auto;
+  height: 90%;
+  max-height: 250px;
+  margin: auto;
 }
 
 .frame-BMI3 {
@@ -976,12 +1069,12 @@ hr.appointment {
   flex-direction: column;
   justify-content: space-around;
   height: 98%;
-  width: 98%;
+  width: 95%;
   margin: auto;
   border-radius: 10px 30px 10px 30px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   background-color: var(--pluml);
-  border: 5px solid var(--plumm)
+  border: 5px solid var(--plumm);
 }
 
 /*diet proposition*/
@@ -991,34 +1084,39 @@ hr.appointment {
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-width: 250px;
+  min-width: 200px;
   width: 25%;
-  max-width: 500px;
-  height: 50%;
-  max-height: 500px; 
+  max-width: 300px;
+  height: 90%;
+  max-height: 250px;
   margin: auto;
 }
 
 .frame-BMI4 {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  width: 100%;
+  justify-content: space-around;
+  height: 98%;
+  width: 98%;
+  margin: auto;
 }
 
-.frame-BMI4 form{
-  width: 100%;
-  height: 33.33%;
+div.check {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 95%;
+  height:100%;
+  margin: auto;
+}
+
+div.check form {
   padding-bottom: 0;
 }
 
-.frame-BMI4 form.form-btn button{
-  height: 100%;
+div.check form.form-btn button {
   border: 5px solid var(--plumm);
 }
-
 
 
 
@@ -1279,6 +1377,12 @@ footer a:hover {
     overflow-y: unset;
     overflow-x: unset;
   }
+
+  /*BMI check board*/
+  .profile-vignette-BMI3 {
+    order: -1;
+  }
+
 }
 
 /* medium screen ---------------------------------------------------*/

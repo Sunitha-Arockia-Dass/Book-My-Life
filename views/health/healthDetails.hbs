@@ -1,22 +1,31 @@
-<input type="hidden" id="bmiData" value="{{bmiData}}" />
-<input type="hidden" id="createdDates" value="{{createdDates}}" />
-
 <!-- landing health BMI page -->
 <div id="welcome-page">
   <div class="profile-full scroll-ok">
+    {{#if isAdult}}
+    <input type="hidden" id="bmiData" value="{{bmiData}}" />
+    <input type="hidden" id="createdDates" value="{{createdDates}}" />
     <br>
     <h2>{{profile.name}}, this is your BMI check board</h2>
     <br>
 
 
     <div class="profile-container2">
-        <div class="profile-vignette-BMI">
-          <div class="one-profile-BMI">
 
+
+      <!-- BMI calculator button -->
+      <div class="profile-vignette-BMI2">
+        <div class="form-BMI">
+          <form class="form-btn" action="/health/health/{{profile.id}}" method="GET">
+            <button type="submit">
+              <span class="fs-3">Check your BMI</span>
+            </button>
+          </form>
+        </div>
+      </div>
 
       <!-- BMI Informations -->
       <div class="profile-vignette-BMI3">
-        {{#if isAdult}}
+
         {{#if currentData}}
         <div class="frame-BMI3">
 
@@ -47,37 +56,31 @@
         {{/if}}
       </div>
 
-      <!-- BMI calculator button -->
-      <div class="profile-vignette-BMI2">
-        <div class="form-BMI">
-          <form class="form-btn" action="/health/health/{{profile.id}}" method="GET">
-            <button type="submit">
-              <span class="fs-3">Check your BMI</span>
-            </button>
-          </form>
-        </div>
-      </div>
+
+
+
 
       <!-- BMI Diet propositions -->
-      <div class="profile-vignette-BMI4">        
+      <div class="profile-vignette-BMI4">
+        <div class="frame-BMI4">
           <div class="check">
 
             {{#if currentWeight.isOverWeight}}
             <form class="form-btn" action="/health/weighLoss-paleo" method="GET">
               <button id="paleo" type="submit">
-                <span class="fs-3">Paleo Weight Loss Diet</span>
+                <span class="fs-6">Paleo Weight Loss Diet</span>
               </button>
             </form>
 
             <form class="form-btn" action="/health/weighLoss-vegetarian" method="GET">
               <button id="vegetarian" type="submit">
-                <span class="fs-3">Vegetarian Weight Loss Diet</span>
+                <span class="fs-6">Vegetarian Weight Loss Diet</span>
               </button>
             </form>
 
             <form class="form-btn" action="/health/weighLoss-vegan" method="GET">
               <button id="vegan" type="submit">
-                <span class="fs-3">Vegan Weight Loss Diet</span>
+                <span class="fs-6">Vegan Weight Loss Diet</span>
               </button>
             </form>
             {{/if}}
@@ -85,84 +88,120 @@
             {{#if currentWeight.isUnderWeight}}
             <form class="form-btn" action="/health/weighGain-paleo" method="GET">
               <button id="paleo" type="submit">
-                <span class="fs-3">Paleo Weight Gain Diet</span>
+                <span class="fs-6">Paleo Weight Gain Diet</span>
               </button>
             </form>
 
-             <form class="form-btn" action="/health/weighGain-vegetarian" method="GET">
+            <form class="form-btn" action="/health/weighGain-vegetarian" method="GET">
               <button id="vegetarian" type="submit">
-                <span class="fs-3">Vegetarian Weight Gain Diet</span>
+                <span class="fs-6">Vegetarian Weight Gain Diet</span>
               </button>
             </form>
 
             <form class="form-btn" action="/health/weighGain-vegan" method="GET">
               <button id="vegan" type="submit">
-                <span class="fs-3">Vegan Weight Gain Diet</span>
+                <span class="fs-6">Vegan Weight Gain Diet</span>
               </button>
             </form>
             {{/if}}
-
           </div>
         </div>
-          </div>
+      </div>
+
+
+
+
+
+      <!-- BMI Chart -->
+      <div class="profile-vignette-BMI">
+        <div class="one-profile-BMI">
+          <canvas id="bmiChart" class=""></canvas>
         </div>
+      </div>
 
 
-        <!-- BMI Chart -->
-        <div class="profile-vignette-BMI">
-          <div class="one-profile-BMI">
-            <canvas id="bmiChart" class=""></canvas>
-          </div>
-        </div>
-
-   
 
 
 
       <!-- same page but for kids -->
-        {{else}}
-        <h4>Hi This is {{profile.name}}'s percentile chart </h4>
-
-        {{#if currentData}}
-        <h4>Hi {{profile.name}}, YOUR CURRENT BMI IS {{currentData.BMI}} </h4>
-        <h4>you fall under {{percentile}}th percentile</h4>
-        <h4>You are in {{category.currentWeightKid}} weight range</h4>
-
-        {{#if currentWeightKid.isOverWeight}}
-        <h3>You need to consult a doctor</h3>
-        {{/if}}
-
-        {{#if currentWeightKid.isUnderWeight}}
-        <h3>You need to consult a doctor</h3>
-        {{/if}}
-
-        {{#if currentWeightKid.isObese}}
-        <h3>You need to consult a doctor</h3>
-        {{/if}}
-
-        {{#if currentWeightKid.isNormalWeight}}
-        <h3>You'r doing great continue to do what you'r doing</h3>
-        {{/if}}
-        {{/if}}
+      <!-- same page but for kids -->
+      <!-- same page but for kids -->
+      {{else}}
+      <input type="hidden" id="ageData" value="{{ageData}}" />
+      <input type="hidden" id="percentile" value="{{bmiPercentile}}" />
+      <br>
+      <h2>{{profile.name}}, this is your percentile BMI check board</h2>
+      <br>
 
 
-        <input type="hidden" id="ageData" value="{{ageData}}" />
-        <input type="hidden" id="percentile" value="{{bmiPercentile}}" />
+      <div class="profile-container2">
 
-        <div class="row">
 
-          <div class="col-6">
-            <canvas id="bmiChartKid"></canvas>
+        <!-- BMI calculator button -->
+        <div class="profile-vignette-BMI2">
+          <div class="form-BMI">
+            <form class="form-btn" action="/health/health/{{profile.id}}" method="GET">
+              <button type="submit">
+                <span class="fs-3">Check your BMI</span>
+              </button>
+            </form>
+          </div>
+        </div>
 
-            <button>
-              <a href="/health/health/{{profile.id}}">CHECK YOUR BMI</a>
-            </button>
+        <!-- BMI Informations -->
+        <div class="profile-vignette-BMI3">
+
+          {{#if currentData}}
+          <div class="frame-BMI3">
+
+            <h3 class="fs-3">Your current BMI is: <span class="fw-bold">{{currentData.BMI}}</span></h3>
+
+            <p class="fs-5">It correspond to the <span class="fw-bold">{{percentile}}</span>th percentile
+            </p>
+
+            <p class="fs-5">You are in <span class="fw-bold">{{category.currentWeightKid}}</span> weight range</p>
+
+            
+
+
+            {{#if currentWeightKid.isUnderWeight}}
+            <p class="fs-5">Please consult a pediatrician<br></p>
+            {{/if}}
+
+            {{#if currentWeightKid.isOverWeight}}
+            <p class="fs-5">Please consult a pediatrician<br></p>
+            {{/if}}
+
+            {{#if currentWeightKid.isObese}}
+            <p class="fs-5">Please consult a pediatrician<br></p>
+            {{/if}}
+
+            {{#if currentWeightKid.isNormalWeight}}
+            <p class="fs-5">Congrats! you are doing great continue like that<br></p>
+            {{/if}}
+
 
           </div>
-
           {{/if}}
         </div>
-        
+      
+
+        <!-- BMI Chart -->
+        <div class="profile-vignette-BMI">
+          <div class="one-profile-BMI">
+            <canvas id="bmiChartKid" class=""></canvas>
+          </div>
+        </div>
+
+
+
+      </div>
+  {{/if}}
+
+
+
+
+
 
 
 
@@ -170,4 +209,3 @@
 
     </div>
   </div>
-</div>
