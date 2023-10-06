@@ -47,7 +47,11 @@
                 </div>
                 <br>
                 <h2>Hello, <span class="capitalize">{{profile.name}}</span></h2>
-                <p>Already {{age}} Years old! it's time to take care of you.</p>
+                {{#if isAdult}}
+                <p>Already {{age}} Years old! It's good to take care of you.</p>
+                {{else}}
+                <p>{{age}} Years old! It's good to be young.</p>
+                {{/if}}
               </div>
 
 

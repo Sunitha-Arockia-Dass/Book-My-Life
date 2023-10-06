@@ -168,7 +168,8 @@ router.get(
       .then((updatedProfile) => {
         const dob = updatedProfile.dateOfBirth;
         const age = calculateAge(dob);
-        res.render("profile/profileDetail", { profile: updatedProfile, age });
+        const isAdult = age > 16
+        res.render("profile/profileDetail", { profile: updatedProfile, age,isAdult });
       })
       .catch((error) => {
         console.log("error while finding profiles:", error);

@@ -24,10 +24,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const createdDates = JSON.parse(
     document.getElementById("createdDates").value
   );
-  const normalData = Array(bmiData.length).fill(25);
-  const overweightData = Array(bmiData.length).fill(30);
-  const obeseData = Array(bmiData.length).fill(40);
-  const underweightData = Array(bmiData.length).fill(18.5);
+  console.log('bmidata', bmiData )
+  console.log('createddates', createdDates )
+  if(bmiData.length === 0 || bmiData.length === 1){
+    // Default values
+    createdDates.push("Oct 2, 2023", "Oct 2, 2023");
+  }
+  
+  const normalData = Array(createdDates.length).fill(25);
+  const overweightData = Array(createdDates.length).fill(30);
+  const obeseData = Array(createdDates.length).fill(40);
+  const underweightData = Array(createdDates.length).fill(18.5);
 
   new Chart(ctx, {
     type: "line",
@@ -94,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   }
   })
+
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -134,6 +142,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const bmiPercentile = JSON.parse(
       document.getElementById("percentile").value
     );
+    if(bmiPercentile.length === 0 || bmiPercentile.length === 1){
+      // Default values
+      ageData.push("Oct 2, 2023", "Oct 2, 2023");
+    }
     //  const normalData = Array(bmiPercentile.length).fill(85);
      const normalData = [85,85,85,85,85,85];
     // const overweightData = Array(bmiPercentile.length).fill(95);

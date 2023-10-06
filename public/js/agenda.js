@@ -179,7 +179,8 @@ function dateFormatted(dateString) {
       }, []);
 
       todaysEvents.forEach(function (ev) {
-        let evSpan = createElement("span", ev.color);
+        let evSpan = createElement("span",event);
+        evSpan.style.backgroundColor = "#963696"
         element.appendChild(evSpan);
       });
     }
@@ -282,22 +283,7 @@ function dateFormatted(dateString) {
 
   Calendar.prototype.drawLegend = function () {
     let legend = createElement("div", "legend");
-    let calendars = this.events
-      .map(function (e) {
-        return e.calendar + "|" + e.color;
-      })
-      .reduce(function (memo, e) {
-        if (memo.indexOf(e) === -1) {
-          memo.push(e);
-        }
-        return memo;
-      }, [])
-      .forEach(function (e) {
-        let parts = e.split("|");
-        let entry = createElement("span", "entry " + parts[1], parts[0]);
-        legend.appendChild(entry);
-      });
-    this.el.appendChild(legend);
+  this.el.appendChild(legend);
   };
 
   Calendar.prototype.nextMonth = function () {
@@ -332,105 +318,73 @@ function dateFormatted(dateString) {
     {
       date: "2023-10-05",
       eventName: "Lunch Meeting w/ Mark",
-      calendar: "Work",
-      color: "orange",
     },
     {
       date: "2023-10-05",
       eventName: "Interview - Jr. Web Developer",
-      calendar: "Work",
-      color: "orange",
     },
     {
       date: "2023-10-05",
       eventName: "Demo New App to the Board",
-      calendar: "Work",
-      color: "orange",
     },
     {
       date: "2023-10-05",
       eventName: "Dinner w/ Marketing",
-      calendar: "Work",
-      color: "orange",
     },
 
     {
       date: "2023-10-05",
       eventName: "Game vs Portalnd",
-      calendar: "Personal",
-      color: "blue",
     },
     {
       date: "2023-10-05",
       eventName: "Game vs Houston",
-      calendar: "Personal",
-      color: "blue",
     },
     {
       date: "2023-10-05",
       eventName: "Game vs Denver",
-      calendar: "Personal",
-      color: "blue",
     },
     {
       date: "2023-10-05",
       eventName: "Game vs San Degio",
-      calendar: "Personal",
-      color: "blue",
     },
 
     {
       date: "2023-10-05",
       eventName: "School Play",
-      calendar: "kids",
-      color: "yellow",
     },
     {
       date: "2023-10-05",
       eventName: "Parent/Teacher Conference",
-      calendar: "kids",
-      color: "yellow",
     },
     {
       date: "2023-10-05",
       eventName: "Pick up from Soccer Practice",
-      calendar: "kids",
-      color: "yellow",
     },
     {
       date: "2023-10-05",
       eventName: "Ice Cream Night",
-      calendar: "kids",
-      color: "yellow",
     },
 
     {
       date: "2023-10-05",
       eventName: "Free Tamale Night",
-      calendar: "other",
-      color: "green",
     },
     {
       date: "2023-10-05",
       eventName: "Bowling Team",
-      calendar: "other",
-      color: "green",
     },
     {
       date: "2023-10-05",
       eventName: "Teach Kids to Code",
-      calendar: "other",
-      color: "green",
     },
     {
       date: "2023-10-05",
       eventName: "Startup Weekend",
-      calendar: "other",
-      color: "green",
     },
   ];
 
-  fetch("https://kind-pink-iguana-gown.cyclic.app/agenda/agendaDetail", {
+  fetch("http://localhost:3000/agenda/agendaDetail", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -443,7 +397,6 @@ function dateFormatted(dateString) {
       data.forEach((particularData, i) => {
         if (agendaDatas[i]) {
           particularData.eventName = agendaDatas[i].appointmentName;
-          particularData.calendar = agendaDatas[i].appointmentType;
           particularData.date = agendaDatas[i].appointmentDate;
           particularData.formattedAppointmentDate = dateFormatted(
             agendaDatas[i].appointmentDate
@@ -457,9 +410,7 @@ function dateFormatted(dateString) {
       function updateRightPanel(filteredAppointments) {
         console.log("updateRightPanel called");
         const agendaContainer2 = document.querySelector(".agenda-container2");
-        agendaContainer2.innerHTML = ""; // Clear the existing content
-
-        // Loop through filtered appointments and render them in the right panel
+        agendaContainer2.innerHTML = ""; 
         filteredAppointments.forEach(function (appointment) {
           const matchingData = data.find(
             (dataItem) =>
@@ -469,12 +420,11 @@ function dateFormatted(dateString) {
           console.log("matchingData", matchingData);
           if (matchingData) {
             const appointmentElement = document.createElement("div");
-            appointmentElement.className = "appointment"; // Set the CSS class
+            appointmentElement.className = "appointment";
             console.log(
               "appointment.formattedAppointmentDate",
               appointment.formattedAppointmentDate
             );
-            // Create and set the inner HTML for the appointmentElement
             appointmentElement.innerHTML = `
                     <div id="frame-agenda2" class="agenda-info">
                       <br>
@@ -491,7 +441,7 @@ function dateFormatted(dateString) {
                       <br>
                       <div class="profile-btn">
             <!-- Update button-->
-            <form class="nav-link fs-5" id="update-btn" action="/agenda/agendaUpdate/{{appointment.id}}" method="GET">
+            <form class="nav-link fs-5" id="update-btn" action="/agenda/agendaUpdate/${appointment._id}" method="GET">
               <button class="Btn">
                 <div class="sign"><svg id="update-svg" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -511,7 +461,7 @@ function dateFormatted(dateString) {
             </form>
 
             <!-- Delete button-->
-            <form class="nav-link fs-5" id="delete-btn" action="/agenda/agendaDelete/{{appointment.id}}" method="GET">
+            <form class="nav-link fs-5" id="delete-btn" action="/agenda/agendaDelete/${appointment._id}" method="GET">
               <button class="Btn">
                 <div class="sign"><svg id="delete-svg" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -540,41 +490,30 @@ function dateFormatted(dateString) {
         .getElementById("calendar")
         .addEventListener("click", function (event) {
           if (event.target.classList.contains("day-number")) {
-            // Extract the clicked date from the calendar element
-            // const clickedDate = moment(event.target.textContent, "DD").format(
-            //   "YYYY-MM-DD"
-            // );
-            // Extract the clicked date from the calendar element
+            
             if (event.target.classList.contains("day-number")) {
-              // Extract the clicked date from the calendar element
               const clickedDay = event.target.textContent;
-              const clickedMonth = calendar.current.month() + 1; // Get the current month (add 1 because months are 0-indexed)
-              const clickedYear = calendar.current.year(); // Get the current year
+              const clickedMonth = calendar.current.month() + 1; 
+              const clickedYear = calendar.current.year(); 
               const clickedDate = moment(`${clickedYear}-${clickedMonth}-${clickedDay}`, "YYYY-MM-DD").format("YYYY-MM-DD");
 
 
               console.log("clicked date", clickedDate)
               if (selectedDate === clickedDate) {
-                // If all appointments are displayed, reload the page to show the initial view
                 selectedDate = null
                 location.reload();
               }
               else {
-                // Filter appointments based on the clicked date
                 const filteredAppointments = agendaDatas.filter(function (
                   appointment
                 ) {
-                  // Parse the appointment date using moment.js
                   const formattedAppointmentDate = moment(
                     appointment.appointmentDate
                   ).format("YYYY-MM-DD");
 
-                  // Check if the appointment date matches the clicked date
                   return formattedAppointmentDate === clickedDate;
                 });
                 console.log("filteredAppointments", filteredAppointments);
-
-                // Update the right panel with filtered appointments
                 updateRightPanel(filteredAppointments);
                 selectedDate = clickedDate;
               }

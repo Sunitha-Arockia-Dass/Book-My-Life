@@ -26,7 +26,7 @@ router.get("/healthDetail/:id",isLoggedIn, (req, res, next) => {
     .then(profile=>{
   const dob = profile.dateOfBirth;
     const age = calculateAge(dob);
-    const isAdult = age > 20;
+    const isAdult = age > 16;
     Data.find({ profile: selectedProfileId }).then((profileDatas) => {
       const bmiData = profileDatas.map((data) => data.BMI);
       const ageData = profileDatas.map((data) => data.ageInMonths);

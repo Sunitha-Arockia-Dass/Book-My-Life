@@ -5,7 +5,7 @@
     <input type="hidden" id="bmiData" value="{{bmiData}}" />
     <input type="hidden" id="createdDates" value="{{createdDates}}" />
     <br>
-    <h2>{{profile.name}}, this is your BMI check board</h2>
+    <h2>{{profile.name}}'s BMI Chart </h2>
     <br>
 
 
@@ -29,9 +29,9 @@
         {{#if currentData}}
         <div class="frame-BMI3">
 
-          <h3 class="fs-3">Your current BMI is: <span class="fw-bold">{{currentData.BMI}}</span></h3>
+          <h3 class="fs-3">Your current BMI: <span class="fw-bold">{{currentData.BMI}}</span></h3>
 
-          <p class="fs-5">It correspond to the category<br><span class="fw-bold">{{currentWeight.currentWeight}}</span>
+          <p class="fs-5">It corresponds to the category<br><span class="fw-bold">{{currentWeight.currentWeight}}</span>
           </p>
 
 
@@ -39,6 +39,7 @@
           <p class="fs-5">To achieve a healthy BMI, you need to<br>
             <span class="fw-bold">lose {{optimalWeightToBe}}kgs</span>
           </p>
+          
           {{/if}}
 
           {{#if currentWeight.isUnderWeight}}
@@ -52,6 +53,7 @@
             <span class="fw-bold">Congrats!</span>
           </p>
           {{/if}}
+           <p class="fs-5">To attain the desired weight range you can try the<br> suggested <span class="fw-bold"> diet recipes </span>on the right.</p>
         </div>
         {{/if}}
       </div>
@@ -130,7 +132,7 @@
       <input type="hidden" id="ageData" value="{{ageData}}" />
       <input type="hidden" id="percentile" value="{{bmiPercentile}}" />
       <br>
-      <h2>{{profile.name}}, this is your percentile BMI check board</h2>
+      <h2>{{profile.name}}'s Percentile Chart</h2>
       <br>
 
 
@@ -154,9 +156,9 @@
           {{#if currentData}}
           <div class="frame-BMI3">
 
-            <h3 class="fs-3">Your current BMI is: <span class="fw-bold">{{currentData.BMI}}</span></h3>
+            <h3 class="fs-3">Your current BMI: <span class="fw-bold">{{currentData.BMI}}</span></h3>
 
-            <p class="fs-5">It correspond to the <span class="fw-bold">{{percentile}}</span>th percentile
+            <p class="fs-5">It corresponds to the percentile:<span class="fw-bold">{{percentile}}</span> 
             </p>
 
             <p class="fs-5">You are in <span class="fw-bold">{{category.currentWeightKid}}</span> weight range</p>
@@ -165,19 +167,19 @@
 
 
             {{#if currentWeightKid.isUnderWeight}}
-            <p class="fs-5">Please consult a pediatrician<br></p>
+            <p class="fs-5">You are a great parent.Still it is better to consult a Pediatrician<br></p>
             {{/if}}
 
             {{#if currentWeightKid.isOverWeight}}
-            <p class="fs-5">Please consult a pediatrician<br></p>
+            <p class="fs-5">You are a great parent.Still it is better to consult a Pediatrician<br></p>
             {{/if}}
 
             {{#if currentWeightKid.isObese}}
-            <p class="fs-5">Please consult a pediatrician<br></p>
+            <p class="fs-5">You are a great parent.Still it is better to consult a Pediatrician<br></p>
             {{/if}}
 
             {{#if currentWeightKid.isNormalWeight}}
-            <p class="fs-5">Congrats! you are doing great continue like that<br></p>
+            <p class="fs-5">Congrats! You are a <span class="fw-bold">great parent</span>.Continue what you are doing.<br></p>
             {{/if}}
 
 
