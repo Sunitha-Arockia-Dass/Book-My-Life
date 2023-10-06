@@ -1381,15 +1381,16 @@ footer a:hover {
 /* mobile screen ---------------------------------------------------*/
 /* mobile screen ---------------------------------------------------*/
 
-@media (max-width: 500px) {
-  /* mobile 1st design method min 500px width */
-}
+/*@media (max-width: 500px) {}
+mobile 1st design method min 500px width */
+
+
 
 /* small screen ---------------------------------------------------*/
 /* small screen ---------------------------------------------------*/
 /* small screen ---------------------------------------------------*/
 
-@media (min-width: 500px) and (max-width: 991px) {
+@media (min-width: 0px) and (max-width: 991px) {
   header {
     min-height: 7vh;
     height: unset;
