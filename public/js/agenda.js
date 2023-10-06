@@ -148,7 +148,7 @@ function dateFormatted(dateString) {
         // If details are not open, open them
         self.openDay(this);
       }
-        });
+    });
 
     //Day Name
     let name = createElement("div", "day-name", day.format("ddd"));
@@ -451,7 +451,7 @@ function dateFormatted(dateString) {
         }
       });
       console.log(data);
-      function addDate(ev) {}
+      function addDate(ev) { }
 
       let calendar = new Calendar("#calendar", data);
       function updateRightPanel(filteredAppointments) {
@@ -526,7 +526,8 @@ function dateFormatted(dateString) {
                 <div class="text fs-5 prof-link">Delete</div>
               </button>
             </form>
-          </div>                      
+          </div>
+          <br><br>                      
                     </div>
                   `;
 
@@ -535,7 +536,7 @@ function dateFormatted(dateString) {
         });
       }
       let selectedDate = null
-            document
+      document
         .getElementById("calendar")
         .addEventListener("click", function (event) {
           if (event.target.classList.contains("day-number")) {
@@ -550,38 +551,38 @@ function dateFormatted(dateString) {
               const clickedMonth = calendar.current.month() + 1; // Get the current month (add 1 because months are 0-indexed)
               const clickedYear = calendar.current.year(); // Get the current year
               const clickedDate = moment(`${clickedYear}-${clickedMonth}-${clickedDay}`, "YYYY-MM-DD").format("YYYY-MM-DD");
-        
 
-            console.log("clicked date",clickedDate)
-            if (selectedDate === clickedDate) {
-              // If all appointments are displayed, reload the page to show the initial view
-              selectedDate = null
-              location.reload();
+
+              console.log("clicked date", clickedDate)
+              if (selectedDate === clickedDate) {
+                // If all appointments are displayed, reload the page to show the initial view
+                selectedDate = null
+                location.reload();
+              }
+              else {
+                // Filter appointments based on the clicked date
+                const filteredAppointments = agendaDatas.filter(function (
+                  appointment
+                ) {
+                  // Parse the appointment date using moment.js
+                  const formattedAppointmentDate = moment(
+                    appointment.appointmentDate
+                  ).format("YYYY-MM-DD");
+
+                  // Check if the appointment date matches the clicked date
+                  return formattedAppointmentDate === clickedDate;
+                });
+                console.log("filteredAppointments", filteredAppointments);
+
+                // Update the right panel with filtered appointments
+                updateRightPanel(filteredAppointments);
+                selectedDate = clickedDate;
+              }
             }
-            else {
-            // Filter appointments based on the clicked date
-            const filteredAppointments = agendaDatas.filter(function (
-              appointment
-            ) {
-              // Parse the appointment date using moment.js
-              const formattedAppointmentDate = moment(
-                appointment.appointmentDate
-              ).format("YYYY-MM-DD");
-
-              // Check if the appointment date matches the clicked date
-              return formattedAppointmentDate === clickedDate;
-                                    });
-            console.log("filteredAppointments", filteredAppointments);
-
-            // Update the right panel with filtered appointments
-            updateRightPanel(filteredAppointments);
-            selectedDate = clickedDate;
-                    }
-        }
-        }
+          }
         });
-      
-          })
+
+    })
 
     .catch((error) => {
       console.error("Fetch error:", error);
