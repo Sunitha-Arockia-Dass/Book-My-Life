@@ -10,7 +10,7 @@
 
 <h3>App deployed with Cyclic : <a href="https://kind-pink-iguana-gown.cyclic.app">Here</a></h3>
 
-<h3>JSON server for recipies : <a href="https://ochre-dibbler-hem.cyclic.cloud/">Here</a></h3>
+<h3>JSON server for recipies : <a href="https://crowded-erin-seahorse.cyclic.app/">Here</a></h3>
 
 <h1>Introduction</h1>
 <h2>Technical Requirements Your app must:</h2>
@@ -34,11 +34,6 @@ The URL of the live app on the Internet.
 The URL of the slides for your app’s presentation.
 You must present your app during Project #2 final presentations (last day of Project #2 time).
 Presentations
-
-<h3>Follow the Trello Board : <a href="https://trello.com/b/EhPvP6Rw/ironhack-projet2-bookmylife">Here</a></h3>
-<h3>Slides presentation : <a href="https://slides.com/thomaslebas/">Here</a></h3>
-<h3>App deployed with Cyclic : <a href="https://kind-pink-iguana-gown.cyclic.app/">Here</a></h3>
-<h3>JSON server for recipies : <a href="https://crowded-erin-seahorse.cyclic.app/">Here</a></h3>
 
 ## UX/UI Choices
 
