@@ -37,8 +37,8 @@ Presentations
 
 <h3>Follow the Trello Board : <a href="https://trello.com/b/EhPvP6Rw/ironhack-projet2-bookmylife">Here</a></h3>
 <h3>Slides presentation : <a href="https://slides.com/thomaslebas/">Here</a></h3>
-<h3>Play the game with Gitpages : <a href="https://github.com/Sunitha-Arockia-Dass/Book-My-Life">Here</a></h3>
-<h3>Play the app with Gitpages : <a href="">Here</a></h3>
+<h3>App deployed with Cyclic : <a href="https://kind-pink-iguana-gown.cyclic.app/">Here</a></h3>
+<h3>JSON server for recipies : <a href="https://crowded-erin-seahorse.cyclic.app/">Here</a></h3>
 
 ## UX/UI Choices
 
