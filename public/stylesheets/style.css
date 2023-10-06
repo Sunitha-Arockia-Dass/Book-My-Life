@@ -933,14 +933,14 @@ div.sign #delete-svg {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-width: 500px;
+  min-width: 450px;
   width: 50%;
   max-width: 750px;
   height: 100%;
 }
 
 #calendar-container {
-  min-width: 500px;
+  min-width: 450px;
   width: 50%;
   max-width: 750px;
   max-height: 100%;
@@ -1054,7 +1054,7 @@ hr.appointment {
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-width: 500px;
+  min-width: 450px;
   width: 98%;
   max-width: 1200px; 
   margin: 15px auto;
@@ -1113,7 +1113,7 @@ hr.appointment {
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-width: 500px;
+  min-width: 450px;
   width: 50%;
   max-width: 600px;
   height: 90%;
