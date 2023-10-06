@@ -122,7 +122,7 @@ const findCategory = (percentile) => {
     currentWeightKid= "OverWeight";
     isOverWeight=true
   }
-  else{
+  else if ((percentile >= 95 && percentile <= 105)){
     currentWeightKid="Obesity"
   isObese=true
 }

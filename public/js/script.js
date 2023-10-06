@@ -146,10 +146,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Default values
       ageData.push("Oct 2, 2023", "Oct 2, 2023");
     }
-    //  const normalData = Array(bmiPercentile.length).fill(85);
-     const normalData = [85,85,85,85,85,85];
-    // const overweightData = Array(bmiPercentile.length).fill(95);
-    const overweightData =[95,95,95,95,95,95,95]
+     const normalData = Array(bmiPercentile.length).fill(85);
+    const overweightData = Array(bmiPercentile.length).fill(95);
      const obeseData = Array(bmiPercentile.length).fill(120);
     const underweightData = Array(bmiPercentile.length).fill(10);
   
