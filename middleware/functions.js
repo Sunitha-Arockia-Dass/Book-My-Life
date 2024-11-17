@@ -86,7 +86,7 @@ const optimalWeight = (currentWeight, BMI, weight) => {
   const recipes = [];
   try {
     const response = await axios.get(
-      "https://crowded-erin-seahorse.cyclic.app/recipes"
+      "https://diet-recipe-and-kids-bmi-api-3.onrender.com/recipes"
     );
     recipes.push(...response.data);
     console.log("Recipe data fetched and populated.");
@@ -98,8 +98,8 @@ const optimalWeight = (currentWeight, BMI, weight) => {
 
 const fetchBmiReferenceData = async () => {
   try {
-    const boysData = await axios.get("https://crowded-erin-seahorse.cyclic.app/boys");
-    const girlsData = await axios.get("https://crowded-erin-seahorse.cyclic.app/girls");
+    const boysData = await axios.get("https://diet-recipe-and-kids-bmi-api-3.onrender.com/boys");
+    const girlsData = await axios.get("https://diet-recipe-and-kids-bmi-api-3.onrender.com/girls");
     return { boysData, girlsData };
   } catch (error) {
     console.error("Error fetching bmi data:", error);

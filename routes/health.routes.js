@@ -15,8 +15,35 @@ const {
   findCategory,
 } = require("../middleware/functions");
 const {isLoggedIn}=require("../middleware/route-guard")
+const saveAndRenderResponse = (newData, foundProfile, res, isKid) => {
+  Data.create(newData).then((currentData) => {
+    Data.find({ profile: newData.profile }).then((profileDatas) => {
+      const bmiData = profileDatas.map((data) => data.BMI);
+      const ageData = profileDatas.map((data) => data.ageInMonths);
+      const createdDates = profileDatas.map((data) => data.formattedCreatedAt);
+      const bmiPercentile = profileDatas.map((data) => data.percentile);
 
-
+      // Render the response, passing data only for adults or kids accordingly
+      res.render("health/healthDetails", {
+        data: profileDatas,
+        currentData,
+        bmiData: JSON.stringify(bmiData),
+        createdDates: JSON.stringify(createdDates),
+        bmiPercentile: JSON.stringify(bmiPercentile),
+        ageData: JSON.stringify(ageData),
+        currentWeight: newData.currentWeight,
+        optimalWeightToBe: newData.optimalWeightToBe,
+        profile: foundProfile,
+        isAdult: !isKid,  // Determine whether it's an adult or kid
+        percentile: newData.percentile, // Pass percentile for kids, null for adults
+        category: newData.category,     // Pass category for kids, null for adults
+      });
+    });
+  }).catch((err) => {
+    console.error(err);
+    next(err);  // Handle any errors during data creation
+  });
+};
 /*////////////////////////////////////////////////////////////// 
 GET HEALTHIFY HOME PAGE
  */
@@ -72,45 +99,67 @@ router.post("/health/:id",isLoggedIn, async (req, res, next) => {
     const age = calculateAge(dob);
     const ageMonths = calculateAgeInMonths(dob);
     const isAdult = age > 20;
-    findPercentile(foundProfile.gender, ageMonths, BMI).then((percentile) => {
-      const category = findCategory(percentile);
-      const newData = {
-        height,
-        weight,
-        profile: selectedProfileId,
-        age: age,
-        BMI,
-        profileName: profileName,
-      };
-      if (!isAdult) {
-        newData.percentile = percentile;
-        newData.ageInMonths = ageMonths;
-      }
-        Data.create(newData).then((currentData) => {
-          Data.find({ profile: selectedProfileId }).then((profileDatas) => {
-            const bmiData = profileDatas.map((data) => data.BMI);
-            const ageData = profileDatas.map((data) => data.ageInMonths);
-            const createdDates = profileDatas.map(
-              (data) => data.formattedCreatedAt
-            );
-            const bmiPercentile = profileDatas.map((data) => data.percentile);
-            res.render("health/healthDetails", {
-              data: profileDatas,
-              currentData,
-              bmiData: JSON.stringify(bmiData),
-              createdDates: JSON.stringify(createdDates),
-              bmiPercentile: JSON.stringify(bmiPercentile),
-              ageData: JSON.stringify(ageData),
-              currentWeight,
-              optimalWeightToBe,
-              profile: foundProfile,
-              isAdult,
-              percentile,
-              category,
-            });
-          });
-        });
-      });
+    const newData = {
+      height,
+      weight,
+      profile: selectedProfileId,
+      age: age,
+      BMI,
+      profileName: profileName,
+      currentWeight,
+      optimalWeightToBe
+    };
+    // findPercentile(foundProfile.gender, ageMonths, BMI).then((percentile) => {
+    //   const category = findCategory(percentile);
+    //   if (!isAdult) {
+    //     newData.percentile = percentile;
+    //     newData.ageInMonths = ageMonths;
+    //   }
+    //     Data.create(newData).then((currentData) => {
+    //       Data.find({ profile: selectedProfileId }).then((profileDatas) => {
+    //         const bmiData = profileDatas.map((data) => data.BMI);
+    //         const ageData = profileDatas.map((data) => data.ageInMonths);
+    //         const createdDates = profileDatas.map(
+    //           (data) => data.formattedCreatedAt
+    //         );
+    //         const bmiPercentile = profileDatas.map((data) => data.percentile);
+    //         res.render("health/healthDetails", {
+    //           data: profileDatas,
+    //           currentData,
+    //           bmiData: JSON.stringify(bmiData),
+    //           createdDates: JSON.stringify(createdDates),
+    //           bmiPercentile: JSON.stringify(bmiPercentile),
+    //           ageData: JSON.stringify(ageData),
+    //           currentWeight,
+    //           optimalWeightToBe,
+    //           profile: foundProfile,
+    //           isAdult,
+    //           percentile,
+    //           category,
+    //         });
+    //       });
+    //     });
+    //   });
+    if (!isAdult) {
+      findPercentile(foundProfile.gender, ageMonths, BMI)
+        .then((percentile) => {
+          const category = findCategory(percentile);
+          newData.percentile = percentile;
+          newData.ageInMonths = ageMonths;
+          newData.category = category;
+
+          // Save data and render response
+          saveAndRenderResponse(newData, foundProfile, res, true);
+        })
+        .catch(next);  // Handle errors in percentile calculation
+    } else {
+      // For adults, no percentile calculation, just save and render
+      newData.percentile = null;  // Ensure no percentile for adults
+      newData.category = null;    // Ensure no category for adults
+      newData.ageInMonths = null; // Ensure no ageInMonths for adults
+
+      saveAndRenderResponse(newData, foundProfile, res, false);
+    }
     });
   });
 
