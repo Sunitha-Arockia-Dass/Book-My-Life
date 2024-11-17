@@ -34,9 +34,9 @@ const saveAndRenderResponse = (newData, foundProfile, res, isKid) => {
         currentWeight: newData.currentWeight,
         optimalWeightToBe: newData.optimalWeightToBe,
         profile: foundProfile,
-        isAdult: !isKid,  // Determine whether it's an adult or kid
-        percentile: newData.percentile, // Pass percentile for kids, null for adults
-        category: newData.category,     // Pass category for kids, null for adults
+        isAdult: !isKid,  
+        percentile: newData.percentile, 
+        category: newData.category, 
       });
     });
   }).catch((err) => {
@@ -109,37 +109,7 @@ router.post("/health/:id",isLoggedIn, async (req, res, next) => {
       currentWeight,
       optimalWeightToBe
     };
-    // findPercentile(foundProfile.gender, ageMonths, BMI).then((percentile) => {
-    //   const category = findCategory(percentile);
-    //   if (!isAdult) {
-    //     newData.percentile = percentile;
-    //     newData.ageInMonths = ageMonths;
-    //   }
-    //     Data.create(newData).then((currentData) => {
-    //       Data.find({ profile: selectedProfileId }).then((profileDatas) => {
-    //         const bmiData = profileDatas.map((data) => data.BMI);
-    //         const ageData = profileDatas.map((data) => data.ageInMonths);
-    //         const createdDates = profileDatas.map(
-    //           (data) => data.formattedCreatedAt
-    //         );
-    //         const bmiPercentile = profileDatas.map((data) => data.percentile);
-    //         res.render("health/healthDetails", {
-    //           data: profileDatas,
-    //           currentData,
-    //           bmiData: JSON.stringify(bmiData),
-    //           createdDates: JSON.stringify(createdDates),
-    //           bmiPercentile: JSON.stringify(bmiPercentile),
-    //           ageData: JSON.stringify(ageData),
-    //           currentWeight,
-    //           optimalWeightToBe,
-    //           profile: foundProfile,
-    //           isAdult,
-    //           percentile,
-    //           category,
-    //         });
-    //       });
-    //     });
-    //   });
+
     if (!isAdult) {
       findPercentile(foundProfile.gender, ageMonths, BMI)
         .then((percentile) => {
@@ -147,17 +117,13 @@ router.post("/health/:id",isLoggedIn, async (req, res, next) => {
           newData.percentile = percentile;
           newData.ageInMonths = ageMonths;
           newData.category = category;
-
-          // Save data and render response
           saveAndRenderResponse(newData, foundProfile, res, true);
         })
-        .catch(next);  // Handle errors in percentile calculation
+        .catch(next);  
     } else {
-      // For adults, no percentile calculation, just save and render
-      newData.percentile = null;  // Ensure no percentile for adults
-      newData.category = null;    // Ensure no category for adults
-      newData.ageInMonths = null; // Ensure no ageInMonths for adults
-
+      newData.percentile = null;  
+      newData.category = null;    
+      newData.ageInMonths = null; 
       saveAndRenderResponse(newData, foundProfile, res, false);
     }
     });
